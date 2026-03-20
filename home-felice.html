@@ -1,0 +1,2174 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>HappyMinds - Homepage</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Caveat:wght@500;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --magenta: #D10074;
+      --ink: #2f3137;
+      --muted: #686c75;
+      --paper: #f1f2f4;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      color: var(--ink);
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-snap-type: y proximity;
+    }
+
+    .hero-home {
+      min-height: 100vh;
+      background: #12010b;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      isolation: isolate;
+    }
+
+    .hero-home::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .26)),
+        radial-gradient(circle at 50% 18%, rgba(209, 0, 116, .22), transparent 52%);
+      z-index: 0;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity .9s ease;
+      pointer-events: none;
+    }
+
+    .hero-home.is-video-active .hero-media {
+      opacity: 1;
+    }
+
+    .hero-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      padding-top: 3.3rem;
+      text-align: center;
+    }
+
+    .hero-title {
+      text-transform: uppercase;
+      font-size: clamp(3.3rem, 8.9vw, 8.4rem);
+      line-height: .92;
+      font-weight: 800;
+      margin-bottom: .1rem;
+      letter-spacing: .01em;
+    }
+
+    .hero-brand {
+      font-size: clamp(2.2rem, 4.5vw, 3.45rem);
+      font-weight: 300;
+      margin: 0;
+    }
+
+    .scroll-dot {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+
+    .scroll-dot::after {
+      content: "";
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      animation: pulseDot 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: translateY(0); opacity: .9; }
+      50% { transform: translateY(3px); opacity: .5; }
+    }
+
+    .ticker {
+      padding: 18px 0 14px;
+      margin-bottom: clamp(88px, 20vh, 220px);
+    }
+
+    .ticker-track {
+      display: grid;
+      grid-template-columns: max-content 1px minmax(420px, 62vw);
+      align-items: center;
+      justify-content: center;
+      column-gap: 20px;
+      margin-bottom: 12px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .ticker-label {
+      margin: 0;
+      color: var(--magenta);
+      font-family: "Barlow Condensed", sans-serif;
+      text-transform: uppercase;
+      font-size: clamp(1.9rem, 3.2vw, 3.4rem);
+      font-weight: 800;
+      line-height: .9;
+      white-space: nowrap;
+    }
+
+    .ticker-divider {
+      width: 1px;
+      height: 56px;
+      background: #7f7f84;
+      flex: 0 0 auto;
+    }
+
+    .ticker-text {
+      margin: 0;
+      color: #5f6167;
+      font-size: clamp(.65rem, 1vw, 1.2rem);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: min(70ch, 62vw);
+      text-align: center;
+      will-change: transform, opacity;
+    }
+
+    .ticker-text.is-entering {
+      animation: tickerNewsIn .62s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes tickerNewsIn {
+      0% {
+        opacity: 0;
+        transform: translateX(46px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .ticker-progress {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.95);
+      /*box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); */
+    }
+
+    .ticker-progress-fill {
+      width: var(--ticker-dot-size, 10px);
+      min-width: var(--ticker-dot-size, 10px);
+      height: 100%;
+      background: linear-gradient(90deg, #e3007f 0%, #8f0047 100%);
+      display: block;
+      border-radius: inherit;
+    }
+
+    @keyframes tickerProgress {
+      0% { width: var(--ticker-dot-size, 10px); }
+      100% { width: 100%; }
+    }
+
+    .typing-section--overlap .container {
+      position: relative;
+      --typing-image-height: clamp(280px, 45vw, 540px);
+      --typing-overlap: calc(var(--typing-image-height) * 0.30);
+    }
+
+    .typing-line {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 1.6rem;
+    }
+
+    .typing-line--statement {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      min-height: 0;
+      position: relative;
+    }
+
+    .typing-section--overlap .typing-line--statement {
+      position: relative;
+      z-index: 3;
+      width: fit-content;
+      max-width: 100%;
+      background: #fff;
+      padding: clamp(.2rem, .8vw, .5rem) clamp(.35rem, 1.2vw, .9rem);
+      margin-bottom: calc(-1 * var(--typing-overlap));
+      pointer-events: none;
+    }
+
+    .typing-placeholder {
+      font-size: clamp(2.3rem, 7.56vw, 8.06rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      color: #4f5157;
+      display: inline-block;
+      white-space: pre-line;
+      word-break: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .typing-placeholder--reserve {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .typing-placeholder--live {
+      position: absolute;
+      inset: 0 auto auto 0;
+      display: block;
+    }
+
+    .typing-line--statement .typing-placeholder {
+      display: block;
+    }
+
+    .typing-dynamic {
+      font-size: clamp(1.06rem, 2.35vw, 2.2rem);
+      color: #555962;
+      font-weight: 500;
+      min-height: 1.4em;
+      min-width: 45%;
+    }
+
+    .typing-caret {
+      display: inline-block;
+      width: .07em;
+      height: .88em;
+      margin-left: .08em;
+      vertical-align: -0.06em;
+      background: currentColor;
+      animation: typingCaretBlink .95s step-end infinite;
+    }
+
+    @keyframes typingCaretBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .typing-media {
+      position: relative;
+    }
+
+    .typing-section--overlap .typing-media {
+      z-index: 1;
+      width: min(1600px, 80vw);
+      margin-left: calc(50% - 50vw);
+    }
+
+    .typing-section--overlap-reverse .typing-media {
+      z-index: 1;
+      width: min(1600px, 80vw);
+      margin-left: auto;
+      margin-right: calc(50% - 50vw);
+    }
+
+    .typing-section--overlap-reverse .typing-media img {
+      border-radius: 100px 0 0 0;
+    }
+
+    .typing-section--overlap-reverse .typing-line--statement {
+      margin: calc(-1 * var(--typing-overlap)) 0 0 auto;
+    }
+
+    .typing-media img {
+      width: 100%;
+      height: clamp(280px, 45vw, 540px);
+      object-fit: cover;
+      border-bottom-right-radius: 100px;
+      border-radius: 0 0 100px 0;
+      box-shadow: 0 20px 45px rgba(0,0,0,.16);
+    }
+
+    .play-float {
+      --float-size: clamp(124px, 14vw, 212px);
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: var(--float-size);
+      height: var(--float-size);
+      display: block;
+      border: 0;
+      border-radius: 50%;
+      text-decoration: none;
+      color: inherit;
+      z-index: 4;
+      background: transparent;
+      transition: transform .25s ease, filter .25s ease;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.18));
+    }
+
+    .play-float:hover,
+    .play-float:focus-visible {
+      transform: translate(-50%, -50%) scale(1.03);
+      filter: drop-shadow(0 12px 22px rgba(0,0,0,.22));
+      outline: none;
+    }
+
+    .play-float-ring-text {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      animation: floatTextSpin 11s linear infinite;
+    }
+
+    .play-float-ring-base {
+      fill: none;
+      stroke: #fff;
+      stroke-width: clamp(20px, 2.2vw, 28px);
+    }
+
+    .play-float-ring-text text {
+      font-size: clamp(14.4px, 1.32vw, 19.2px);
+      letter-spacing: 3px;
+      fill: #5c6068;
+      font-weight: 500;
+      text-anchor: middle;
+    }
+
+    .play-float-center-dot {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: clamp(18px, 1.8vw, 24px);
+      height: clamp(18px, 1.8vw, 24px);
+      border-radius: 50%;
+      background: var(--magenta);
+      transform: translate(-50%, -50%);
+    }
+
+    .play-float-tip {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(18px, -50%);
+      background: var(--magenta);
+      color: #fff;
+      border-radius: 999px;
+      padding: .72rem 1.35rem;
+      font-weight: 600;
+      font-size: clamp(.92rem, 1.35vw, 1.18rem);
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,.2);
+    }
+
+    .play-float:hover .play-float-tip,
+    .play-float:focus-visible .play-float-tip {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(10px, -50%);
+    }
+
+    @keyframes floatTextSpin {
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .play-float-ring-text {
+        animation: none;
+      }
+
+      .between-copy-text {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    .between-copy {
+      position: relative;
+      overflow: hidden;
+      min-height: clamp(281px, 29.7vw, 406px);
+      display: flex;
+      align-items: center;
+    }
+
+    .between-copy .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .between-copy-text {
+      margin: 0 0 0 auto;
+      max-width: min(1120px, 76vw);
+      padding-right: clamp(.2rem, 5vw, 4.6rem);
+      text-align: right;
+      color: #56585f;
+      font-size: clamp(1.5rem, 2vw, 3.4rem);
+      line-height: 1.46;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+      opacity: 0;
+      transform: translate3d(96px, 0, 0);
+      transition: transform .95s cubic-bezier(.19, 1, .22, 1), opacity .95s ease;
+      will-change: transform, opacity;
+    }
+
+    .between-copy-text.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .talks {
+      background: #f7f7f7 url("assets/img/pattern flamingo talks.jpg") center / cover no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: clamp(70px, 15vw, 80px);
+    }
+
+    .talks-layout {
+      position: relative;
+      z-index: 1;
+      align-items: start;
+    }
+
+    .talk-logo-wrap {
+      --talk-logo-size: clamp(228px, 28.8vw, 396px);
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto calc(var(--talk-logo-size) * -0.5);
+    }
+
+    .talk-logo {
+      width: var(--talk-logo-size);
+      display: block;
+      filter: drop-shadow(0 12px 24px rgba(79, 28, 91, .18));
+    }
+
+    .talk-main {
+      border-radius: 1.6rem;
+      overflow: hidden;
+      min-height: clamp(360px, 41vw, 506px);
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 44px rgba(0,0,0,.18);
+    }
+
+    .talk-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(19,10,19,.06) 0%, rgba(19,10,19,.16) 32%, rgba(19,10,19,.78) 100%);
+    }
+
+    .talk-main-content {
+      position: absolute;
+      inset: auto 24px 24px;
+      color: #fff;
+      z-index: 1;
+    }
+
+    .talk-chip {
+      background: var(--magenta);
+      color: #fff;
+      font-size: .64rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      border-radius: 999px;
+      padding: .28rem .62rem;
+      display: inline-flex;
+      font-weight: 700;
+      margin-bottom: .7rem;
+    }
+
+    .talk-main h3 {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(2.5rem, 5.2vw, 4.9rem);
+      line-height: .9;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+    }
+
+    .talk-side {
+      padding-top: clamp(34px, 5vw, 74px);
+    }
+
+    .talk-mini {
+      border-radius: 1.2rem;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 14px 30px rgba(0,0,0,.1);
+      border: 1px solid rgba(0,0,0,.04);
+    }
+
+    .talk-mini img {
+      width: 100%;
+      height: 184px;
+      object-fit: cover;
+    }
+
+    .talk-mini.is-monochrome img {
+      filter: grayscale(1);
+    }
+
+    .talk-mini-top {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .talk-mini-top::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.18));
+      pointer-events: none;
+    }
+
+    .talk-mini-top .talk-chip {
+      position: absolute;
+      left: 14px;
+      bottom: 12px;
+      z-index: 1;
+      margin-bottom: 0;
+    }
+
+    .talk-mini .body {
+      padding: 1rem 1.1rem 1.05rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .talk-mini-meta {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .72rem;
+      color: #9b9da2;
+      margin-bottom: .35rem;
+      line-height: 1;
+    }
+
+    .talk-mini-meta::before {
+      content: "◷";
+      font-size: .72rem;
+      opacity: .7;
+    }
+
+    .talk-mini h4 {
+      margin: 0 0 .35rem;
+      color: #1f2024;
+      font-size: 1.25rem;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .talk-mini p {
+      margin: 0;
+      font-size: .83rem;
+      line-height: 1.45;
+      color: #90939a;
+      font-weight: 400;
+    }
+
+    .talks-action {
+      text-align: center;
+      margin-top: 1.35rem;
+    }
+
+    .talks-action .btn {
+      padding-inline: 1.55rem;
+    }
+
+    .stack-wrap {
+      position: relative;
+      background: #050507;
+      scroll-margin-top: 0;
+    }
+
+    .stack-panel {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
+      min-height: 100svh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      align-items: center;
+      padding-top: 0;
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      overflow: hidden;
+      transition: filter .45s ease;
+      z-index: var(--z, 1);
+    }
+
+    .stack-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.62), rgba(0,0,0,.58));
+    }
+
+    .stack-panel .panel-title {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      text-align: center;
+      color: #fff;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(2.2rem, 5.4vw, 5.2rem);
+      line-height: .96;
+      font-weight: 700;
+      text-transform: none;
+      max-width: 1000px;
+      text-wrap: balance;
+      text-shadow: 0 8px 24px rgba(0,0,0,.45);
+    }
+
+    .panel-content {
+      position: relative;
+      z-index: 1;
+      max-width: 80vw;
+      padding-inline: 1rem;
+    }
+
+    .panel-content .panel-title {
+      font-family: "Barlow Condensed", sans-serif;
+      text-transform: none;
+      font-size: clamp(3.1rem, 7vw, 7.2rem);
+      line-height: .88;
+      margin-bottom: .95rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: left;
+    }
+
+    .panel-content .panel-copy {
+      max-width: 720px;
+      font-size: clamp(.95rem, 1.3vw, 1.2rem);
+      line-height: 1.45;
+      margin-bottom: 1.2rem;
+      color: rgba(255,255,255,.96);
+    }
+
+    .stack-previews {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1030;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events: none;
+    }
+
+    .stack-previews.is-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stack-preview-item {
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: .35rem 1rem;
+      color: #fff;
+      font-size: clamp(1rem, 1.6vw, 2rem);
+      font-weight: 500;
+      line-height: 1.1;
+      position: relative;
+      overflow: hidden;
+      text-shadow: 0 3px 10px rgba(0,0,0,.5);
+      backdrop-filter: blur(1px);
+    }
+
+    .stack-preview-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.1);
+      transform: scale(1.02);
+      z-index: -2;
+    }
+
+    .stack-preview-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(209,0,116,.72), rgba(28,6,18,.64));
+      z-index: -1;
+    }
+
+    .stack-preview-item.preview-two::before {
+      background-image: url("https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1700&auto=format&fit=crop");
+    }
+
+    .stack-preview-item.preview-three::before {
+      background-image: url("https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1700&auto=format&fit=crop");
+    }
+
+    .stack-preview-item.preview-four::before {
+      background-image: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1700&auto=format&fit=crop");
+    }
+
+    .stack-preview-item.preview-five::before {
+      background-image: url("https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1700&auto=format&fit=crop");
+    }
+
+    .stack-panel:hover {
+      filter: saturate(1.06);
+    }
+
+    #services,
+    #flamingo-talks,
+    #projects,
+    #contact {
+      scroll-margin-top: 0;
+    }
+
+    .stack-panel--one {
+      background-image: url("assets/img/marketing.jpg");
+    }
+
+    .stack-panel--two {
+      background-image: url("assets/img/audit.jpg");
+    }
+
+    .stack-panel--three {
+      background-image: url("assets/img/brand.jpg");
+    }
+
+    .stack-panel--four {
+      background-image: url("assets/img/web-app.jpg");
+    }
+
+    .stack-panel--five {
+      background-image: url("assets/img/formazione.jpg");
+    }
+
+    .btn-magenta {
+      background: var(--magenta);
+      border: 0;
+      color: #fff;
+      border-radius: 999px;
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: .62rem 1.02rem;
+      font-weight: 700;
+    }
+
+    .clients {
+      position: relative;
+      background-image: url("assets/img/wordcloud 1.png");
+      background-repeat: no-repeat;
+      background-position: right top;
+      background-size: clamp(380px, 54vw, 980px) auto;
+      overflow: hidden;
+      padding: clamp(72px, 8vw, 112px);
+    }
+
+    .clients h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      color: #4a4e56;
+      margin-bottom: 1.2rem;
+      text-transform: none;
+      font-weight: 700;
+    }
+
+    .client-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 12px 26px rgba(0,0,0,.08);
+      position: relative;
+      height: 100%;
+    }
+
+    .client-card .logo-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,.93);
+      padding: .28rem .5rem;
+      border-radius: 999px;
+      font-size: .6rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #5b6069;
+      font-weight: 700;
+      z-index: 1;
+    }
+
+    .client-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+
+    .client-card .body {
+      padding: .88rem .92rem 1rem;
+      font-size: .82rem;
+      color: #4f535c;
+      line-height: 1.44;
+      min-height: 114px;
+    }
+
+    .client-copy-card {
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 12px 26px rgba(0,0,0,.08);
+      padding: 1rem .95rem;
+      height: 100%;
+    }
+
+    .client-copy-card .head {
+      font-size: .62rem;
+      color: #838790;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: .35rem;
+    }
+
+    .client-copy-card p {
+      margin: 0 0 .45rem;
+      color: #4f535c;
+      font-size: .81rem;
+      line-height: 1.45;
+    }
+
+    .happy-destination {
+      margin-top: clamp(48px, 6vw, 88px);
+      background: #f3f3f4;
+    }
+
+    .destination-banner {
+      min-height: clamp(360px, 52vw, 600px);
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      isolation: isolate;
+    }
+
+    .destination-banner-front,
+    .destination-banner-back {
+      position: absolute;
+      inset: 0;
+      transition: transform .65s cubic-bezier(.19, 1, .22, 1), opacity .45s ease;
+    }
+
+    .destination-banner-front {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      color: #fff;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.34)),
+        url("assets/img/happy team outro.jpg") center 28% / cover no-repeat;
+      z-index: 2;
+    }
+
+    .destination-banner-front h2 {
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(3rem, 8vw, 7.4rem);
+      line-height: .9;
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      text-align: center;
+    }
+
+    .destination-banner-back {
+      background: #fff;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(100%);
+      padding: clamp(30px, 4vw, 48px);
+      display: flex;
+      align-items: center;
+    }
+
+    .destination-banner:hover .destination-banner-front,
+    .destination-banner:focus-within .destination-banner-front {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+
+    .destination-banner:hover .destination-banner-back,
+    .destination-banner:focus-within .destination-banner-back {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .destination-banner-back .row {
+      width: 100%;
+      align-items: center;
+    }
+
+    .destination-pin-wrap {
+      display: grid;
+      place-items: center;
+      min-height: 100%;
+    }
+
+    .destination-pin {
+      position: relative;
+      width: clamp(150px, 20vw, 240px);
+      aspect-ratio: 1 / 1.25;
+      transform: rotate(-45deg);
+      border-radius: 50% 50% 50% 0;
+      background: linear-gradient(160deg, #ff2b93 0%, #d10074 72%);
+      box-shadow: -26px 18px 0 0 rgba(36, 36, 36, .96) inset, 0 18px 40px rgba(0,0,0,.14);
+    }
+
+    .destination-pin::before {
+      content: "";
+      position: absolute;
+      inset: 19% 19% auto auto;
+      width: 45%;
+      height: 45%;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .destination-pin::after {
+      content: "";
+      position: absolute;
+      left: 57%;
+      top: 30%;
+      width: 13%;
+      height: 13%;
+      border-radius: 50%;
+      background: #2b2b2b;
+      box-shadow: -7px 7px 0 0 #fff;
+    }
+
+    .destination-pin-shadow {
+      width: clamp(120px, 18vw, 220px);
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,0,0,.24) 0%, rgba(0,0,0,0) 72%);
+      margin-top: 20px;
+      filter: blur(2px);
+    }
+
+    .destination-banner-copy {
+      max-width: 680px;
+    }
+
+    .destination-banner-title {
+      margin: 0 0 1rem;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(2.8rem, 4.8vw, 5rem);
+      line-height: .9;
+      color: var(--magenta);
+      font-weight: 700;
+    }
+
+    .destination-banner-copy p {
+      margin: 0 0 1.2rem;
+      color: #393b40;
+      font-size: clamp(1rem, 1.35vw, 1.2rem);
+      line-height: 1.34;
+      max-width: 740px;
+    }
+
+    .destination-banner-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.2rem;
+    }
+
+    .destination-story {
+      padding: clamp(54px, 7vw, 96px) 0 clamp(72px, 8vw, 118px);
+    }
+
+    .destination-quote {
+      position: relative;
+      margin: 0 auto clamp(54px, 7vw, 88px);
+      width: min(96%);
+      background: linear-gradient(90deg, #d10074 0%, #8c084a 100%);
+      color: #fff;
+      border-radius: 999px;
+      height: 104px;
+      padding: 1rem 6.2rem 1rem 14.5rem;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 18px 34px rgba(103, 16, 63, .16);
+    }
+
+    .destination-quote-avatar {
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: 0 14px 28px rgba(0,0,0,.1);
+      flex: 0 0 auto;
+    }
+
+    .destination-quote-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1);
+      transform: scale(1.12);
+    }
+
+    .destination-quote-text {
+      font-size: clamp(.88rem, 1.05vw, 1rem);
+      line-height: 1.35;
+      width: 100%;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .destination-quote-text.is-transitioning {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .destination-quote-author {
+      display: block;
+      margin-top: .4rem;
+      font-size: .78rem;
+      font-weight: 700;
+      color: #ffd8eb;
+    }
+
+    .destination-quote-nav {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding-left: 1rem;
+      border-left: 1px solid rgba(255,255,255,.45);
+      font-size: 1rem;
+      letter-spacing: .3em;
+      color: rgba(255,255,255,.95);
+    }
+
+    .destination-quote-arrow {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 0;
+      cursor: pointer;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .destination-quote-arrow:hover,
+    .destination-quote-arrow:focus-visible {
+      opacity: .78;
+      transform: scale(1.12);
+      outline: none;
+    }
+
+    .contact-cta {
+      padding: clamp(72px, 10vw, 132px) 0;
+    }
+
+    .contact-cta-inner {
+      width: min(100%, 930px);
+      margin: 0 auto;
+    }
+
+    .contact-cta-copy {
+      width: min(100%, 560px);
+      margin: 0 auto;
+    }
+
+    .contact-cta-lead {
+      margin: 0 0 1rem;
+      color: var(--magenta);
+      font-size: clamp(1rem, 1.25vw, 1.18rem);
+      line-height: 1.24;
+      font-weight: 700;
+    }
+
+    .contact-cta-sub {
+      margin: 0;
+      color: #35373d;
+      font-size: clamp(1rem, 1.15vw, 1.08rem);
+      line-height: 1.34;
+    }
+
+    .contact-cta-action {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: min(100%, 560px);
+      margin: clamp(28px, 3vw, 38px) auto 0;
+    }
+
+    @media (max-width: 991px) {
+      .hero-home {
+        min-height: 84vh;
+        text-align: center;
+      }
+
+      .typing-media img {
+        border-radius: 0 0 70px 0;
+      }
+
+      .play-float {
+        --float-size: clamp(108px, 28vw, 150px);
+        left: 100%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .play-float:hover,
+      .play-float:focus-visible {
+        transform: translate(-50%, -50%) scale(1.03);
+      }
+
+      .play-float-ring-base {
+        stroke-width: clamp(17px, 4.2vw, 23px);
+      }
+
+      .play-float-ring-text text {
+        font-size: clamp(12px, 3.24vw, 15.6px);
+        letter-spacing: .54px;
+      }
+
+      .play-float-tip {
+        left: auto;
+        right: 50%;
+        top: 50%;
+        transform: translate(-18px, -50%);
+        padding: .62rem .95rem;
+      }
+
+      .play-float:hover .play-float-tip,
+      .play-float:focus-visible .play-float-tip {
+        transform: translate(-10px, -50%);
+      }
+
+      .ticker-track {
+        grid-template-columns: 1fr;
+        row-gap: 8px;
+      }
+
+      .ticker-divider {
+        display: none;
+      }
+
+      .typing-section--overlap .container {
+        --typing-overlap: calc(var(--typing-image-height) * 0.22);
+      }
+
+      .typing-section--overlap .typing-line--statement {
+        padding: .2rem .35rem;
+      }
+
+      .typing-section--overlap-reverse .typing-media {
+        margin-right: calc(50% - 50vw);
+      }
+
+      .typing-section--overlap-reverse .typing-line--statement {
+        margin-top: calc(-1 * var(--typing-overlap));
+      }
+
+      .between-copy {
+        min-height: auto;
+      }
+
+      .between-copy::before {
+        inset: auto -12vw -2% -12vw;
+        height: 170px;
+        background-size: 240px auto;
+        opacity: .7;
+      }
+
+      .between-copy-text {
+        max-width: 100%;
+        margin: 0 auto;
+        padding-right: 0;
+        font-size: clamp(1.2rem, 5.2vw, 1.9rem);
+        line-height: 1.52;
+      }
+
+      .clients {
+        background-position: center top;
+        background-size: min(1100px, 150vw) auto;
+      }
+
+      .talks {
+        padding-top: 88px;
+      }
+
+      .talk-logo-wrap {
+        --talk-logo-size: clamp(274px, 46vw, 420px);
+        margin: 0 auto calc(var(--talk-logo-size) * -0.5);
+      }
+
+      .talk-side {
+        padding-top: 0;
+      }
+
+      .talk-main {
+        min-height: 300px;
+      }
+
+      .talk-main-content {
+        inset: auto 18px 18px;
+      }
+
+      .talk-mini img {
+        height: 168px;
+      }
+
+      .talk-mini h4 {
+        font-size: 1.05rem;
+      }
+
+      .talks-action .btn {
+        width: min(100%, 260px);
+      }
+
+      .destination-banner {
+        min-height: auto;
+      }
+
+      .destination-banner-front {
+        display: none;
+      }
+
+      .destination-banner-back {
+        position: relative;
+        opacity: 1;
+        transform: none;
+        padding: 2rem 1.2rem 2.2rem;
+      }
+
+      .destination-banner-copy {
+        max-width: 100%;
+        text-align: left;
+      }
+
+      .destination-banner-title {
+        font-size: clamp(2.2rem, 9vw, 3.2rem);
+      }
+
+      .destination-banner-actions {
+        justify-content: flex-start;
+      }
+
+      .destination-quote {
+        width: min(100%, 380px);
+        border-radius: 2rem;
+        height: 400px;
+        min-height: 400px;
+        margin: 72px auto clamp(40px, 8vw, 64px);
+        padding: 10.2rem 2.35rem 4.4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .destination-quote-avatar {
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -28%);
+        width: 188px;
+        height: 188px;
+      }
+
+      .destination-quote-text {
+        font-size: .94rem;
+        line-height: 1.28;
+        padding-right: 0;
+        margin-top: 1.15rem;
+        padding-bottom: 0;
+      }
+
+      .destination-quote-author {
+        font-size: .95rem;
+        margin-top: .9rem;
+      }
+
+      .destination-quote-nav {
+        position: static;
+        transform: none;
+        justify-content: center;
+        gap: 1.2rem;
+        margin-top: auto;
+        padding-top: 1rem;
+        padding-left: 0;
+        border-left: 0;
+        letter-spacing: 0;
+        font-size: 1.25rem;
+      }
+
+      .contact-cta-action {
+        justify-content: center;
+        width: 100%;
+        margin-top: 24px;
+      }
+
+      .ticker-text {
+        width: min(92vw, 70ch);
+        white-space: normal;
+        text-align: center;
+        margin-inline: auto;
+      }
+
+      .talks-action {
+        text-align: center;
+      }
+
+      .stack-panel {
+        height: 100svh;
+        min-height: 100svh;
+      }
+      .stack-preview-item {
+        min-height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Global Navbar Component -->
+<!-- Bootstrap 5.3 required -->
+<nav class="navbar navbar-agency navbar-agency--overlay py-3">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand" href="index.html" aria-label="HappyMinds home">
+      <img class="navbar-logo" src="assets/img/logo menu light.png" alt="HappyMinds logo">
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" data-overlay-open>
+      <span class="menu-lines" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="agency-overlay" id="agencyOverlay" aria-hidden="true">
+  <img class="overlay-watermark" src="assets/img/logo menu light.png" alt="" aria-hidden="true">
+  <button class="overlay-close" type="button" aria-label="Close menu" data-overlay-close>×</button>
+
+  <div class="container overlay-content d-flex flex-column">
+    <div class="row g-4 flex-grow-1 align-items-center">
+      <div class="col-md-6 d-flex flex-column justify-content-center">
+        <ul class="overlay-nav">
+          <li><a href="agency.html" data-overlay-link>Agency</a></li>
+          <li><a href="#services" data-overlay-link>Services</a></li>
+          <li><a href="projects.html" data-overlay-link>Projects</a></li>
+          <li><a href="#flamingo-talks" data-overlay-link>Flamingo Talks</a></li>
+          <li><a href="#contact" data-overlay-link>Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-6 d-flex flex-column justify-content-center gap-3">
+        <div class="overlay-box">Manifesto</div>
+        <div class="overlay-box">Happy<br>Destination</div>
+        <div class="overlay-box">Lorem Ipsum</div>
+      </div>
+    </div>
+
+    <div class="overlay-footer-note">Spreading Happiness</div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var overlay = document.getElementById('agencyOverlay');
+    var openBtn = document.querySelector('[data-overlay-open]');
+    var closeBtn = document.querySelector('[data-overlay-close]');
+    var links = document.querySelectorAll('[data-overlay-link]');
+
+    if (!overlay || !openBtn || !closeBtn) return;
+
+    var openOverlay = function () {
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('overlay-open');
+    };
+
+    var closeOverlay = function () {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('overlay-open');
+    };
+
+    openBtn.addEventListener('click', openOverlay);
+    closeBtn.addEventListener('click', closeOverlay);
+
+    links.forEach(function (link) {
+      link.addEventListener('click', closeOverlay);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeOverlay();
+      }
+    });
+  })();
+</script>
+<header class="hero-home">
+    <div class="hero-media" aria-hidden="true">
+      <video
+        id="heroBackgroundVideo"
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      >
+        <source src="assets/img/testata.mp4" type="video/mp4">
+      </video>
+    </div>
+    <span class="scroll-dot" aria-hidden="true"></span>
+  </header>
+
+  <div class="ticker" aria-label="Happy news">
+    <div class="container">
+      <div class="ticker-track">
+        <p class="ticker-label">Happy News</p>
+        <span class="ticker-divider" aria-hidden="true"></span>
+        <p class="ticker-text" id="ticker-news-text">La storica Trattoria Cubana sceglie HappyMinds per organizzare il 60 anniversario</p>
+      </div>
+      <div class="ticker-progress" role="progressbar" aria-label="Durata news" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="ticker-progress-fill" id="ticker-progress-fill"></span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="typing-section typing-section--overlap section-pad">
+      <div class="container">
+        <div
+          class="typing-line typing-line--statement js-typing-line"
+          data-typing-text="We create brands|Spreading happiness"
+          data-typing-speed="65"
+        >
+          <span class="typing-placeholder typing-placeholder--reserve" aria-hidden="true">We create brands
+Spreading happiness</span>
+          <span id="typing-text-1" class="typing-placeholder typing-placeholder--live" aria-live="polite"></span>
+        </div>
+
+        <div class="typing-media">
+          <img src="assets/img/happy team intro.jpg" alt="Team session">
+          <a class="play-float" href="agency.html#manifesto" aria-label="Consulta il manifesto">
+            <svg class="play-float-ring-text" viewBox="0 0 220 220" aria-hidden="true">
+              <defs>
+                <path id="manifestoRingPath" d="M 110,110 m -86,0 a 86,86 0 1,1 172,0 a 86,86 0 1,1 -172,0" />
+              </defs>
+              <circle class="play-float-ring-base" cx="110" cy="110" r="86"></circle>
+              <text>
+                <textPath href="#manifestoRingPath" startOffset="50%">
+                  Perché siamo diversi <tspan fill="#D10074">/</tspan> We are magenta <tspan fill="#D10074">/</tspan>
+                </textPath>
+              </text>
+            </svg>
+            <span class="play-float-center-dot" aria-hidden="true"></span>
+            <span class="play-float-tip" aria-hidden="true">Consulta il manifesto</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="between-copy section-pad" aria-label="Statement">
+      <div class="container">
+        <p class="between-copy-text js-reveal-right">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.
+        </p>
+      </div>
+    </section>
+
+    <section class="talks section-pad" id="flamingo-talks">
+      <div class="container position-relative">
+        <div class="row g-4 g-xl-5 talks-layout">
+          <div class="col-lg-6">
+            <div class="talk-logo-wrap">
+              <img class="talk-logo" src="assets/img/logo flamingo talks.png" alt="The Flamingo Talks News Blog">
+            </div>
+            <article class="talk-main" style="background-image:url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1300&auto=format&fit=crop')">
+              <div class="talk-main-content">
+                <span class="talk-chip">Marketing</span>
+                <h3>I trend del<br>2026</h3>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-6 talk-side d-flex flex-column gap-3">
+            <article class="talk-mini is-monochrome">
+              <div class="talk-mini-top">
+                <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=1200&auto=format&fit=crop" alt="L'importanza del tone of voice">
+                <span class="talk-chip">Branding</span>
+              </div>
+              <div class="body">
+                <div class="talk-mini-meta">15 Gen 2026</div>
+                <h4>L'importanza del tone of voice</h4>
+                <p>Come far parlare il tuo brand con la voce giusta.</p>
+              </div>
+            </article>
+            <article class="talk-mini">
+              <div class="talk-mini-top">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop" alt="Storytelling: l'arte di raccontare">
+                <span class="talk-chip">Creativita</span>
+              </div>
+              <div class="body">
+                <div class="talk-mini-meta">18 Gen 2026</div>
+                <h4>Storytelling: l'arte di raccontare</h4>
+                <p>Come le storie trasformano i brand in leggende.</p>
+              </div>
+            </article>
+            <div class="talks-action">
+              <button class="btn btn-magenta">Tutti gli articoli</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stack-wrap" aria-label="Marketing sticky stack">
+      <article class="stack-panel stack-panel--one" style="--z:1" id="services">
+        <div class="container panel-content">
+          <h2 class="panel-title">Marketing<br>strategy</h2>
+          <p class="panel-copy">
+            Analisi dei dati, strategie di comunicazione multicanale, social media marketing, digital advertising e lead generation.
+            Performance marketing, influencer marketing, copywriting e content creation, direct email marketing &amp; automation, video marketing.
+          </p>
+          <button class="btn btn-magenta">Scopri</button>
+        </div>
+      </article>
+      <article class="stack-panel stack-panel--two" style="--z:2">
+        <div class="container panel-content">
+          <h3 class="panel-title">Audit, Research &amp; Sentiment Analysis</h3>
+          <p class="panel-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus, velit id tincidunt gravida, tortor massa volutpat eros, non pulvinar justo lorem in lacus.</p>
+          <button class="btn btn-magenta">Scopri</button>
+        </div>
+      </article>
+      <article class="stack-panel stack-panel--three" style="--z:3">
+        <div class="container panel-content">
+          <h3 class="panel-title">Brand &amp; Graphic Design</h3>
+          <p class="panel-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat, massa et vulputate porta, nisi nisl congue eros, quis tempus lacus est nec nibh.</p>
+          <button class="btn btn-magenta">Scopri</button>
+        </div>
+      </article>
+      <article class="stack-panel stack-panel--four" style="--z:4">
+        <div class="container panel-content">
+          <h3 class="panel-title">Web &amp; App Development</h3>
+          <p class="panel-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, sapien in gravida bibendum, massa diam suscipit arcu, in dictum purus tortor quis risus.</p>
+          <button class="btn btn-magenta">Scopri</button>
+        </div>
+      </article>
+      <article class="stack-panel stack-panel--five" style="--z:5">
+        <div class="container panel-content">
+          <h3 class="panel-title">Formazione &amp; Coaching</h3>
+          <p class="panel-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fermentum risus. Curabitur nec urna ut justo dapibus sodales sit amet at mauris.</p>
+          <button class="btn btn-magenta">Scopri</button>
+        </div>
+      </article>
+      <div class="stack-previews" id="stackPreviews" aria-hidden="true"></div>
+    </section>
+
+    <section class="clients section-pad" id="projects">
+      <div class="container position-relative">
+        <h2>Clients</h2>
+        <div class="row g-3 g-lg-4">
+          <div class="col-md-6 col-lg-3">
+            <article class="client-card">
+              <span class="logo-badge">Turismo</span>
+              <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=1100&auto=format&fit=crop" alt="Client project 1">
+              <div class="body">Campagna visual per valorizzare il centro storico con storytelling esperienziale e contenuti social.</div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="client-card">
+              <span class="logo-badge">Visit</span>
+              <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=1100&auto=format&fit=crop" alt="Client project 2">
+              <div class="body">Piano editoriale e shooting per destinazione culturale con format digital ad alto engagement.</div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="client-card">
+              <span class="logo-badge">Project</span>
+              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1100&auto=format&fit=crop" alt="Client project 3">
+              <div class="body">Rebranding, comunicazione e promozione evento con strategia data-driven e reportistica continua.</div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="client-copy-card">
+              <div class="head">Turismo</div>
+              <p>Aenean mattis magna a augue pulvinar, at interdum nisl bibendum.</p>
+              <p>Strategia, contenuti, visual identity e attivazioni digitali integrate per progetti territoriali.</p>
+              <p class="mb-0">Storytelling orientato a risultati concreti, con piano media e misurazione continua.</p>
+            </article>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <button class="btn btn-magenta">See More</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="happy-destination">
+      <div class="container-fluid px-0">
+        <div class="destination-banner">
+          <div class="destination-banner-front">
+            <h2>HappyDestination</h2>
+          </div>
+          <div class="destination-banner-back">
+            <div class="row g-4">
+              <div class="col-lg-5">
+                <div class="destination-pin-wrap">
+                  <div class="destination-pin" aria-hidden="true"></div>
+                  <div class="destination-pin-shadow" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="destination-banner-copy">
+                  <h3 class="destination-banner-title">Come si crea una destinazione felice?</h3>
+                  <p>Una destinazione turistica e prima di tutto un territorio, con le sue persone, la sua storia, la sua cultura, la sua identita.</p>
+                  <p>Il nostro approccio al Destination Branding ha l'obiettivo di soddisfare i desideri di viaggio delle persone in modo responsabile e sostenibile creando ecosistemi territoriali, sociali ed economici in cui residenti, viaggiatori e imprese convivono e cooperano in armonia contribuendo ognuno per la propria parte a preservare il territorio, tutelare il bene comune e creare valore.</p>
+                  <div class="destination-banner-actions">
+                    <a class="btn btn-magenta" href="#contact">Scopri di piu</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="destination-story">
+      <div class="container">
+        <div class="destination-quote" id="destinationQuote">
+          <div class="destination-quote-avatar">
+            <img id="destinationQuoteAvatar" src="assets/img/happy team intro.jpg" alt="HappyDestination testimonial">
+          </div>
+          <div class="destination-quote-text" id="destinationQuoteText">
+            <span id="destinationQuoteBody">Piu che collaborazione, la definirei intesa a prima vista! Lavorare con Happy Minds e davvero un piacere. Apprezziamo il loro entusiasmo, la loro passione e la capacita di concepire idee inedite e soluzioni innovative, sempre col sorriso sulle labbra!</span>
+            <span class="destination-quote-author" id="destinationQuoteAuthor">Marianna Panebarco</span>
+          </div>
+          <div class="destination-quote-nav">
+            <button class="destination-quote-arrow" type="button" data-destination-step="-1" aria-label="Recensione precedente">‹</button>
+            <button class="destination-quote-arrow" type="button" data-destination-step="1" aria-label="Recensione successiva">›</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="typing-section typing-section--overlap typing-section--overlap-reverse section-pad">
+      <div class="container">
+        <div class="typing-media">
+          <img src="assets/img/happy team intro.jpg" alt="Team session">
+        </div>
+
+        <div
+          class="typing-line typing-line--statement js-typing-line"
+          data-typing-text="When you meet someone special, you'll know"
+          data-typing-speed="65"
+        >
+          <span class="typing-placeholder typing-placeholder--reserve" aria-hidden="true">When you meet someone special, you'll know</span>
+          <span id="typing-text-3" class="typing-placeholder typing-placeholder--live" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-cta">
+      <div class="container">
+        <div class="contact-cta-inner">
+          <div class="contact-cta-copy">
+            <p class="contact-cta-lead">Se sei qui vuol dire che muori dalla voglia di conoscerci. Beh, anche noi non vediamo l'ora di parlare con te!</p>
+            <p class="contact-cta-sub">Hai un'idea in mente, hai bisogno di un partner per un progetto di marketing o vuoi collaborare con noi?</p>
+          </div>
+          <div class="contact-cta-action">
+            <a class="btn btn-magenta" href="#contact">Contattaci</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <!-- Global Footer Component -->
+<!-- Bootstrap 5.3 required -->
+<footer class="footer-agency py-5" id="contact">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <img class="footer-logo" src="assets/img/happy-minds-logo-orizzontale-bianco footer.png" alt="HappyMinds">
+        <p class="footer-copy">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
+        <div class="d-flex gap-2">
+          <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <h6 class="footer-title">Contatti</h6>
+        <ul class="footer-contact-list">
+          <li><span class="footer-contact-link"><span class="footer-contact-icon"><img src="assets/img/indirizzo.png" alt=""></span><span>Via A. Mariani 7, Ravenna</span></span></li>
+          <li><a class="footer-contact-link" href="mailto:hello@happyminds.it"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>hello@happyminds.it</span></a></li>
+          <li><a class="footer-contact-link" href="tel:+390544212252"><span class="footer-contact-icon"><img src="assets/img/telefono.png" alt=""></span><span>0544212252</span></a></li>
+          <li><a class="footer-contact-link" href="mailto:happyminds@pec.net"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>happyminds@pec.net</span></a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <img class="footer-logo" src="assets/img/happy-minds-logo-orizzontale-bianco footer.png" alt="HappyMinds">
+        <p class="footer-copy">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
+        <div class="d-flex gap-2">
+          <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <h6 class="footer-title">Certificazioni</h6>
+        <div class="footer-badges">
+          <img class="footer-badge-logo footer-badge-logo--parity" src="assets/img/certificazione parità genere.png" alt="Certificazione parita di genere">
+          <img class="footer-badge-logo footer-badge-logo--opportunity" src="assets/img/Pari_Opportunita.jpg" alt="Logo pari opportunita">
+          <img class="footer-badge-logo footer-badge-logo--green" src="assets/img/green cloud.png" alt="Logo certificazione Green Cloud">
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+      <span>© 2026 HappyMinds. Made with <span class="made-with">♥</span></span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    (function () {
+      const hero = document.querySelector(".hero-home");
+      const video = document.getElementById("heroBackgroundVideo");
+      if (!hero || !video) return;
+
+      hero.classList.add("is-video-active");
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          hero.classList.remove("is-video-active");
+        });
+      }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const tickerNews = [
+        "La storica Trattoria Cubana sceglie HappyMinds per organizzare il 60 anniversario",
+        "Nuova campagna social per il turismo locale: +42 percent engagement nel primo mese",
+        "HappyMinds lancia il laboratorio creativo 2026 dedicato ai brand emergenti",
+        "Case study: storytelling e video strategy per valorizzare un territorio autentico",
+        "Flamingo Talks: il nuovo editoriale Panebarco tra branding, social e produzioni video"
+      ];
+
+      const durationMs = 9000;
+      const textEl = document.getElementById("ticker-news-text");
+      const fillEl = document.getElementById("ticker-progress-fill");
+      const barEl = document.querySelector(".ticker-progress");
+
+      if (!textEl || !fillEl || !barEl) return;
+
+      let idx = 0;
+
+      const restartProgress = () => {
+        fillEl.style.animation = "none";
+        fillEl.offsetWidth;
+        fillEl.style.animation = `tickerProgress ${durationMs}ms linear forwards`;
+      };
+
+      const animateTickerTextIn = () => {
+        textEl.classList.remove("is-entering");
+        textEl.offsetWidth;
+        textEl.classList.add("is-entering");
+      };
+
+      const setNews = (i) => {
+        textEl.textContent = tickerNews[i];
+        animateTickerTextIn();
+        barEl.setAttribute("aria-valuenow", String(Math.round(((i + 1) / tickerNews.length) * 100)));
+        restartProgress();
+      };
+
+      setNews(idx);
+      setInterval(() => {
+        idx = (idx + 1) % tickerNews.length;
+        setNews(idx);
+      }, durationMs);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const typingRows = Array.from(document.querySelectorAll(".js-typing-line"));
+      if (!typingRows.length) return;
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const renderText = (target, value, withCaret) => {
+        const html = value.replace(/\n/g, "<br>");
+        target.innerHTML = withCaret ? `${html}<span class="typing-caret" aria-hidden="true"></span>` : html;
+      };
+
+      const runTyping = (row) => {
+        if (row.dataset.typed === "true") return;
+
+        const target = row.querySelector(".typing-placeholder--live");
+        const raw = row.getAttribute("data-typing-text") || "";
+        const speed = Number(row.getAttribute("data-typing-speed")) || 42;
+        const text = raw.split("|").map((part) => part.trim()).filter(Boolean).join("\n");
+
+        if (!target || !text) return;
+
+        if (prefersReducedMotion) {
+          renderText(target, text, false);
+          row.dataset.typed = "true";
+          return;
+        }
+
+        let index = 0;
+        renderText(target, "", true);
+
+        const step = () => {
+          index += 1;
+          renderText(target, text.slice(0, index), true);
+
+          if (index < text.length) {
+            window.setTimeout(step, speed);
+            return;
+          }
+
+          renderText(target, text, false);
+          row.dataset.typed = "true";
+        };
+
+        window.setTimeout(step, speed);
+      };
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          runTyping(entry.target);
+          obs.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0,
+        rootMargin: "0px 0px -25% 0px"
+      });
+
+      typingRows.forEach((row) => observer.observe(row));
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const revealNodes = Array.from(document.querySelectorAll(".js-reveal-right"));
+      if (!revealNodes.length) return;
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReducedMotion) {
+        revealNodes.forEach((node) => node.classList.add("is-visible"));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0,
+        rootMargin: "0px 0px -25% 0px"
+      });
+
+      revealNodes.forEach((node) => observer.observe(node));
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const avatarEl = document.getElementById("destinationQuoteAvatar");
+      const bodyEl = document.getElementById("destinationQuoteBody");
+      const authorEl = document.getElementById("destinationQuoteAuthor");
+      const textWrapEl = document.getElementById("destinationQuoteText");
+      const controls = Array.from(document.querySelectorAll("[data-destination-step]"));
+
+      if (!avatarEl || !bodyEl || !authorEl || !textWrapEl || !controls.length) return;
+
+      const reviews = [
+        {
+          body: "Piu che collaborazione, la definirei intesa a prima vista! Lavorare con Happy Minds e davvero un piacere. Apprezziamo il loro entusiasmo, la loro passione e la capacita di concepire idee inedite e soluzioni innovative, sempre col sorriso sulle labbra!",
+          author: "Marianna Panebarco",
+          image: "assets/img/happy team intro.jpg"
+        },
+        {
+          body: "Con Happy Minds abbiamo trovato un partner concreto, veloce e sempre disponibile al confronto. Ogni proposta e arrivata con una visione chiara, ma anche con la flessibilita necessaria per adattarsi al progetto.",
+          author: "Francesca Monti",
+          image: "assets/img/happy team outro.jpg"
+        },
+        {
+          body: "Hanno saputo trasformare un'idea iniziale in un racconto coerente, coinvolgente e molto riconoscibile. Il team ha energia, metodo e una sensibilita rara nel leggere il tono giusto per ogni destinazione.",
+          author: "Giulia Bernardi",
+          image: "assets/img/happy team intro.jpg"
+        },
+        {
+          body: "La cosa che colpisce di piu e la loro capacita di far convivere creativita e organizzazione. Il risultato e stato un lavoro pulito, forte dal punto di vista visivo e molto efficace nella relazione con il pubblico.",
+          author: "Luca Terenzi",
+          image: "assets/img/happy team outro.jpg"
+        }
+      ];
+
+      const durationMs = 7000;
+      let currentIndex = 0;
+      let rotationTimer = null;
+
+      const renderReview = (index) => {
+        const review = reviews[index];
+        textWrapEl.classList.add("is-transitioning");
+
+        window.setTimeout(() => {
+          avatarEl.src = review.image;
+          bodyEl.textContent = review.body;
+          authorEl.textContent = review.author;
+          textWrapEl.classList.remove("is-transitioning");
+        }, 180);
+      };
+
+      const scheduleNext = () => {
+        window.clearTimeout(rotationTimer);
+        rotationTimer = window.setTimeout(() => {
+          currentIndex = (currentIndex + 1) % reviews.length;
+          renderReview(currentIndex);
+          scheduleNext();
+        }, durationMs);
+      };
+
+      controls.forEach((control) => {
+        control.addEventListener("click", () => {
+          const step = Number(control.getAttribute("data-destination-step")) || 1;
+          currentIndex = (currentIndex + step + reviews.length) % reviews.length;
+          renderReview(currentIndex);
+          scheduleNext();
+        });
+      });
+
+      scheduleNext();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const stackWrap = document.querySelector(".stack-wrap");
+      if (!stackWrap) return;
+
+      const panels = Array.from(stackWrap.querySelectorAll(".stack-panel"));
+      if (!panels.length) return;
+
+      let lastY = window.scrollY;
+      let scrollTimer = null;
+      let isAutoSnapping = false;
+
+      const panelTops = () => panels.map((panel) => panel.getBoundingClientRect().top + window.scrollY);
+
+      const inStackRange = (y) => {
+        const tops = panelTops();
+        const start = tops[0] - 12;
+        const end = tops[tops.length - 1] + window.innerHeight + 12;
+        return y >= start && y <= end;
+      };
+
+      const snapUpToNearestPanel = () => {
+        if (isAutoSnapping) return;
+
+        const y = window.scrollY;
+        if (!inStackRange(y)) return;
+
+        const tops = panelTops();
+        let target = tops[0];
+
+        for (let i = 0; i < tops.length; i += 1) {
+          if (tops[i] <= y + 2) {
+            target = tops[i];
+          } else {
+            break;
+          }
+        }
+
+        if (Math.abs(y - target) < 8) return;
+
+        isAutoSnapping = true;
+        window.scrollTo({ top: target, behavior: "smooth" });
+        setTimeout(() => {
+          isAutoSnapping = false;
+        }, 420);
+      };
+
+      window.addEventListener("scroll", () => {
+        if (isAutoSnapping) return;
+
+        const currentY = window.scrollY;
+        const direction = currentY < lastY ? "up" : "down";
+        lastY = currentY;
+
+        clearTimeout(scrollTimer);
+        if (direction !== "up") return;
+
+        scrollTimer = setTimeout(snapUpToNearestPanel, 120);
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const stackWrap = document.querySelector(".stack-wrap");
+      const previews = document.getElementById("stackPreviews");
+      if (!stackWrap || !previews) return;
+
+      const panels = Array.from(stackWrap.querySelectorAll(".stack-panel"));
+      if (!panels.length) return;
+
+      const previewClassByPanel = (panel) => {
+        if (panel.classList.contains("stack-panel--one")) return "preview-one";
+        if (panel.classList.contains("stack-panel--two")) return "preview-two";
+        if (panel.classList.contains("stack-panel--three")) return "preview-three";
+        if (panel.classList.contains("stack-panel--four")) return "preview-four";
+        return "preview-five";
+      };
+
+      const panelMeta = panels.map((panel) => {
+        const title = panel.querySelector(".panel-title");
+        return {
+          top: panel.offsetTop,
+          title: title ? title.textContent.trim() : "",
+          previewClass: previewClassByPanel(panel)
+        };
+      });
+
+      const updatePanelTops = () => {
+        const wrapTop = stackWrap.getBoundingClientRect().top + window.scrollY;
+        panels.forEach((panel, i) => {
+          panelMeta[i].top = wrapTop + panel.offsetTop;
+        });
+      };
+
+      const renderPreviews = (activeIndex) => {
+        const upcoming = panelMeta.slice(activeIndex + 1);
+        previews.innerHTML = upcoming.map((item) => (
+          `<div class="stack-preview-item ${item.previewClass}">${item.title}</div>`
+        )).join("");
+        previews.classList.toggle("is-active", upcoming.length > 0);
+      };
+
+      const update = () => {
+        const y = window.scrollY;
+        updatePanelTops();
+
+        const start = panelMeta[0].top - 6;
+        const end = panelMeta[panelMeta.length - 1].top + window.innerHeight;
+        const inRange = y >= start && y < end;
+
+        if (!inRange) {
+          previews.classList.remove("is-active");
+          return;
+        }
+
+        let active = 0;
+        for (let i = 0; i < panelMeta.length; i += 1) {
+          if (y >= panelMeta[i].top - 2) {
+            active = i;
+          }
+        }
+
+        renderPreviews(active);
+      };
+
+      let raf = null;
+      const onScroll = () => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          update();
+          raf = null;
+        });
+      };
+
+      update();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", update);
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

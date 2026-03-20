@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HappyMinds - Projects</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --magenta: #d10074;
+      --paper: #f6f3ee;
+      --paper-strong: #efeae2;
+      --text: #262930;
+      --muted: #70757e;
+      --line: rgba(26, 26, 26, 0.08);
+      --serif: "Cormorant Garamond", serif;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .container-xl {
+      max-width: 1160px;
+    }
+
+    .projects-page {
+      width: 100%;
+      margin: 0;
+      background: transparent;
+      box-shadow: none;
+      overflow: clip;
+    }
+
+    .projects-shell {
+      position: relative;
+    }
+
+    .projects-shell::before {
+      display: none;
+    }
+
+    .projects-container {
+      width: min(100% - 32px, 1600px);
+      margin-inline: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 620px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.2) 0%, rgba(255,255,255,.38) 100%),
+        url("assets/img/background testata agency.jpg") center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-copy {
+      text-align: center;
+      width: 100%;
+    }
+
+    .hero-copy .kicker {
+      color: #99A1AF;
+      margin-bottom: .55rem;
+    }
+
+    .hero-copy h1 {
+      color: var(--magenta);
+      font-weight: 800;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      margin: 0;
+      line-height: .9;
+      font-size: clamp(4rem, 11vw, 8.2rem);
+    }
+
+    .hero-copy .sub {
+      margin: .7rem auto 0;
+      color: #6d717a;
+      font-size: 1.2rem;
+      max-width: 50vw;
+      line-height: 1.35;
+    }
+
+    .hero-mark {
+      color: var(--magenta);
+      font-size: 1.15rem;
+      margin-top: .8rem;
+      line-height: 1;
+    }
+
+    .projects-filters-section {
+      padding: 58px 0 2.5rem;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .filter-chip {
+      border: 0;
+      border-radius: 999px;
+      background: #fff;
+      color: #666c74;
+      box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.08);
+      padding: 0.72rem 1.1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .filter-chip:hover,
+    .filter-chip.is-active {
+      background: var(--magenta);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .projects-grid-section {
+      padding-bottom: 5rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.06), 0 24px 44px rgba(25, 25, 25, 0.08);
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.06), 0 30px 56px rgba(25, 25, 25, 0.11);
+    }
+
+    .project-media {
+      aspect-ratio: 1.1;
+      background: #ddd;
+      overflow: hidden;
+    }
+
+    .project-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-body {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.35rem 1.35rem 1.5rem;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .project-client {
+      color: var(--magenta);
+    }
+
+    .project-category {
+      color: #8d9198;
+    }
+
+    .project-name {
+      margin: 0;
+      font-size: clamp(2rem, 2.8vw, 2.7rem);
+      line-height: 0.92;
+      font-weight: 600;
+    }
+
+    .project-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.8;
+    }
+
+    .project-link {
+      margin-top: auto;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .project-link:hover {
+      color: var(--magenta);
+    }
+
+    .project-card.is-hidden {
+      display: none;
+    }
+
+    .projects-contact {
+      padding: 4.5rem 0 5rem;
+      background: rgba(239, 234, 226, 0.62);
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1fr);
+      gap: clamp(2rem, 5vw, 6rem);
+      align-items: start;
+    }
+
+    .contact-copy .hero-kicker {
+      margin-bottom: 1.15rem;
+    }
+
+    .contact-copy h2 {
+      margin: 0;
+      font-size: clamp(3rem, 5vw, 4.9rem);
+      line-height: 0.92;
+      font-weight: 500;
+      max-width: 8ch;
+    }
+
+    .contact-copy h2 span {
+      color: var(--magenta);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .contact-form label {
+      display: block;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9a9fa8;
+      margin-bottom: 0.45rem;
+      font-weight: 600;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid rgba(26, 26, 26, 0.14);
+      background: transparent;
+      padding: 0.2rem 0 0.75rem;
+      color: var(--text);
+      font-size: 0.96rem;
+      outline: none;
+      border-radius: 0;
+    }
+
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      justify-self: start;
+      border: 0;
+      border-radius: 999px;
+      background: var(--magenta);
+      color: #fff;
+      padding: 0.82rem 1.3rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .projects-footer-wrap {
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 1199px) {
+      .projects-container {
+        width: min(100% - 40px, 1160px);
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 991px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy .sub {
+        max-width: 76vw;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .projects-container {
+        width: min(100% - 24px, 1160px);
+      }
+
+      .hero {
+        min-height: 520px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy .sub {
+        max-width: 88vw;
+        font-size: 1.02rem;
+      }
+
+      .filter-bar {
+        gap: 0.6rem;
+      }
+
+      .filter-chip {
+        padding-inline: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="projects-page">
+    <div class="projects-shell">
+      <nav class="navbar navbar-agency navbar-agency--inner py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+          <a class="navbar-brand" href="index.html" aria-label="HappyMinds home">
+            <img class="navbar-logo" src="assets/img/logo menu dark.png" alt="HappyMinds logo">
+          </a>
+          <button class="menu-toggle" type="button" aria-label="Open menu" data-overlay-open>
+            <span class="menu-lines" aria-hidden="true"></span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="agency-overlay" id="agencyOverlay" aria-hidden="true">
+        <img class="overlay-watermark" src="assets/img/logo menu light.png" alt="" aria-hidden="true">
+        <button class="overlay-close" type="button" aria-label="Close menu" data-overlay-close>x</button>
+        <div class="container overlay-content d-flex flex-column">
+          <div class="row g-4 flex-grow-1 align-items-center">
+            <div class="col-md-6 d-flex flex-column justify-content-center">
+              <ul class="overlay-nav">
+                <li><a href="agency.html">Agency</a></li>
+                <li><a href="agency.html#services">Services</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="agency.html#flamingo-talks">Flamingo Talks</a></li>
+                <li><a href="#contact">Contact us</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <div class="row g-3">
+                <div class="col-12">
+                  <a class="overlay-card" href="agency.html#flamingo-talks">Manifesto</a>
+                </div>
+                <div class="col-12">
+                  <a class="overlay-card" href="index.html#projects">Happy Destination</a>
+                </div>
+                <div class="col-12">
+                  <a class="overlay-card" href="projects.html">Selected Projects</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="overlay-footer">Spreading Happiness</div>
+        </div>
+      </div>
+
+      <header class="hero">
+        <div class="container-xl">
+          <div class="hero-copy">
+            <p class="kicker">Welcome to our</p>
+            <h1>Projects</h1>
+            <p class="sub">
+              Una selezione di lavori che mette insieme identita, contenuti, destinazioni ed esperienze digitali.
+              Qui leggi i progetti per titolo, cliente e categoria, con la stessa grammatica visiva di agency.
+            </p>
+            <div class="hero-mark">.</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="projects-filters-section">
+        <div class="projects-container">
+          <div class="filter-bar" role="tablist" aria-label="Filtri progetto">
+            <button class="filter-chip is-active" type="button" data-filter="all">Tutti</button>
+            <button class="filter-chip" type="button" data-filter="branding">Branding</button>
+            <button class="filter-chip" type="button" data-filter="destination">Destination</button>
+            <button class="filter-chip" type="button" data-filter="digital">Digital</button>
+            <button class="filter-chip" type="button" data-filter="campaign">Campaign</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects-grid-section">
+        <div class="projects-container">
+          <div class="projects-grid" id="projectsGrid">
+            <article class="project-card" data-category="branding">
+              <div class="project-media">
+                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1400&auto=format&fit=crop" alt="Brand platform project">
+              </div>
+              <div class="project-body">
+                <div class="project-meta">
+                  <span class="project-client">Happy Destination</span>
+                  <span class="project-category">Branding</span>
+                </div>
+                <h2 class="project-name">Brand Platform</h2>
+                <p class="project-text">Posizionamento, tono e sistema visivo per trasformare una destinazione in un racconto piu coerente e riconoscibile.</p>
+                <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-category="destination">
+              <div class="project-media">
+                <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=1400&auto=format&fit=crop" alt="Destination project">
+              </div>
+              <div class="project-body">
+                <div class="project-meta">
+                  <span class="project-client">Turismo Ravenna</span>
+                  <span class="project-category">Destination</span>
+                </div>
+                <h2 class="project-name">City Narrative</h2>
+                <p class="project-text">Una struttura di contenuti e visual asset per collegare patrimonio, esperienza e racconto territoriale.</p>
+                <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-category="digital">
+              <div class="project-media">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1400&auto=format&fit=crop" alt="Digital dashboard project">
+              </div>
+              <div class="project-body">
+                <div class="project-meta">
+                  <span class="project-client">Studio Metrics</span>
+                  <span class="project-category">Digital</span>
+                </div>
+                <h2 class="project-name">Analytics Dashboard</h2>
+                <p class="project-text">Design di interfaccia e gerarchia dati per rendere leggibili decisioni complesse dentro un prodotto interno.</p>
+                <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-category="campaign">
+              <div class="project-media">
+                <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1400&auto=format&fit=crop" alt="Campaign toolkit project">
+              </div>
+              <div class="project-body">
+                <div class="project-meta">
+                  <span class="project-client">Up Minds</span>
+                  <span class="project-category">Campaign</span>
+                </div>
+                <h2 class="project-name">Launch Toolkit</h2>
+                <p class="project-text">Key visual, asset modulari e formati in movimento per dare coerenza e ritmo a una campagna cross-channel.</p>
+                <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-category="branding">
+              <div class="project-media">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop" alt="Editorial identity project">
+              </div>
+              <div class="project-body">
+                <div class="project-meta">
+                  <span class="project-client">Flamingo Talks</span>
+                  <span class="project-category">Branding</span>
+                </div>
+                <h2 class="project-name">Editorial Identity</h2>
+                <p class="project-text">Sistema di linguaggio, gerarchie e impianto visuale per una piattaforma di contenuti con voce piu netta.</p>
+                <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-category="digital">
+              <div class="project-media">
+                <img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1400&auto=format&fit=crop" alt="Service blueprint digital project">
+              </div>
+              <div class="project-body">
+                <div class="project-meta">
+                  <span class="project-client">Service Lab</span>
+                  <span class="project-category">Digital</span>
+                </div>
+                <h2 class="project-name">Experience Blueprint</h2>
+                <p class="project-text">Mappe di servizio, priorita e touchpoint ridisegnati per riallineare processi interni ed esperienza percepita.</p>
+                <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects-contact" id="contact">
+        <div class="projects-container">
+          <div class="contact-grid">
+            <div class="contact-copy">
+              <div class="hero-kicker">Start a Project</div>
+              <h2>Parliamo del tuo prossimo <span>progetto.</span></h2>
+            </div>
+
+            <form class="contact-form">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" type="text" placeholder="Nome">
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="Email">
+              </div>
+              <div>
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Raccontaci il progetto"></textarea>
+              </div>
+              <button type="submit">Invia richiesta</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <div class="projects-footer-wrap">
+        <footer class="footer-agency py-5">
+          <div class="container">
+            <div class="row g-4 footer-main">
+              <div class="col-md-6 col-lg-3">
+                <div class="footer-brand-block">
+                  <img class="footer-logo" src="assets/img/logo menu light.png" alt="HappyMinds logo">
+                  <p class="footer-text">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
+                  <div class="social-list">
+                    <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+                    <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+                    <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+                    <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <h3 class="footer-title">Contatti</h3>
+                <ul class="footer-contact-list">
+                  <li><a class="footer-contact-link" href="#"><span class="footer-contact-icon"><img src="assets/img/indirizzo.png" alt=""></span><span>Via A. Mariani, 7 Ravenna</span></a></li>
+                  <li><a class="footer-contact-link" href="mailto:hello@happyminds.it"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>hello@happyminds.it</span></a></li>
+                  <li><a class="footer-contact-link" href="tel:+390544212252"><span class="footer-contact-icon"><img src="assets/img/telefono.png" alt=""></span><span>0544212252</span></a></li>
+                  <li><a class="footer-contact-link" href="mailto:happyminds@pec.net"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>happyminds@pec.net</span></a></li>
+                </ul>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <h3 class="footer-title">Happy Minds</h3>
+                <p class="footer-note">Politica per la parita di genere e documentazione collegata ai percorsi di qualita, sostenibilita e pari opportunita.</p>
+                <div class="social-list">
+                  <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+                  <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+                  <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+                  <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <h3 class="footer-title">Certificazioni</h3>
+                <div class="footer-badges">
+                  <img class="footer-badge-logo footer-badge-logo--parity" src="assets/img/certificazione parità genere.png" alt="Certificazione parita di genere">
+                  <img class="footer-badge-logo footer-badge-logo--opportunity" src="assets/img/Pari_Opportunita.jpg" alt="Logo pari opportunita">
+                  <img class="footer-badge-logo footer-badge-logo--green" src="assets/img/green cloud.png" alt="Logo certificazione Green Cloud">
+                </div>
+              </div>
+            </div>
+
+            <hr class="footer-divider">
+            <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+              <span>&copy; 2026 HappyMinds. Made with &#9825;</span>
+              <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const overlay = document.getElementById("agencyOverlay");
+      const open = document.querySelector("[data-overlay-open]");
+      const close = document.querySelector("[data-overlay-close]");
+      const links = overlay ? overlay.querySelectorAll("a") : [];
+
+      if (!overlay || !open || !close) return;
+
+      function toggleOverlay(active) {
+        overlay.classList.toggle("active", active);
+        overlay.setAttribute("aria-hidden", active ? "false" : "true");
+        document.body.classList.toggle("overflow-hidden", active);
+      }
+
+      open.addEventListener("click", function () {
+        toggleOverlay(true);
+      });
+
+      close.addEventListener("click", function () {
+        toggleOverlay(false);
+      });
+
+      links.forEach(function (link) {
+        link.addEventListener("click", function () {
+          toggleOverlay(false);
+        });
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          toggleOverlay(false);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const filterButtons = document.querySelectorAll("[data-filter]");
+      const cards = document.querySelectorAll(".project-card");
+
+      if (!filterButtons.length || !cards.length) return;
+
+      filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          const filter = button.getAttribute("data-filter");
+
+          filterButtons.forEach(function (item) {
+            item.classList.toggle("is-active", item === button);
+          });
+
+          cards.forEach(function (card) {
+            const category = card.getAttribute("data-category");
+            const visible = filter === "all" || category === filter;
+            card.classList.toggle("is-hidden", !visible);
+          });
+        });
+      });
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

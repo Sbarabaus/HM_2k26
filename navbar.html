@@ -1,0 +1,75 @@
+﻿<!-- Global Navbar Component -->
+<!-- Bootstrap 5.3 required -->
+<nav class="navbar navbar-agency navbar-agency--inner py-3">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand" href="index.html" aria-label="HappyMinds home">
+      <img class="navbar-logo" src="assets/img/logo menu dark.png" alt="HappyMinds logo">
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" data-overlay-open>
+      <span class="menu-lines" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="agency-overlay" id="agencyOverlay" aria-hidden="true">
+  <img class="overlay-watermark" src="assets/img/logo menu light.png" alt="" aria-hidden="true">
+  <button class="overlay-close" type="button" aria-label="Close menu" data-overlay-close>×</button>
+
+  <div class="container overlay-content d-flex flex-column">
+    <div class="row g-4 flex-grow-1 align-items-center">
+      <div class="col-md-6 d-flex flex-column justify-content-center">
+        <ul class="overlay-nav">
+          <li><a href="agency.html" data-overlay-link>Agency</a></li>
+          <li><a href="#services" data-overlay-link>Services</a></li>
+          <li><a href="projects.html" data-overlay-link>Projects</a></li>
+          <li><a href="#flamingo-talks" data-overlay-link>Flamingo Talks</a></li>
+          <li><a href="#contact" data-overlay-link>Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-6 d-flex flex-column justify-content-center gap-3">
+        <div class="overlay-box">Manifesto</div>
+        <div class="overlay-box">Happy<br>Destination</div>
+        <div class="overlay-box">Lorem Ipsum</div>
+      </div>
+    </div>
+
+    <div class="overlay-footer-note">Spreading Happiness</div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var overlay = document.getElementById('agencyOverlay');
+    var openBtn = document.querySelector('[data-overlay-open]');
+    var closeBtn = document.querySelector('[data-overlay-close]');
+    var links = document.querySelectorAll('[data-overlay-link]');
+
+    if (!overlay || !openBtn || !closeBtn) return;
+
+    var openOverlay = function () {
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('overlay-open');
+    };
+
+    var closeOverlay = function () {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('overlay-open');
+    };
+
+    openBtn.addEventListener('click', openOverlay);
+    closeBtn.addEventListener('click', closeOverlay);
+
+    links.forEach(function (link) {
+      link.addEventListener('click', closeOverlay);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeOverlay();
+      }
+    });
+  })();
+</script>

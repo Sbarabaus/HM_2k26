@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HappyMinds - Team Member</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --magenta: #d0005a;
+      --dark: #1a1a1a;
+      --paper: #f7f5f1;
+      --line: rgba(26, 26, 26, 0.08);
+      --text: #23252b;
+      --muted: #666b73;
+      --serif: "Cormorant Garamond", serif;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .member-page {
+      position: relative;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    .member-shell {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .member-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 52% 9%, rgba(255,255,255,0.95), rgba(255,255,255,0.1) 32%, transparent 58%),
+        linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .member-container {
+      width: min(100% - 90px, 1320px);
+      margin-inline: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-number {
+      position: absolute;
+      right: clamp(10px, 2vw, 24px);
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--serif);
+      font-size: clamp(6rem, 16vw, 13rem);
+      line-height: 0.8;
+      color: rgba(209, 0, 116, 0.1);
+      pointer-events: none;
+      user-select: none;
+      font-weight: 600;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--magenta);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .member-hero {
+      padding: clamp(110px, 10vw, 140px) 0 clamp(72px, 8vw, 108px);
+      min-height: min(100vh, 920px);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .member-hero::after {
+      content: "";
+      position: absolute;
+      inset: 32px auto auto 50%;
+      width: min(64vw, 980px);
+      height: min(64vw, 980px);
+      transform: translateX(-12%);
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.22) 42%, transparent 72%);
+      filter: blur(12px);
+      opacity: 0.95;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.98fr) minmax(320px, 520px);
+      gap: clamp(36px, 7vw, 120px);
+      align-items: center;
+    }
+
+    .member-intro {
+      max-width: 560px;
+    }
+
+    .member-profile-kicker {
+      color: #b4b6bb;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.42em;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+    }
+
+    .member-role {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      background: rgba(209, 0, 116, 0.09);
+      color: var(--magenta);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+      box-shadow: inset 0 0 0 1px rgba(209, 0, 116, 0.08);
+    }
+
+    .member-title {
+      font-size: clamp(4.4rem, 8vw, 7.4rem);
+      line-height: 0.84;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin: 0;
+      max-width: 5.35ch;
+      text-transform: uppercase;
+      color: var(--magenta);
+    }
+
+    .member-title span {
+      color: var(--magenta);
+    }
+
+    .member-summary {
+      margin: 1rem 0 1.25rem;
+      color: #777d86;
+      font-size: 1rem;
+      line-height: 1.72;
+      font-weight: 500;
+    }
+
+    .member-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin: 1.35rem 0 1.2rem;
+    }
+
+    .member-hero-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.78rem 1.3rem;
+      border-radius: 999px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .member-hero-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .member-hero-btn--primary {
+      background: var(--magenta);
+      color: #fff;
+      box-shadow: 0 14px 26px rgba(209, 0, 116, 0.18);
+    }
+
+    .member-hero-btn--secondary {
+      background: #fff;
+      color: #353942;
+      box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.08), 0 10px 18px rgba(25, 25, 25, 0.04);
+    }
+
+    .hero-socials {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: 0.75rem;
+    }
+
+    .hero-socials .social-icon,
+    .mini-socials .social-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #1c1e24f5;
+      border: 1px solid rgba(26, 26, 26, 0.08);
+      box-shadow: 0 10px 18px rgba(25, 25, 25, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .hero-socials .social-icon img,
+    .mini-socials .social-icon img {
+      width: 15px;
+      height: 15px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .hero-socials .social-icon:hover,
+    .mini-socials .social-icon:hover {
+      border-color: rgba(209, 0, 116, 0.18);
+      box-shadow: 0 14px 24px rgba(209, 0, 116, 0.09);
+      transform: translateY(-1px);
+    }
+
+    .portrait-box {
+      width: min(100%, 480px);
+      margin-left: auto;
+      position: relative;
+      z-index: 1;
+      justify-self: end;
+    }
+
+    .portrait-frame {
+      overflow: hidden;
+      background: #d9d9d9;
+      border-radius: 24px;
+      box-shadow: 0 26px 52px rgba(25, 25, 25, 0.12);
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      aspect-ratio: 0.82;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+
+    .portrait-focus {
+      position: absolute;
+      left: -26px;
+      bottom: 20px;
+      width: min(80%, 350px);
+      padding: 1rem 1rem 1.05rem;
+      border-radius: 18px;
+      background: rgba(28, 30, 36, 0.96);
+      color: #fff;
+      box-shadow: 0 22px 38px rgba(18, 19, 23, 0.2);
+    }
+
+    .portrait-focus-label {
+      display: block;
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.42);
+      margin-bottom: 0.55rem;
+      font-weight: 700;
+    }
+
+    .portrait-focus p {
+      margin: 0;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      font-weight: 600;
+      font-style: italic;
+      color: rgba(255,255,255,0.94);
+    }
+
+    .editorial-section {
+      position: relative;
+      padding: clamp(56px, 7vw, 92px) 0;
+      border-top: 1px solid var(--line);
+      background: rgba(240, 237, 231, 0.7);
+    }
+
+    .editorial-section.section-light {
+      background: transparent;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(34px, 5vw, 90px);
+      align-items: start;
+    }
+
+    .section-aside p {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+      line-height: 1.02;
+      margin: 0;
+    }
+
+    .section-content p {
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      max-width: 64ch;
+      color: var(--muted);
+    }
+
+    .section-content .btn {
+      margin-top: 1rem;
+      border-radius: 999px;
+      background: var(--magenta);
+      color: #fff;
+      border: 0;
+      padding: 0.78rem 1.18rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .ideas-list {
+      display: grid;
+      border-top: 1px solid var(--line);
+    }
+
+    .idea-item {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr) 120px 24px;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .idea-item:hover .idea-arrow {
+      color: var(--magenta);
+      transform: translate(2px, -2px);
+    }
+
+    .idea-index {
+      color: var(--magenta);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .idea-copy strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 2.5vw, 2.3rem);
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .idea-copy span {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .idea-date {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8b8f97;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .idea-arrow {
+      font-size: 1.2rem;
+      color: #676b73;
+      transition: transform 0.2s ease, color 0.2s ease;
+      text-align: right;
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.35rem 1.6rem;
+    }
+
+    .expertise-card {
+      min-height: 140px;
+      padding-top: 0.55rem;
+    }
+
+    .expertise-card .tag {
+      display: inline-block;
+      color: var(--magenta);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+    }
+
+    .expertise-card h3 {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      line-height: 1;
+      margin: 0 0 0.45rem;
+      font-weight: 500;
+    }
+
+    .expertise-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      max-width: 30ch;
+    }
+
+    .project-spotlight {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.8fr);
+      align-items: stretch;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.52);
+    }
+
+    .project-spotlight img {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(1);
+    }
+
+    .project-copy {
+      padding: clamp(1.5rem, 3vw, 2.4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: rgba(255,255,255,0.48);
+      backdrop-filter: blur(8px);
+    }
+
+    .project-copy .tag {
+      color: var(--magenta);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+      font-weight: 600;
+    }
+
+    .project-copy h3 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      line-height: 0.94;
+      font-weight: 500;
+      margin: 0 0 1rem;
+    }
+
+    .project-copy p {
+      margin: 0 0 1.3rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.9;
+    }
+
+    .project-copy a {
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1fr);
+      gap: clamp(34px, 5vw, 110px);
+      align-items: start;
+    }
+
+    .contact-copy h2 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5vw, 4.8rem);
+      line-height: 0.92;
+      font-weight: 500;
+      margin: 0;
+      max-width: 8ch;
+    }
+
+    .contact-copy h2 span {
+      color: var(--magenta);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-form label {
+      display: block;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9a9fa8;
+      margin-bottom: 0.45rem;
+      font-weight: 600;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid rgba(26, 26, 26, 0.14);
+      background: transparent;
+      padding: 0.2rem 0 0.75rem;
+      color: var(--text);
+      font-size: 0.96rem;
+      outline: none;
+      border-radius: 0;
+    }
+
+    .contact-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      justify-self: start;
+      border: 0;
+      border-radius: 999px;
+      background: var(--magenta);
+      color: #fff;
+      padding: 0.82rem 1.25rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .member-mini-footer {
+      border-top: 1px solid var(--line);
+      padding: 1rem 0 1.4rem;
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8f949d;
+    }
+
+    .member-mini-footer .row {
+      align-items: center;
+    }
+
+    .member-mini-footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .mini-socials {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.9rem;
+    }
+
+    @media (max-width: 1199px) {
+      .member-container {
+        width: min(100% - 56px, 1200px);
+      }
+
+      .project-spotlight {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .member-page {
+        width: min(100% - 18px, 1680px);
+        margin: 9px auto;
+      }
+
+      .hero-grid,
+      .section-grid,
+      .contact-grid,
+      .expertise-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .member-hero {
+        min-height: auto;
+      }
+
+      .portrait-box {
+        margin-left: 0;
+        max-width: 520px;
+      }
+
+      .section-aside p,
+      .contact-copy h2 {
+        max-width: none;
+      }
+
+      .member-intro {
+        max-width: none;
+      }
+
+      .member-title,
+      .member-summary {
+        max-width: none;
+      }
+
+      .hero-socials {
+        margin-top: 0.6rem;
+      }
+
+      .portrait-focus {
+        left: 18px;
+        bottom: 18px;
+        width: min(62%, 280px);
+      }
+
+      .idea-item {
+        grid-template-columns: 28px minmax(0, 1fr) 90px 24px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .member-container {
+        width: min(100% - 28px, 1200px);
+      }
+
+      .member-hero {
+        padding-top: 88px;
+      }
+
+      .member-title {
+        max-width: none;
+        font-size: clamp(3.8rem, 17vw, 5.8rem);
+      }
+
+      .hero-socials {
+        margin-top: 0.55rem;
+      }
+
+      .member-summary {
+        font-size: 0.94rem;
+        line-height: 1.68;
+      }
+
+      .member-hero-actions {
+        gap: 0.65rem;
+      }
+
+      .member-hero-btn {
+        width: 100%;
+      }
+
+      .portrait-frame {
+        border-radius: 20px;
+      }
+
+      .portrait-focus {
+        position: static;
+        width: 100%;
+        margin-top: 0.9rem;
+        border-radius: 16px;
+      }
+
+      .section-number {
+        font-size: 4.8rem;
+        top: auto;
+        bottom: 16px;
+        transform: none;
+      }
+
+      .idea-item {
+        grid-template-columns: 28px 1fr 18px;
+      }
+
+      .idea-date {
+        display: none;
+      }
+
+      .mini-socials {
+        justify-content: flex-start;
+        margin-top: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="member-page">
+    <div class="member-shell">
+      <nav class="navbar navbar-agency navbar-agency--inner py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+          <a class="navbar-brand" href="index.html" aria-label="HappyMinds home">
+            <img class="navbar-logo" src="assets/img/logo menu dark.png" alt="HappyMinds logo">
+          </a>
+          <button class="menu-toggle" type="button" aria-label="Open menu" data-overlay-open>
+            <span class="menu-lines" aria-hidden="true"></span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="agency-overlay" id="agencyOverlay" aria-hidden="true">
+        <img class="overlay-watermark" src="assets/img/logo menu light.png" alt="" aria-hidden="true">
+        <button class="overlay-close" type="button" aria-label="Close menu" data-overlay-close>x</button>
+        <div class="container overlay-content d-flex flex-column">
+          <div class="row g-4 flex-grow-1 align-items-center">
+            <div class="col-md-6 d-flex flex-column justify-content-center">
+              <ul class="overlay-nav">
+                <li><a href="agency.html">Agency</a></li>
+                <li><a href="agency.html#services">Services</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="agency.html#flamingo-talks">Flamingo Talks</a></li>
+                <li><a href="#contact">Contact us</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <div class="row g-3">
+                <div class="col-12">
+                  <a class="overlay-card" href="agency.html#flamingo-talks">Manifesto</a>
+                </div>
+                <div class="col-12">
+                  <a class="overlay-card" href="index.html#projects">Happy Destination</a>
+                </div>
+                <div class="col-12">
+                  <a class="overlay-card" href="team-member.html">Team Profile</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="overlay-footer">Spreading Happiness</div>
+        </div>
+      </div>
+
+      <header class="member-hero">
+        <div class="member-container">
+          <div class="hero-grid">
+            <div class="member-intro">
+              <div class="member-profile-kicker">Team Profile</div>
+              <p class="member-role" id="memberRole">Ruolo in azienda</p>
+              <h1 class="member-title" id="memberTitle">Giulia <span>Rossi</span></h1>
+              <div class="hero-socials" id="memberSocials" aria-label="Profile socials">
+                <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+              </div>
+              <p class="member-summary" id="memberHeroSummary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus tempor justo vitae auctor.
+                Quisque orci quam, vulputate vitae nibh at, interdum blandit leo. Mauris sit amet mauris quis quam euismod lobortis eget eu ligula. In hac habitasse platea dictumst.
+                Proin eget ipsum rutrum leo vestibulum laoreet ac non nulla.</p>
+              <div class="member-hero-actions">
+                <a class="member-hero-btn member-hero-btn--primary" href="#contact">Contatta il team</a>
+                <a class="member-hero-btn member-hero-btn--secondary" href="agency.html#projects">Torna al team</a>
+              </div>
+            </div>
+            <div class="portrait-box">
+              <div class="portrait-frame">
+                <img id="memberPortrait" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1200&auto=format&fit=crop" alt="Giulia Moretti portrait">
+              </div>
+              <div class="portrait-focus">
+                <span class="portrait-focus-label">Quote</span>
+                <p id="memberFocusText">"Strategie di posizionamento, format editoriali e direzione creativa per brand che vogliono uscire dai linguaggi prevedibili."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="editorial-section" id="about">
+        <div class="member-container">
+          <div class="section-grid">
+            <div class="section-aside">
+              <div class="eyebrow" id="memberAboutEyebrow">About</div>
+              <p id="memberAboutLead">Sono una designer con oltre 8 anni di esperienza nella creazione di esperienze digitali che mettono le persone al centro.</p>
+            </div>
+            <div class="section-content" id="memberAboutCopy">
+              <p>Lavoro all'intersezione tra interfacce, contenuti e direzione visuale. Mi interessa costruire sistemi chiari, coerenti e flessibili, capaci di dare ordine senza togliere carattere al brand.</p>
+              <p>Aiuto team e prodotti a tradurre complessita in esperienze utili, riconoscibili e piacevoli da usare, con una particolare attenzione a accessibilita, tono e gerarchia delle informazioni.</p>
+              <a href="#contact" class="btn">Contattami</a>
+            </div>
+          </div>
+        </div>
+        <div class="section-number">01</div>
+      </section>
+
+      <section class="editorial-section section-light" id="ideas">
+        <div class="member-container">
+          <div class="eyebrow" id="memberIdeasEyebrow">My latest ideas</div>
+          <div class="ideas-list" id="memberIdeasList">
+            <a class="idea-item" href="#">
+              <div class="idea-index">01</div>
+              <div class="idea-copy">
+                <strong>Accessibilita: non e un optional</strong>
+                <span>Come progettare interfacce che restino chiare, inclusive e usabili nel tempo.</span>
+              </div>
+              <div class="idea-date">12 May 2026</div>
+              <div class="idea-arrow">↗</div>
+            </a>
+            <a class="idea-item" href="#">
+              <div class="idea-index">02</div>
+              <div class="idea-copy">
+                <strong>Design system scalabili</strong>
+                <span>Un framework leggero per creare coerenza visiva senza irrigidire il processo.</span>
+              </div>
+              <div class="idea-date">27 Apr 2026</div>
+              <div class="idea-arrow">↗</div>
+            </a>
+            <a class="idea-item" href="#">
+              <div class="idea-index">03</div>
+              <div class="idea-copy">
+                <strong>UX writing: parole che guidano</strong>
+                <span>Il microcopy come strumento di navigazione, tono e fiducia nel prodotto digitale.</span>
+              </div>
+              <div class="idea-date">14 Jan 2026</div>
+              <div class="idea-arrow">↗</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="editorial-section" id="expertise">
+        <div class="member-container">
+          <div class="eyebrow" id="memberExpertiseEyebrow">My expertise</div>
+          <div class="expertise-grid" id="memberExpertiseGrid">
+            <article class="expertise-card">
+              <span class="tag">Flow</span>
+              <h3>Design Tokens Plugin</h3>
+              <p>Costruisco librerie flessibili per trasformare design decision condivise in sistemi affidabili.</p>
+            </article>
+            <article class="expertise-card">
+              <span class="tag">Method</span>
+              <h3>Atomic Design</h3>
+              <p>Organizzo interfacce modulari per crescere con il prodotto senza perdere consistenza.</p>
+            </article>
+            <article class="expertise-card">
+              <span class="tag">Audit</span>
+              <h3>Contrast Checker</h3>
+              <p>Verifico leggibilita e accessibilita per rendere ogni interazione piu chiara e inclusiva.</p>
+            </article>
+            <article class="expertise-card">
+              <span class="tag">Process</span>
+              <h3>Design Sprint</h3>
+              <p>Facilito momenti di allineamento e test per validare rapidamente ipotesi di prodotto.</p>
+            </article>
+            <article class="expertise-card">
+              <span class="tag">Tool</span>
+              <h3>Storybook</h3>
+              <p>Metto ordine tra UI e sviluppo per ridurre incoerenze e accelerare il lavoro di team.</p>
+            </article>
+            <article class="expertise-card">
+              <span class="tag">Research</span>
+              <h3>Jobs To Be Done</h3>
+              <p>Analizzo bisogni reali e contesti d'uso per progettare esperienze utili, non solo belle.</p>
+            </article>
+          </div>
+        </div>
+        <div class="section-number">02</div>
+      </section>
+
+      <section class="editorial-section section-light" id="projects">
+        <div class="member-container">
+          <div class="eyebrow" id="memberProjectEyebrow">My latest project</div>
+          <div class="project-spotlight">
+            <img id="memberProjectImage" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1400&auto=format&fit=crop" alt="Analytics dashboard project">
+            <div class="project-copy">
+              <span class="tag" id="memberProjectTag">Data Experience</span>
+              <h3 id="memberProjectTitle">Analytics Dashboard</h3>
+              <p id="memberProjectText">Un dashboard pensato per ridurre il rumore, chiarire le priorita e rendere leggibili decisioni complesse attraverso una gerarchia visiva piu netta.</p>
+              <a id="memberProjectLink" href="projects.html">Scopri il progetto &#8599;</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="editorial-section" id="contact">
+        <div class="member-container">
+          <div class="contact-grid">
+            <div class="contact-copy">
+              <div class="eyebrow">Contact</div>
+              <h2>Parliamo del tuo prossimo <span>progetto.</span></h2>
+            </div>
+            <form class="contact-form">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" type="text" placeholder="Nome">
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="Email">
+              </div>
+              <div>
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Messaggio"></textarea>
+              </div>
+              <button type="submit">Invia richiesta</button>
+            </form>
+          </div>
+        </div>
+        <div class="section-number">03</div>
+      </section>
+
+      <div class="member-mini-footer">
+        <div class="member-container">
+          <div class="row">
+            <div class="col-md-6">Giulia Moretti - Portfolio Identity</div>
+            <div class="col-md-6">
+              <div class="mini-socials">
+                <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer-agency py-5" id="contact-footer">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+              <img class="footer-logo" src="assets/img/happy-minds-logo-orizzontale-bianco footer.png" alt="HappyMinds">
+              <p class="footer-copy">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
+              <div class="d-flex gap-2">
+                <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+              <h6 class="footer-title">Contatti</h6>
+              <ul class="footer-contact-list">
+                <li><span class="footer-contact-link"><span class="footer-contact-icon"><img src="assets/img/indirizzo.png" alt=""></span><span>Via A. Mariani 7, Ravenna</span></span></li>
+                <li><a class="footer-contact-link" href="mailto:hello@happyminds.it"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>hello@happyminds.it</span></a></li>
+                <li><a class="footer-contact-link" href="tel:+390544212252"><span class="footer-contact-icon"><img src="assets/img/telefono.png" alt=""></span><span>0544212252</span></a></li>
+                <li><a class="footer-contact-link" href="mailto:happyminds@pec.net"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>happyminds@pec.net</span></a></li>
+              </ul>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+              <img class="footer-logo" src="assets/img/happy-minds-logo-orizzontale-bianco footer.png" alt="HappyMinds">
+              <p class="footer-copy">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
+              <div class="d-flex gap-2">
+                <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+              <h6 class="footer-title">Certificazioni</h6>
+              <div class="footer-badges">
+                <img class="footer-badge-logo footer-badge-logo--parity" src="assets/img/certificazione parità genere.png" alt="Certificazione parita di genere">
+                <img class="footer-badge-logo footer-badge-logo--opportunity" src="assets/img/Pari_Opportunita.jpg" alt="Logo pari opportunita">
+                <img class="footer-badge-logo footer-badge-logo--green" src="assets/img/green cloud.png" alt="Logo certificazione Green Cloud">
+              </div>
+            </div>
+          </div>
+
+          <hr class="footer-divider">
+          <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+            <span>© 2026 HappyMinds. Made with <span class="made-with">♥</span></span>
+            <div class="footer-bottom-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const members = {
+        "michele-santoro": {
+          role: "Brand Strategist",
+          firstName: "Michele",
+          lastName: "Santoro",
+          portrait: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop",
+          portraitAlt: "Michele Santoro portrait",
+          statementEyebrow: "Vision",
+          statement: 'I brand piu forti non urlano - <span class="mag">costruiscono presenza</span> con chiarezza e carattere.',
+          aboutEyebrow: "About",
+          aboutLead: "Lavora tra strategia, direzione creativa e posizionamento per trasformare identita complesse in sistemi leggibili e memorabili.",
+          heroSummary: "Progetta identita, ecosistemi editoriali e narrazioni capaci di dare forma a brand, territori e persone. Unisce strategia, direzione creativa e visione culturale per costruire esperienze che restano.",
+          heroTags: ["Ravenna Studio", "Brand Making", "Destination Branding", "Art Direction"],
+          heroFocus: "Strategie di posizionamento, format editoriali e direzione creativa per brand che vogliono uscire dai linguaggi prevedibili.",
+          aboutParagraphs: [
+            "Costruisce architetture narrative, linguaggi visivi e piattaforme editoriali che tengono insieme visione e risultati.",
+            "Il suo approccio combina metodo, tono e coerenza su tutti i touchpoint, con una forte attenzione alla riconoscibilita."
+          ],
+          socials: [
+            { label: "LinkedIn", short: "in", href: "#" },
+            { label: "Instagram", short: "ig", href: "#" },
+            { label: "TikTok", short: "tt", href: "#" }
+          ],
+          ideasEyebrow: "Latest Thinking",
+          ideas: [
+            { title: "Manifesti che diventano sistema", text: "Come trasformare valori astratti in una struttura editoriale concreta.", date: "04 Jun 2026", href: "#" },
+            { title: "Tone of voice come infrastruttura", text: "Non solo stile: il tono come leva per chiarezza, fiducia e riconoscibilita.", date: "18 Apr 2026", href: "#" },
+            { title: "Brand e territori", text: "Metodologie per costruire narrazioni territoriali credibili e vive.", date: "07 Feb 2026", href: "#" }
+          ],
+          expertiseEyebrow: "Core Expertise",
+          expertise: [
+            { tag: "Brand", title: "Positioning", text: "Definizione del territorio di marca e dell'angolo competitivo." },
+            { tag: "Voice", title: "Narrative Systems", text: "Framework editoriali per campagne, brand stories e contenuti continuativi." },
+            { tag: "Creative", title: "Art Direction", text: "Traduzione della strategia in una grammatica visiva chiara e distintiva." },
+            { tag: "Places", title: "Destination Branding", text: "Strutture di racconto per progetti territoriali e turismo culturale." },
+            { tag: "Method", title: "Workshop Design", text: "Percorsi di allineamento e definizione condivisa di scelte strategiche." },
+            { tag: "Content", title: "Content Planning", text: "Piani editoriali pensati per generare attenzione e continuita." }
+          ],
+          projectEyebrow: "Selected Project",
+          project: {
+            tag: "Brand Platform",
+            title: "Tourism Reframe",
+            text: "Un ecosistema di posizionamento, tono e campagna per far evolvere una destinazione da comunicazione frammentata a racconto coerente.",
+            image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=1400&auto=format&fit=crop",
+            imageAlt: "Tourism branding project",
+            href: "#"
+          }
+        },
+        "giulia-moretti": {
+          role: "UI/UX Designer",
+          firstName: "Giulia",
+          lastName: "Moretti",
+          portrait: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1200&auto=format&fit=crop",
+          portraitAlt: "Giulia Moretti portrait",
+          statementEyebrow: "Vision",
+          statement: 'Il design non e solo estetica - <span class="mag">e il ponte</span> tra le persone e la tecnologia.',
+          aboutEyebrow: "About",
+          aboutLead: "Sono una designer con oltre 8 anni di esperienza nella creazione di esperienze digitali che mettono le persone al centro.",
+          heroSummary: "Disegna esperienze digitali chiare, leggibili e coerenti, con una forte attenzione a gerarchia, accessibilita e tono delle interfacce.",
+          heroTags: ["UI Systems", "UX Writing", "Design Tokens", "Product Flows"],
+          heroFocus: "Interfacce modulari e sistemi visuali che aiutano team e prodotti a crescere senza perdere chiarezza.",
+          aboutParagraphs: [
+            "Lavoro all'intersezione tra interfacce, contenuti e direzione visuale. Mi interessa costruire sistemi chiari, coerenti e flessibili.",
+            "Aiuto team e prodotti a tradurre complessita in esperienze utili, riconoscibili e piacevoli da usare."
+          ],
+          socials: [
+            { label: "LinkedIn", short: "in", href: "#" },
+            { label: "Instagram", short: "ig", href: "#" },
+            { label: "Facebook", short: "fb", href: "#" },
+            { label: "TikTok", short: "tt", href: "#" }
+          ],
+          ideasEyebrow: "My latest ideas",
+          ideas: [
+            { title: "Accessibilita: non e un optional", text: "Come progettare interfacce che restino chiare, inclusive e usabili nel tempo.", date: "12 May 2026", href: "#" },
+            { title: "Design system scalabili", text: "Un framework leggero per creare coerenza visiva senza irrigidire il processo.", date: "27 Apr 2026", href: "#" },
+            { title: "UX writing: parole che guidano", text: "Il microcopy come strumento di navigazione, tono e fiducia nel prodotto digitale.", date: "14 Jan 2026", href: "#" }
+          ],
+          expertiseEyebrow: "My expertise",
+          expertise: [
+            { tag: "Flow", title: "Design Tokens Plugin", text: "Costruisco librerie flessibili per trasformare design decision condivise in sistemi affidabili." },
+            { tag: "Method", title: "Atomic Design", text: "Organizzo interfacce modulari per crescere con il prodotto senza perdere consistenza." },
+            { tag: "Audit", title: "Contrast Checker", text: "Verifico leggibilita e accessibilita per rendere ogni interazione piu chiara e inclusiva." },
+            { tag: "Process", title: "Design Sprint", text: "Facilito momenti di allineamento e test per validare rapidamente ipotesi di prodotto." },
+            { tag: "Tool", title: "Storybook", text: "Metto ordine tra UI e sviluppo per ridurre incoerenze e accelerare il lavoro di team." },
+            { tag: "Research", title: "Jobs To Be Done", text: "Analizzo bisogni reali e contesti d'uso per progettare esperienze utili, non solo belle." }
+          ],
+          projectEyebrow: "My latest project",
+          project: {
+            tag: "Data Experience",
+            title: "Analytics Dashboard",
+            text: "Un dashboard pensato per ridurre il rumore, chiarire le priorita e rendere leggibili decisioni complesse attraverso una gerarchia visiva piu netta.",
+            image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1400&auto=format&fit=crop",
+            imageAlt: "Analytics dashboard project",
+            href: "#"
+          }
+        },
+        "chiara-ferri": {
+          role: "Content Designer",
+          firstName: "Chiara",
+          lastName: "Ferri",
+          portrait: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop",
+          portraitAlt: "Chiara Ferri portrait",
+          statementEyebrow: "Editorial View",
+          statement: 'Le parole giuste non riempiono gli spazi - <span class="mag">li orientano</span> e danno direzione alle scelte.',
+          aboutEyebrow: "About",
+          aboutLead: "Si occupa di strutture editoriali, tone of voice e content systems per brand che vogliono essere chiari senza diventare prevedibili.",
+          heroSummary: "Costruisce architetture editoriali, sistemi di voce e messaggi capaci di dare ordine ai brand senza renderli generici.",
+          heroTags: ["Tone of Voice", "Editorial Systems", "Microcopy", "Naming"],
+          heroFocus: "Tone of voice e strutture di contenuto che chiariscono il messaggio e aumentano riconoscibilita.",
+          aboutParagraphs: [
+            "Disegna architetture di contenuto che mettono in relazione strategia, UX e racconto.",
+            "Lavora su naming, manifesti, microcopy e framework narrativi con una forte attenzione alla chiarezza."
+          ],
+          socials: [
+            { label: "LinkedIn", short: "in", href: "#" },
+            { label: "Instagram", short: "ig", href: "#" },
+            { label: "TikTok", short: "tt", href: "#" }
+          ],
+          ideasEyebrow: "Latest Notes",
+          ideas: [
+            { title: "Manifesti che si leggono davvero", text: "Ridurre il rumore verbale senza perdere profondita di pensiero.", date: "20 May 2026", href: "#" },
+            { title: "Microcopy che toglie attrito", text: "Piccole scelte di scrittura che migliorano drasticamente la navigazione.", date: "08 Apr 2026", href: "#" },
+            { title: "Voce di brand e consistenza", text: "Come evitare che un tono efficace diventi una formula rigida.", date: "16 Jan 2026", href: "#" }
+          ],
+          expertiseEyebrow: "Expertise",
+          expertise: [
+            { tag: "Voice", title: "Tone of Voice", text: "Sistemi di linguaggio adattabili a touchpoint e contesti diversi." },
+            { tag: "UX", title: "Microcopy", text: "Scrittura funzionale per flussi, errori, CTA e interazioni critiche." },
+            { tag: "Brand", title: "Narrative Architecture", text: "Ordine dei messaggi e priorita narrative per landing e siti corporate." },
+            { tag: "Method", title: "Editorial Audits", text: "Analisi di chiarezza, coerenza e ridondanze nei contenuti esistenti." },
+            { tag: "Content", title: "Format Design", text: "Progettazione di rubriche, serie e programmi editoriali scalabili." },
+            { tag: "Strategy", title: "Naming Support", text: "Supporto nella definizione di nomenclature, tagline e strutture di voce." }
+          ],
+          projectEyebrow: "Selected Project",
+          project: {
+            tag: "Editorial System",
+            title: "Brand Voice System",
+            text: "Una struttura di tono e linguaggio per rendere coerente la voce del brand tra sito, campagne e relazione commerciale.",
+            image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1400&auto=format&fit=crop",
+            imageAlt: "Content design project",
+            href: "#"
+          }
+        },
+        "luca-bernardi": {
+          role: "Visual Designer",
+          firstName: "Luca",
+          lastName: "Bernardi",
+          portrait: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop",
+          portraitAlt: "Luca Bernardi portrait",
+          statementEyebrow: "Visual Direction",
+          statement: 'Una buona immagine non decora - <span class="mag">organizza lo sguardo</span> e rende immediata la lettura del brand.',
+          aboutEyebrow: "About",
+          aboutLead: "Lavora su sistemi visuali, brand assets e art direction per dare consistenza ai progetti su tutti i formati.",
+          heroSummary: "Traduce la strategia in sistemi visivi netti, modulari e riconoscibili, dal key visual alle applicazioni editoriali e digitali.",
+          heroTags: ["Visual Identity", "Art Direction", "Campaign Toolkit", "Editorial Layout"],
+          heroFocus: "Linguaggi visuali modulari che mantengono carattere e consistenza su tutti i touchpoint del brand.",
+          aboutParagraphs: [
+            "Si muove tra identita visiva, layout editoriali e campagne con una forte attenzione alla materia grafica.",
+            "Porta ordine ai sistemi visivi senza spegnerne l'energia, cercando sempre sintesi e impatto."
+          ],
+          socials: [
+            { label: "LinkedIn", short: "in", href: "#" },
+            { label: "Instagram", short: "ig", href: "#" },
+            { label: "Facebook", short: "fb", href: "#" }
+          ],
+          ideasEyebrow: "Visual Notes",
+          ideas: [
+            { title: "Gerarchie che guidano davvero", text: "Il ruolo del contrasto nella costruzione di interfacce leggibili.", date: "03 Jun 2026", href: "#" },
+            { title: "Quando un layout respira", text: "Ritmo, margini e vuoto come strumenti per chiarire la composizione.", date: "09 Apr 2026", href: "#" },
+            { title: "Sistemi visivi modulari", text: "Come far evolvere un'identita senza perdere riconoscibilita.", date: "21 Feb 2026", href: "#" }
+          ],
+          expertiseEyebrow: "Specialties",
+          expertise: [
+            { tag: "Brand", title: "Identity Systems", text: "Set di regole visuali per applicazioni coerenti e scalabili." },
+            { tag: "Layout", title: "Editorial Design", text: "Composizioni che organizzano il contenuto con piu ritmo e chiarezza." },
+            { tag: "Campaign", title: "Key Visuals", text: "Visual directions capaci di estendersi su stampa, digital e motion." },
+            { tag: "UI", title: "Interface Styling", text: "Traduzione del brand in componenti, stati e comportamenti visivi." },
+            { tag: "Assets", title: "Art Production", text: "Produzione e rifinitura di materiali per campagne e sistemi di brand." },
+            { tag: "Direction", title: "Art Direction", text: "Guida visiva dei progetti dalla moodboard alla consegna finale." }
+          ],
+          projectEyebrow: "Featured Work",
+          project: {
+            tag: "Visual Identity",
+            title: "Campaign Toolkit",
+            text: "Una libreria di visual assets e regole compositive per campagne modulari, adattabili ma sempre riconoscibili.",
+            image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop",
+            imageAlt: "Visual campaign project",
+            href: "#"
+          }
+        },
+        "sofia-rinaldi": {
+          role: "Service Designer",
+          firstName: "Sofia",
+          lastName: "Rinaldi",
+          portrait: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop",
+          portraitAlt: "Sofia Rinaldi portrait",
+          statementEyebrow: "Systems Thinking",
+          statement: 'Progettare un servizio significa <span class="mag">disegnare relazioni</span>, non solo touchpoint.',
+          aboutEyebrow: "About",
+          aboutLead: "Lavora sui servizi come ecosistemi: mappa attori, frizioni e opportunita per rendere le esperienze piu chiare e sostenibili.",
+          heroSummary: "Disegna journey, blueprint e modelli di servizio per aiutare team e organizzazioni a rendere le esperienze piu chiare, continue e sostenibili.",
+          heroTags: ["Service Blueprint", "Journey Maps", "Research", "Prioritization"],
+          heroFocus: "Allineare frontstage e backstage per trasformare le frizioni operative in esperienze piu coerenti.",
+          aboutParagraphs: [
+            "Costruisce journey, blueprint e scenari che aiutano team e stakeholder a vedere davvero come funziona un'esperienza nel tempo.",
+            "Il suo contributo emerge quando serve collegare frontstage e backstage senza perdere concretezza."
+          ],
+          socials: [
+            { label: "LinkedIn", short: "in", href: "#" },
+            { label: "Instagram", short: "ig", href: "#" },
+            { label: "TikTok", short: "tt", href: "#" }
+          ],
+          ideasEyebrow: "Service Notes",
+          ideas: [
+            { title: "Journey map che cambiano le decisioni", text: "Come usare le mappe di esperienza come strumenti operativi.", date: "11 Jun 2026", href: "#" },
+            { title: "Blueprint senza complicazione", text: "Ridurre la complessita di servizi articolati in una vista utile al team.", date: "30 Mar 2026", href: "#" },
+            { title: "Il valore del backstage", text: "Cosa succede quando progettiamo solo la facciata di un servizio.", date: "06 Feb 2026", href: "#" }
+          ],
+          expertiseEyebrow: "Expertise",
+          expertise: [
+            { tag: "Maps", title: "Customer Journey", text: "Mappe di esperienza orientate a priorita e miglioramenti concreti." },
+            { tag: "Flow", title: "Service Blueprint", text: "Visione integrata di frontstage, backstage e processi interni." },
+            { tag: "Research", title: "User Interviews", text: "Raccolta e sintesi di segnali qualitativi utili alla progettazione." },
+            { tag: "Ops", title: "Experience Gaps", text: "Identificazione delle frizioni che ostacolano il valore percepito." },
+            { tag: "Design", title: "Scenario Building", text: "Traduzione di insight in scenari di servizio e prototipi operativi." },
+            { tag: "Strategy", title: "Prioritization", text: "Allineamento tra impatto, fattibilita e roadmap di intervento." }
+          ],
+          projectEyebrow: "Selected Project",
+          project: {
+            tag: "Experience Design",
+            title: "Service Blueprint",
+            text: "Una mappa operativa per riallineare team interni, touchpoint e processi attorno a una esperienza piu chiara e continua.",
+            image: "https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1400&auto=format&fit=crop",
+            imageAlt: "Service design project",
+            href: "#"
+          }
+        },
+        "marco-villa": {
+          role: "Motion Designer",
+          firstName: "Marco",
+          lastName: "Villa",
+          portrait: "https://images.unsplash.com/photo-1504257432389-52343af06ae3?q=80&w=1200&auto=format&fit=crop",
+          portraitAlt: "Marco Villa portrait",
+          statementEyebrow: "Motion",
+          statement: 'Il movimento giusto non intrattiene e basta - <span class="mag">spiega</span>, connette e fa ricordare.',
+          aboutEyebrow: "About",
+          aboutLead: "Lavora tra animation systems, visual storytelling e contenuti in movimento per prodotti, campagne e identita digitali.",
+          heroSummary: "Progetta motion system e contenuti in movimento che chiariscono messaggi, gerarchie e ritmo narrativo di prodotti e campagne.",
+          heroTags: ["Interaction Motion", "Motion Identity", "Short-form Video", "Prototype Motion"],
+          heroFocus: "Animazioni utili, misurate e coerenti con il carattere del brand, non semplici effetti decorativi.",
+          aboutParagraphs: [
+            "Progetta motion che chiarisce transizioni, gerarchie e messaggi, evitando gli effetti gratuiti e puntando sulla funzione.",
+            "Il suo linguaggio unisce precisione temporale, sintesi visiva e ritmo narrativo."
+          ],
+          socials: [
+            { label: "LinkedIn", short: "in", href: "#" },
+            { label: "Instagram", short: "ig", href: "#" },
+            { label: "Facebook", short: "fb", href: "#" }
+          ],
+          ideasEyebrow: "Motion Notes",
+          ideas: [
+            { title: "Animazioni che chiariscono", text: "Usare il motion per spiegare stati e relazioni, non per decorare.", date: "25 May 2026", href: "#" },
+            { title: "Timing e percezione", text: "Come piccoli cambi di ritmo alterano la qualita percepita di un'interfaccia.", date: "13 Apr 2026", href: "#" },
+            { title: "Brand motion systems", text: "Costruire regole di movimento coerenti con il carattere del brand.", date: "18 Jan 2026", href: "#" }
+          ],
+          expertiseEyebrow: "Capabilities",
+          expertise: [
+            { tag: "UI", title: "Interaction Motion", text: "Movimento mirato a chiarire stati, gerarchie e feedback." },
+            { tag: "Brand", title: "Motion Identity", text: "Estensione del linguaggio di brand nel tempo e nella sequenza." },
+            { tag: "Video", title: "Short-form Storytelling", text: "Strutture narrative brevi per lanci, social e campagne." },
+            { tag: "System", title: "Animation Rules", text: "Pattern replicabili che rendono il motion consistente e utile." },
+            { tag: "Craft", title: "Compositing", text: "Refining visuale per ottenere presenza e precisione di movimento." },
+            { tag: "Product", title: "Prototype Motion", text: "Test rapidi per verificare timing e comprensione prima dello sviluppo." }
+          ],
+          projectEyebrow: "Featured Motion",
+          project: {
+            tag: "Motion System",
+            title: "Launch Sequence",
+            text: "Un set di animazioni e transizioni progettato per dare coerenza narrativa al lancio di un nuovo prodotto digitale.",
+            image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop",
+            imageAlt: "Motion project",
+            href: "#"
+          }
+        },
+        "elena-conti": {
+          role: "Experience Strategist",
+          firstName: "Elena",
+          lastName: "Conti",
+          portrait: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop",
+          portraitAlt: "Elena Conti portrait",
+          statementEyebrow: "Experience",
+          statement: 'Ogni interazione lascia un'impressione - <span class="mag">la strategia serve</span> a farla diventare coerente.',
+          aboutEyebrow: "About",
+          aboutLead: "Definisce strutture di esperienza che tengono insieme obiettivi, contenuti, journey e relazione con il pubblico.",
+          heroSummary: "Lavora tra strategia, contenuti e journey per costruire sistemi di esperienza coerenti, leggibili e capaci di generare valore percepito.",
+          heroTags: ["Experience Planning", "Message Hierarchy", "Journey Framing", "Alignment Workshops"],
+          heroFocus: "Framework decisionali e architetture di esperienza che aiutano i team a scegliere meglio e con piu coerenza.",
+          aboutParagraphs: [
+            "Lavora quando il progetto chiede allineamento tra visione, priorita e percezione del brand.",
+            "Costruisce framework che aiutano a decidere meglio, con una lettura trasversale tra business, utenti e contenuto."
+          ],
+          socials: [
+            { label: "LinkedIn", short: "in", href: "#" },
+            { label: "Instagram", short: "ig", href: "#" },
+            { label: "TikTok", short: "tt", href: "#" }
+          ],
+          ideasEyebrow: "Strategy Notes",
+          ideas: [
+            { title: "Esperienze coerenti, non perfette", text: "Perche la consistenza conta piu della ricerca di una soluzione definitiva.", date: "08 Jun 2026", href: "#" },
+            { title: "Framework decisionali semplici", text: "Ridurre la complessita senza perdere profondita strategica.", date: "22 Apr 2026", href: "#" },
+            { title: "Touchpoint e valore percepito", text: "Dove davvero si costruisce la percezione di un brand nel tempo.", date: "02 Feb 2026", href: "#" }
+          ],
+          expertiseEyebrow: "Areas of Work",
+          expertise: [
+            { tag: "Strategy", title: "Experience Planning", text: "Definizione di priorita e strutture per ecosistemi di touchpoint." },
+            { tag: "Content", title: "Message Hierarchy", text: "Ordine dei messaggi per rendere leggibile la promessa del brand." },
+            { tag: "Maps", title: "Journey Framing", text: "Individuazione dei momenti in cui l'esperienza si gioca davvero." },
+            { tag: "Brand", title: "Perception Design", text: "Allineamento tra cio che il brand dice e cio che le persone vivono." },
+            { tag: "Research", title: "Insight Synthesis", text: "Traduzione degli insight in decisioni progettuali praticabili." },
+            { tag: "Ops", title: "Alignment Workshops", text: "Facilitazione di momenti decisionali per team e stakeholder." }
+          ],
+          projectEyebrow: "Selected Case",
+          project: {
+            tag: "Experience Strategy",
+            title: "Customer Journey Rebuild",
+            text: "Un intervento di riallineamento tra contenuti, touchpoint e aspettative per aumentare chiarezza e valore percepito.",
+            image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop",
+            imageAlt: "Experience strategy project",
+            href: "#"
+          }
+        }
+      };
+
+      function renderSocials(items) {
+        const iconMap = {
+          linkedin: "assets/img/linkedin.png",
+          instagram: "assets/img/instagram.png",
+          facebook: "assets/img/facebook.png",
+          tiktok: "assets/img/tiktok.png"
+        };
+
+        return items.map(function (item) {
+          const key = String(item.label || "").toLowerCase();
+          const icon = iconMap[key] || iconMap.linkedin;
+          return '<a class="social-icon" href="' + item.href + '" aria-label="' + item.label + '"><img src="' + icon + '" alt=""></a>';
+        }).join("");
+      }
+
+      function renderParagraphs(items) {
+        return items.map(function (item) {
+          return "<p>" + item + "</p>";
+        }).join("") + '<a href="#contact" class="btn">Contattami</a>';
+      }
+
+      function renderIdeas(items) {
+        return items.map(function (item, index) {
+          const number = String(index + 1).padStart(2, "0");
+          return '<a class="idea-item" href="' + item.href + '"><div class="idea-index">' + number + '</div><div class="idea-copy"><strong>' + item.title + '</strong><span>' + item.text + '</span></div><div class="idea-date">' + item.date + '</div><div class="idea-arrow">&#8599;</div></a>';
+        }).join("");
+      }
+
+      function renderExpertise(items) {
+        return items.map(function (item) {
+          return '<article class="expertise-card"><span class="tag">' + item.tag + '</span><h3>' + item.title + '</h3><p>' + item.text + '</p></article>';
+        }).join("");
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("member") || "giulia-moretti";
+      const member = members[slug] || members["giulia-moretti"];
+
+      document.title = "HappyMinds - " + member.firstName + " " + member.lastName;
+      document.getElementById("memberRole").textContent = member.role;
+      document.getElementById("memberTitle").innerHTML = member.firstName + ' <span>' + member.lastName + "</span>";
+      document.getElementById("memberHeroSummary").textContent = member.heroSummary || member.aboutLead;
+      document.getElementById("memberSocials").innerHTML = renderSocials(member.socials);
+      document.getElementById("memberPortrait").src = member.portrait;
+      document.getElementById("memberPortrait").alt = member.portraitAlt;
+      document.getElementById("memberFocusText").textContent = '"' + (member.heroQuote || member.heroFocus || member.project.text) + '"';
+      document.getElementById("memberAboutEyebrow").textContent = member.aboutEyebrow;
+      document.getElementById("memberAboutLead").textContent = member.aboutLead;
+      document.getElementById("memberAboutCopy").innerHTML = renderParagraphs(member.aboutParagraphs);
+      document.getElementById("memberIdeasEyebrow").textContent = member.ideasEyebrow;
+      document.getElementById("memberIdeasList").innerHTML = renderIdeas(member.ideas);
+      document.getElementById("memberExpertiseEyebrow").textContent = member.expertiseEyebrow;
+      document.getElementById("memberExpertiseGrid").innerHTML = renderExpertise(member.expertise);
+      document.getElementById("memberProjectEyebrow").textContent = member.projectEyebrow;
+      document.getElementById("memberProjectTag").textContent = member.project.tag;
+      document.getElementById("memberProjectTitle").textContent = member.project.title;
+      document.getElementById("memberProjectText").textContent = member.project.text;
+      document.getElementById("memberProjectImage").src = member.project.image;
+      document.getElementById("memberProjectImage").alt = member.project.imageAlt;
+      document.getElementById("memberProjectLink").href = member.project.href && member.project.href !== "#" ? member.project.href : "projects.html";
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const overlay = document.getElementById("agencyOverlay");
+      const open = document.querySelector("[data-overlay-open]");
+      const close = document.querySelector("[data-overlay-close]");
+      const links = overlay ? overlay.querySelectorAll("a") : [];
+
+      if (!overlay || !open || !close) return;
+
+      function toggleOverlay(active) {
+        overlay.classList.toggle("active", active);
+        overlay.setAttribute("aria-hidden", active ? "false" : "true");
+        document.body.classList.toggle("overflow-hidden", active);
+      }
+
+      open.addEventListener("click", function () {
+        toggleOverlay(true);
+      });
+
+      close.addEventListener("click", function () {
+        toggleOverlay(false);
+      });
+
+      links.forEach(function (link) {
+        link.addEventListener("click", function () {
+          toggleOverlay(false);
+        });
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          toggleOverlay(false);
+        }
+      });
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

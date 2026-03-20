@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HappyMinds - Visit Cesenatico</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --magenta: #d10074;
+      --paper: #f4f2ee;
+      --text: #24272d;
+      --muted: #6f747d;
+      --line: rgba(26, 26, 26, 0.08);
+      --detail-nav-height: clamp(72px, 8vw, 92px);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      background: var(--paper);
+      overflow-x: hidden;
+    }
+
+    .container-xl {
+      max-width: 1160px;
+    }
+
+    .project-detail-shell > .navbar-agency {
+      min-height: var(--detail-nav-height);
+      display: flex;
+      align-items: center;
+    }
+
+    .project-top {
+      padding: 0 0 3.5rem;
+      min-height: calc(100vh - var(--detail-nav-height));
+      display: flex;
+      align-items: center;
+    }
+
+    .project-top-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: center;
+    }
+
+    .project-top-media {
+      aspect-ratio: 0.96;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .project-top-media img,
+    .project-band img,
+    .project-split-media img,
+    .project-end-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-kicker {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #8e949d;
+      margin-bottom: 0.9rem;
+    }
+
+    .project-top-copy h1 {
+      margin: 0 0 1rem;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(3.2rem, 6vw, 5.4rem);
+      line-height: 0.9;
+      font-weight: 800;
+      color: #1f2329;
+      letter-spacing: -0.03em;
+    }
+
+    .project-top-copy p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.82;
+    }
+
+    .project-subtitle {
+      margin-top: 1.35rem;
+      margin-bottom: 0.55rem;
+      color: var(--magenta);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .project-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      padding-top: 1.15rem;
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .project-meta-item span {
+      display: block;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #20242b;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-meta-item strong {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+      line-height: 1.55;
+    }
+
+    .project-statement {
+      padding: 3rem 0 4rem;
+      text-align: center;
+    }
+
+    .project-statement p {
+      max-width: 980px;
+      margin: 0 auto;
+      color: #353a42;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.42;
+      font-weight: 400;
+    }
+
+    .project-statement .mag {
+      color: var(--magenta);
+      font-weight: 700;
+    }
+
+    .project-band,
+    .project-end-media {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .project-band {
+      aspect-ratio: 2.25;
+      margin-bottom: 2.25rem;
+    }
+
+    .project-split {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .project-split-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.58fr) minmax(0, 1fr);
+      gap: clamp(2rem, 5vw, 5.6rem);
+      align-items: center;
+    }
+
+    .project-split-text p,
+    .project-columns p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.9;
+    }
+
+    .project-split-media {
+      aspect-ratio: 1.14;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .project-columns {
+      padding: 1rem 0 4rem;
+    }
+
+    .project-columns-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(1.5rem, 4vw, 4rem);
+    }
+
+    .project-end-media {
+      aspect-ratio: 2.2;
+      margin-top: 1rem;
+    }
+
+    .project-bottom-nav {
+      padding: 2rem 0 0;
+    }
+
+    .project-bottom-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      border-radius: 999px;
+      background: var(--magenta);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.82rem 1.2rem;
+    }
+
+    .project-detail-footer {
+      border-top: 1px solid var(--line);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 991px) {
+      .project-top-grid,
+      .project-split-grid,
+      .project-columns-grid,
+      .project-meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-top {
+        padding-bottom: 2.6rem;
+      }
+
+      .project-statement p {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 767px) {
+      :root {
+        --detail-nav-height: 76px;
+      }
+
+      .project-top {
+        min-height: calc(100svh - var(--detail-nav-height));
+        padding-bottom: 2rem;
+      }
+
+      .project-statement {
+        padding: 2.4rem 0 3rem;
+      }
+
+      .project-band {
+        aspect-ratio: 1.4;
+      }
+
+      .project-end-media {
+        aspect-ratio: 1.28;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="project-detail-shell">
+    <nav class="navbar navbar-agency navbar-agency--inner py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand" href="index.html" aria-label="HappyMinds home">
+          <img class="navbar-logo" src="assets/img/logo menu dark.png" alt="HappyMinds logo">
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" data-overlay-open>
+          <span class="menu-lines" aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="agency-overlay" id="agencyOverlay" aria-hidden="true">
+      <img class="overlay-watermark" src="assets/img/logo menu light.png" alt="" aria-hidden="true">
+      <button class="overlay-close" type="button" aria-label="Close menu" data-overlay-close>x</button>
+      <div class="container overlay-content d-flex flex-column">
+        <div class="row g-4 flex-grow-1 align-items-center">
+          <div class="col-md-6 d-flex flex-column justify-content-center">
+            <ul class="overlay-nav">
+              <li><a href="agency.html">Agency</a></li>
+              <li><a href="agency.html#services">Services</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="agency.html#flamingo-talks">Flamingo Talks</a></li>
+              <li><a href="#footer">Contact us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <div class="row g-3">
+              <div class="col-12">
+                <a class="overlay-card" href="agency.html#flamingo-talks">Manifesto</a>
+              </div>
+              <div class="col-12">
+                <a class="overlay-card" href="index.html#projects">Happy Destination</a>
+              </div>
+              <div class="col-12">
+                <a class="overlay-card" href="projects.html">Selected Projects</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="overlay-footer">Spreading Happiness</div>
+      </div>
+    </div>
+
+    <main>
+      <section class="project-top">
+        <div class="container-fluid">
+          <div class="project-top-grid">
+            <div class="project-top-media">
+              <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=1600&auto=format&fit=crop" alt="Visit Cesenatico main visual">
+            </div>
+            <div class="project-top-copy">
+              <span class="project-kicker">Cesenatico, Chiia, Ravenna</span>
+              <h1>Visit Cesenatico</h1>
+              <p>
+                Perspiciatis adsuesco carpo arbustum amita. Ullam cado adsum dolores civis aggero. Tabella vesper suus
+                amplus ara voluptatem super comprehendo succedo. Coepi vespillo veritas. Coerceo admitto ultio causa.
+              </p>
+              <p>
+                Perspiciatis adsuesco carpo arbustum amita. Ullam cado adsum dolores civis aggero. Tabella vesper suus
+                amplus ara voluptatem super comprehendo succedo. Coepi vespillo veritas. Coerceo admitto ultio causa.
+              </p>
+              <div class="project-subtitle">Strategy</div>
+              <p>
+                Building an internal tool at this scale is no small feat, but with the right approach, it can be a powerful
+                force for uniting a company.
+              </p>
+              <div class="project-meta-grid">
+                <div class="project-meta-item">
+                  <span>Chi</span>
+                  <strong>Comune di Cesenatico</strong>
+                </div>
+                <div class="project-meta-item">
+                  <span>Cosa</span>
+                  <strong>Turismo</strong>
+                </div>
+                <div class="project-meta-item">
+                  <span>Quando</span>
+                  <strong>2024 - ongoing</strong>
+                </div>
+                <div class="project-meta-item">
+                  <span>Dove</span>
+                  <strong>Cesenatico, Emilia-Romagna</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-statement">
+        <div class="container-xl">
+          <p>
+            Perspiciatis adsuesco carpo arbustum amita. Ullam cado adsum dolores civis aggero.
+            <span class="mag">Tabella vesper suus amplus ara voluptatem</span> super comprehendo succedo.
+          </p>
+        </div>
+      </section>
+
+      <section class="project-band">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1800&auto=format&fit=crop" alt="Cesenatico waterfront">
+      </section>
+
+      <section class="project-band">
+        <img src="https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1800&auto=format&fit=crop" alt="Family at the sea">
+      </section>
+
+      <section class="project-split">
+        <div class="container-xl">
+          <div class="project-split-grid">
+            <div class="project-split-text">
+              <p>
+                Perspiciatis adsuesco carpo arbustum amita. Ullam cado adsum dolores civis aggero. Tabella vesper suus
+                amplus ara voluptatem super comprehendo succedo. Coepi vespillo veritas. Coerceo admitto ultio causa.
+              </p>
+              <p>
+                Perspiciatis adsuesco carpo arbustum amita. Ullam cado adsum dolores civis aggero. Tabella vesper suus
+                amplus ara voluptatem super comprehendo succedo. Coepi vespillo veritas. Coerceo admitto ultio causa.
+              </p>
+            </div>
+            <div class="project-split-media">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop" alt="Cesenatico sea detail">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-columns">
+        <div class="container-xl">
+          <div class="project-columns-grid">
+            <div>
+              <p>
+                Perspiciatis adsuesco carpo arbustum amita. Ullam cado adsum dolores civis aggero. Tabella vesper suus
+                amplus ara voluptatem super comprehendo succedo. Coepi vespillo veritas. Coerceo admitto ultio causa.
+                Solutio decimus sursum paens cura.
+              </p>
+              <p>
+                Perspiciatis adsuesco carpo arbustum amita. Ullam cado adsum dolores civis aggero. Tabella vesper suus
+                amplus ara voluptatem super comprehendo succedo. Coepi vespillo veritas. Coerceo admitto ultio causa.
+              </p>
+            </div>
+            <div>
+              <p>
+                Perspiciatis adsuesco carpo arbustum amita. Ullam cado adsum dolores civis aggero. Tabella vesper suus
+                amplus ara voluptatem super comprehendo succedo. Coepi vespillo veritas. Coerceo admitto ultio causa.
+                Solutio decimus sursum paens cura.
+              </p>
+              <p>
+                Perspiciatis adsuesco carpo arbustum amita. Ullam cado adsum dolores civis aggero. Tabella vesper suus
+                amplus ara voluptatem super comprehendo succedo. Coepi vespillo veritas. Coerceo admitto ultio causa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-end-media">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1800&auto=format&fit=crop" alt="Cesenatico sunset">
+      </section>
+
+      <section class="project-bottom-nav">
+        <div class="container-xl">
+          <a class="project-bottom-link" href="projects.html">Torna ai progetti</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-agency py-5 project-detail-footer" id="footer">
+      <div class="container">
+        <div class="row g-4 footer-main">
+          <div class="col-md-6 col-lg-3">
+            <div class="footer-brand-block">
+              <img class="footer-logo" src="assets/img/logo menu light.png" alt="HappyMinds logo">
+              <p class="footer-text">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
+              <div class="social-list">
+                <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+                <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <h3 class="footer-title">Contatti</h3>
+            <ul class="footer-contact-list">
+              <li><a class="footer-contact-link" href="#"><span class="footer-contact-icon"><img src="assets/img/indirizzo.png" alt=""></span><span>Via A. Mariani, 7 Ravenna</span></a></li>
+              <li><a class="footer-contact-link" href="mailto:hello@happyminds.it"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>hello@happyminds.it</span></a></li>
+              <li><a class="footer-contact-link" href="tel:+390544212252"><span class="footer-contact-icon"><img src="assets/img/telefono.png" alt=""></span><span>0544212252</span></a></li>
+              <li><a class="footer-contact-link" href="mailto:happyminds@pec.net"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>happyminds@pec.net</span></a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <h3 class="footer-title">Happy Minds</h3>
+            <p class="footer-note">Politica per la parita di genere e documentazione collegata ai percorsi di qualita, sostenibilita e pari opportunita.</p>
+            <div class="social-list">
+              <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+              <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+              <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+              <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <h3 class="footer-title">Certificazioni</h3>
+            <div class="footer-badges">
+              <img class="footer-badge-logo footer-badge-logo--parity" src="assets/img/certificazione parità genere.png" alt="Certificazione parita di genere">
+              <img class="footer-badge-logo footer-badge-logo--opportunity" src="assets/img/Pari_Opportunita.jpg" alt="Logo pari opportunita">
+              <img class="footer-badge-logo footer-badge-logo--green" src="assets/img/green cloud.png" alt="Logo certificazione Green Cloud">
+            </div>
+          </div>
+        </div>
+
+        <hr class="footer-divider">
+        <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+          <span>&copy; 2026 HappyMinds. Made with &#9825;</span>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const overlay = document.getElementById("agencyOverlay");
+      const open = document.querySelector("[data-overlay-open]");
+      const close = document.querySelector("[data-overlay-close]");
+      const links = overlay ? overlay.querySelectorAll("a") : [];
+
+      if (!overlay || !open || !close) return;
+
+      function toggleOverlay(active) {
+        overlay.classList.toggle("active", active);
+        overlay.setAttribute("aria-hidden", active ? "false" : "true");
+        document.body.classList.toggle("overflow-hidden", active);
+      }
+
+      open.addEventListener("click", function () {
+        toggleOverlay(true);
+      });
+
+      close.addEventListener("click", function () {
+        toggleOverlay(false);
+      });
+
+      links.forEach(function (link) {
+        link.addEventListener("click", function () {
+          toggleOverlay(false);
+        });
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          toggleOverlay(false);
+        }
+      });
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

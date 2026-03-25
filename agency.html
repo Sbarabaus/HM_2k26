@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --magenta: #d10074;
+      --magenta: #d0005a;
       --yellow: #f2d027;
       --dark: #171a20;
       --paper: #f2f2f3;
@@ -114,6 +114,7 @@
       border-radius: 999px;
       overflow: hidden;
       box-shadow: 0 18px 44px rgba(16, 9, 14, .12);
+      transition: background-color .34s ease, border-radius .34s ease, box-shadow .34s ease;
     }
 
     .what-accordion .accordion-button {
@@ -128,6 +129,7 @@
       gap: .8rem;
       min-height: 82px;
       align-items: center;
+      transition: background-color .34s ease, color .34s ease, border-radius .34s ease, padding .34s ease;
     }
 
     .what-accordion .accordion-button::after {
@@ -147,7 +149,7 @@
     }
 
     .what-accordion .accordion-button:not(.collapsed) {
-      background: var(--magenta);
+      background: transparent;
       color: #fff;
       border-radius: 2rem 2rem 0 0;
       padding-top: 1.45rem;
@@ -159,12 +161,14 @@
       margin-top: 0;
       border-radius: 0 0 2rem 2rem;
       padding: .12rem 1.35rem 1.35rem;
-      background: var(--magenta);
+      background: transparent;
       color: #fff;
+      transition: color .34s ease, padding .34s ease;
     }
 
     .what-accordion .accordion-item:has(.accordion-button:not(.collapsed)) {
       border-radius: 2rem;
+      background: var(--magenta);
     }
 
     .what-accordion .accordion-title {
@@ -199,31 +203,27 @@
       box-shadow: 0 14px 28px rgba(0,0,0,.28);
     }
 
-    .accordion-thumb {
+    .accordion-arrow {
       margin-left: auto;
-      border-radius: 999px;
-      width: 118px;
+      width: 44px;
       height: 44px;
-      border: 2px solid rgba(255,255,255,.16);
-      background: linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.08) 100%);
-      overflow: hidden;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
       flex: 0 0 auto;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,.12);
-      transition: width .2s ease, opacity .2s ease, margin .2s ease, border-width .2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      line-height: 1;
+      color: #fff;
+      transition: transform .22s ease, background-color .22s ease, border-color .22s ease;
     }
 
-    .accordion-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .what-accordion .accordion-button:not(.collapsed) .accordion-thumb {
-      width: 0;
-      opacity: 0;
-      margin-left: 0;
-      border-width: 0;
+    .what-accordion .accordion-button:not(.collapsed) .accordion-arrow {
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.24);
+      transform: rotate(90deg);
     }
 
     .what-accordion .accordion-body .row {
@@ -310,17 +310,38 @@
       font-weight: 800;
     }
 
+    .flamingos-intro {
+      max-width: 760px;
+      margin-bottom: 2.2rem;
+    }
+
+    .flamingos .container-xl {
+      width: min(100% - 24px, 1520px);
+      max-width: none;
+    }
+
+    .flamingos-copy {
+      margin: 1rem 0 0;
+      max-width: 620px;
+      color: #6f737b;
+      font-size: .95rem;
+      line-height: 1.72;
+    }
+
     .member-card {
-      display: block;
+      position: relative;
+      display: flex;
+      flex-direction: column;
       border: 0;
-      border-radius: 6px;
+      border-radius: 1rem;
       overflow: hidden;
       background: #ececef;
-      box-shadow: inset 0 0 0 1px #e4e6ea;
+      box-shadow: inset 0 0 0 1px #e4e6ea, 0 16px 34px rgba(26, 26, 26, 0.08);
       height: 100%;
       color: inherit;
       text-decoration: none;
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      isolation: isolate;
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
     }
 
     .member-card:hover {
@@ -330,45 +351,89 @@
 
     .member-card img {
       width: 100%;
-      aspect-ratio: 1 / 1.06;
+      height: 100%;
+      min-height: 100%;
       object-fit: cover;
       background: #ddd;
+      display: block;
+      flex: 1 1 auto;
+      transition: filter .28s ease, transform .28s ease;
     }
 
-    .member-card .meta {
-      font-size: .72rem;
-      font-weight: 600;
-      color: #3f4249;
-      padding: .45rem .55rem .56rem;
-      background: #fff;
-    }
-
-    .cta-member {
-      background: var(--magenta);
-      color: #fff;
-      border: 0;
-      border-radius: 6px;
+    .member-card-hover {
+      position: absolute;
+      inset: auto 0 0 0;
       min-height: 100%;
+      background: transparent;
+      color: #fff;
+      padding: 1rem .95rem;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1.2rem;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: .55rem;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .24s ease, transform .24s ease;
+      z-index: 1;
     }
 
-    .cta-member h3 {
-      font-size: 1.18rem;
-      line-height: 1.28;
-      margin: 0 0 .8rem;
-      font-weight: 600;
+    .member-card-hover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--magenta);
+      mix-blend-mode: multiply;
+      opacity: 0.85;
+      z-index: -1;
     }
 
-    .cta-member .btn {
-      border-radius: 999px;
-      font-size: .64rem;
+    .member-card:hover .member-card-hover,
+    .member-card:focus-visible .member-card-hover,
+    .member-card:focus-within .member-card-hover {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .member-card:hover img,
+    .member-card:focus-visible img,
+    .member-card:focus-within img {
+      filter: grayscale(1) contrast(1.34) brightness(.66) saturate(.2);
+      transform: scale(1.035);
+    }
+
+    .member-card-hover .eyebrow {
+      font-size: .65rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      letter-spacing: .07em;
-      padding: .58rem .94rem;
+      opacity: .95;
+      font-weight: 700;
+    }
+
+    .member-card-hover h3 {
+      margin: 0;
+      font-size: 1.22rem;
+      line-height: 1;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .member-card-hover p {
+      margin: 0;
+      font-size: .78rem;
+      line-height: 1.34;
+      color: #fff;
+    }
+
+    .member-card-hover .btn {
+      align-self: flex-start;
+      border-radius: 999px;
+      background: #fff;
+      border-color: #fff;
+      color: var(--magenta);
+      font-size: .62rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: .56rem .92rem;
       font-weight: 700;
     }
 
@@ -678,9 +743,10 @@
         max-width: none;
       }
 
-      .accordion-thumb {
-        width: 78px;
-        height: 34px;
+      .accordion-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
       }
 
       .what-lead {
@@ -696,6 +762,19 @@
       .studios h2,
       .uplift-copy h2 {
         line-height: 1;
+      }
+
+      .flamingos-copy {
+        font-size: .88rem;
+        line-height: 1.6;
+      }
+
+      .member-card-hover {
+        padding: .82rem .78rem;
+      }
+
+      .member-card-hover h3 {
+        font-size: 1.02rem;
       }
 
       .studio-card,
@@ -832,9 +911,7 @@
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <span class="num">01</span>
                 <span class="accordion-title">What We Do</span>
-                <span class="accordion-thumb" aria-hidden="true">
-                  <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1f2f0?q=80&w=900&auto=format&fit=crop" alt="">
-                </span>
+                <span class="accordion-arrow" aria-hidden="true">›</span>
               </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#whatAccordion">
@@ -860,9 +937,7 @@
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 <span class="num">02</span>
                 <span class="accordion-title">What We Dream</span>
-                <span class="accordion-thumb" aria-hidden="true">
-                  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=900&auto=format&fit=crop" alt="">
-                </span>
+                <span class="accordion-arrow" aria-hidden="true">›</span>
               </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#whatAccordion">
@@ -887,9 +962,7 @@
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                 <span class="num">03</span>
                 <span class="accordion-title">Why We Exist</span>
-                <span class="accordion-thumb" aria-hidden="true">
-                  <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=900&auto=format&fit=crop" alt="">
-                </span>
+                <span class="accordion-arrow" aria-hidden="true">›</span>
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#whatAccordion">
@@ -926,61 +999,145 @@
     </section>
 
     <section class="flamingos" id="projects">
-      <div class="container-xl">
-        <p class="kicker">Happy Minds</p>
-        <h2>Lorem ipsum<br><span class="mag">dolor sit amet</span></h2>
+      <div class="container">
+        <div class="flamingos-intro">
+          <p class="kicker">Happy Minds</p>
+          <h2>Meet the<br><span class="mag">core team</span></h2>
+          <p class="flamingos-copy">Una sezione interamente costruita su griglia Bootstrap: 12 profili, distribuiti in modo regolare, con una hover card informativa coerente su ogni elemento per mostrare ruolo, focus e una call to action.</p>
+        </div>
 
-        <div class="row row-cols-1 row-cols-md-4 g-3 g-md-4">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3 g-lg-4">
           <div class="col">
             <a class="member-card" href="team-member.html?member=michele-santoro" aria-label="Apri il profilo di Michele Santoro">
               <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?q=80&w=900&auto=format&fit=crop" alt="Michele Santoro">
-              <div class="meta">Michele Santoro</div>
+              <div class="member-card-hover">
+                <span class="eyebrow">Creative Direction</span>
+                <h3>Davide Caci</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=giulia-moretti" aria-label="Apri il profilo di Giulia Moretti">
               <img src="https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=900&auto=format&fit=crop" alt="Giulia Moretti">
-              <div class="meta">Giulia Moretti</div>
+              <div class="member-card-hover">
+                <span class="eyebrow">Brand Strategy</span>
+                <h3>Giulia Moretti</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=chiara-ferri" aria-label="Apri il profilo di Chiara Ferri">
               <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=900&auto=format&fit=crop" alt="Chiara Ferri">
-              <div class="meta">Chiara Ferri</div>
+              <div class="member-card-hover">
+                <span class="eyebrow">Account Lead</span>
+                <h3>Chiara Ferri</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=luca-bernardi" aria-label="Apri il profilo di Luca Bernardi">
               <img src="https://images.unsplash.com/photo-1542178243-bc20204b769f?q=80&w=900&auto=format&fit=crop" alt="Luca Bernardi">
-              <div class="meta">Luca Bernardi</div>
+              <div class="member-card-hover">
+                <span class="eyebrow">Performance Marketing</span>
+                <h3>Luca Bernardi</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=sofia-rinaldi" aria-label="Apri il profilo di Sofia Rinaldi">
               <img src="https://images.unsplash.com/photo-1484863137850-59afcfe05386?q=80&w=900&auto=format&fit=crop" alt="Sofia Rinaldi">
-              <div class="meta">Sofia Rinaldi</div>
+              <div class="member-card-hover">
+                <span class="eyebrow">Social Media</span>
+                <h3>Sofia Rinaldi</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=marco-villa" aria-label="Apri il profilo di Marco Villa">
               <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900&auto=format&fit=crop" alt="Marco Villa">
-              <div class="meta">Marco Villa</div>
+              <div class="member-card-hover">
+                <span class="eyebrow">Motion Design</span>
+                <h3>Marco Villa</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=elena-conti" aria-label="Apri il profilo di Elena Conti">
               <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=900&auto=format&fit=crop" alt="Elena Conti">
-              <div class="meta">Elena Conti</div>
+              <div class="member-card-hover">
+                <span class="eyebrow">Content Design</span>
+                <h3>Elena Conti</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
             </a>
           </div>
           <div class="col">
-            <article class="cta-member d-flex align-items-center">
-              <div>
-                <p class="text-uppercase" style="font-size:.62rem;letter-spacing:.22em;opacity:.92;">In 8</p>
-                <h3>You miss 100% of the shots you don't take</h3>
-                <a class="btn btn-dark" href="#">Speak to us</a>
+            <a class="member-card" href="team-member.html?member=anna-seri" aria-label="Apri il profilo di Anna Seri">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=900&auto=format&fit=crop" alt="Anna Seri">
+              <div class="member-card-hover">
+                <span class="eyebrow">Project Management</span>
+                <h3>Anna Seri</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
               </div>
-            </article>
+            </a>
+          </div>
+          <div class="col">
+            <a class="member-card" href="team-member.html?member=tommaso-greco" aria-label="Apri il profilo di Tommaso Greco">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=900&auto=format&fit=crop" alt="Tommaso Greco">
+              <div class="member-card-hover">
+                <span class="eyebrow">Video Production</span>
+                <h3>Tommaso Greco</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
+            </a>
+          </div>
+          <div class="col">
+            <a class="member-card" href="team-member.html?member=martina-leone" aria-label="Apri il profilo di Martina Leone">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=900&auto=format&fit=crop" alt="Martina Leone">
+              <div class="member-card-hover">
+                <span class="eyebrow">UX Design</span>
+                <h3>Martina Leone</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
+            </a>
+          </div>
+          <div class="col">
+            <a class="member-card" href="team-member.html?member=nicolo-rossi" aria-label="Apri il profilo di Nicolo Rossi">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=900&auto=format&fit=crop" alt="Nicolo Rossi">
+              <div class="member-card-hover">
+                <span class="eyebrow">Web Development</span>
+                <h3>Nicolo Rossi</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
+            </a>
+          </div>
+          <div class="col">
+            <a class="member-card" href="team-member.html?member=beatrice-fabbri" aria-label="Apri il profilo di Beatrice Fabbri">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=900&auto=format&fit=crop" alt="Beatrice Fabbri">
+              <div class="member-card-hover">
+                <span class="eyebrow">PR &amp; Partnerships</span>
+                <h3>Beatrice Fabbri</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">View profile</span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -1112,8 +1269,8 @@
       </div>
 
       <div class="col-md-6 col-lg-3">
-        <img class="footer-logo" src="assets/img/happy-minds-logo-orizzontale-bianco footer.png" alt="HappyMinds">
-        <p class="footer-copy">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
+        <img class="footer-logo" src="assets/img/logo upminds.svg" alt="HappyMinds">
+        <p class="footer-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non tortor justo. Pellentesque eu gravida elit. Quisque fringilla sagittis nisl. </p>
         <div class="d-flex gap-2">
           <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
           <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>

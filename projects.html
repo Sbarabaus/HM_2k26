@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --magenta: #d10074;
+      --magenta: #d0005a;
       --paper: #f6f3ee;
       --paper-strong: #efeae2;
       --text: #262930;
@@ -376,33 +376,25 @@
 
       <div class="agency-overlay" id="agencyOverlay" aria-hidden="true">
         <img class="overlay-watermark" src="assets/img/logo menu light.png" alt="" aria-hidden="true">
-        <button class="overlay-close" type="button" aria-label="Close menu" data-overlay-close>x</button>
+        <button class="overlay-close" type="button" aria-label="Close menu" data-overlay-close>&times;</button>
         <div class="container overlay-content d-flex flex-column">
           <div class="row g-4 flex-grow-1 align-items-center">
             <div class="col-md-6 d-flex flex-column justify-content-center">
               <ul class="overlay-nav">
-                <li><a href="agency.html">Agency</a></li>
-                <li><a href="agency.html#services">Services</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="agency.html#flamingo-talks">Flamingo Talks</a></li>
-                <li><a href="#contact">Contact us</a></li>
+                <li><a href="agency.html" data-overlay-link>Agency</a></li>
+                <li><a href="#services" data-overlay-link>Services</a></li>
+                <li><a href="projects.html" data-overlay-link>Projects</a></li>
+                <li><a href="#flamingo-talks" data-overlay-link>Flamingo Talks</a></li>
+                <li><a href="#contact" data-overlay-link>Contact Us</a></li>
               </ul>
             </div>
-            <div class="col-md-6">
-              <div class="row g-3">
-                <div class="col-12">
-                  <a class="overlay-card" href="agency.html#flamingo-talks">Manifesto</a>
-                </div>
-                <div class="col-12">
-            <a class="overlay-card" href="home-felice.html#projects">Happy Destination</a>
-                </div>
-                <div class="col-12">
-                  <a class="overlay-card" href="projects.html">Selected Projects</a>
-                </div>
-              </div>
+            <div class="col-md-6 d-flex flex-column justify-content-center gap-3">
+              <div class="overlay-box">Manifesto</div>
+              <div class="overlay-box">Happy<br>Destination</div>
+              <div class="overlay-box">Lorem Ipsum</div>
             </div>
           </div>
-          <div class="overlay-footer">Spreading Happiness</div>
+          <div class="overlay-footer-note">Spreading Happiness</div>
         </div>
       </div>
 
@@ -555,100 +547,95 @@
         </div>
       </section>
 
-      <div class="projects-footer-wrap">
-        <footer class="footer-agency py-5">
-          <div class="container">
-            <div class="row g-4 footer-main">
-              <div class="col-md-6 col-lg-3">
-                <div class="footer-brand-block">
-                  <img class="footer-logo" src="assets/img/logo menu light.png" alt="HappyMinds logo">
-                  <p class="footer-text">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
-                  <div class="social-list">
-                    <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
-                    <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
-                    <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
-                    <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
-                  </div>
-                </div>
-              </div>
+      <!-- Global Footer Component -->
+<!-- Bootstrap 5.3 required -->
+<footer class="footer-agency py-5" id="contact">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <img class="footer-logo" src="assets/img/happy-minds-logo-orizzontale-bianco footer.png" alt="HappyMinds">
+        <p class="footer-copy">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
+        <div class="d-flex gap-2">
+          <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+        </div>
+      </div>
 
-              <div class="col-md-6 col-lg-3">
-                <h3 class="footer-title">Contatti</h3>
-                <ul class="footer-contact-list">
-                  <li><a class="footer-contact-link" href="#"><span class="footer-contact-icon"><img src="assets/img/indirizzo.png" alt=""></span><span>Via A. Mariani, 7 Ravenna</span></a></li>
-                  <li><a class="footer-contact-link" href="mailto:hello@happyminds.it"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>hello@happyminds.it</span></a></li>
-                  <li><a class="footer-contact-link" href="tel:+390544212252"><span class="footer-contact-icon"><img src="assets/img/telefono.png" alt=""></span><span>0544212252</span></a></li>
-                  <li><a class="footer-contact-link" href="mailto:happyminds@pec.net"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>happyminds@pec.net</span></a></li>
-                </ul>
-              </div>
+      <div class="col-md-6 col-lg-3">
+        <h6 class="footer-title">Contatti</h6>
+        <ul class="footer-contact-list">
+          <li><span class="footer-contact-link"><span class="footer-contact-icon"><img src="assets/img/indirizzo.png" alt=""></span><span>Via A. Mariani 7, Ravenna</span></span></li>
+          <li><a class="footer-contact-link" href="mailto:hello@happyminds.it"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>hello@happyminds.it</span></a></li>
+          <li><a class="footer-contact-link" href="tel:+390544212252"><span class="footer-contact-icon"><img src="assets/img/telefono.png" alt=""></span><span>0544212252</span></a></li>
+          <li><a class="footer-contact-link" href="mailto:happyminds@pec.net"><span class="footer-contact-icon"><img src="assets/img/mail.png" alt=""></span><span>happyminds@pec.net</span></a></li>
+        </ul>
+      </div>
 
-              <div class="col-md-6 col-lg-3">
-                <h3 class="footer-title">Happy Minds</h3>
-                <p class="footer-note">Politica per la parita di genere e documentazione collegata ai percorsi di qualita, sostenibilita e pari opportunita.</p>
-                <div class="social-list">
-                  <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
-                  <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
-                  <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
-                  <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
-                </div>
-              </div>
+      <div class="col-md-6 col-lg-3">
+        <img class="footer-logo" src="assets/img/logo upminds.svg" alt="HappyMinds">
+        <p class="footer-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non tortor justo. Pellentesque eu gravida elit. Quisque fringilla sagittis nisl. </p>
+        <div class="d-flex gap-2">
+          <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="Facebook"><img src="assets/img/facebook.png" alt=""></a>
+          <a class="social-icon" href="#" aria-label="TikTok"><img src="assets/img/tiktok.png" alt=""></a>
+        </div>
+      </div>
 
-              <div class="col-md-6 col-lg-3">
-                <h3 class="footer-title">Certificazioni</h3>
-                <div class="footer-badges">
-                  <img class="footer-badge-logo footer-badge-logo--parity" src="assets/img/certificazione parità genere.png" alt="Certificazione parita di genere">
-                  <img class="footer-badge-logo footer-badge-logo--opportunity" src="assets/img/Pari_Opportunita.jpg" alt="Logo pari opportunita">
-                  <img class="footer-badge-logo footer-badge-logo--green" src="assets/img/green cloud.png" alt="Logo certificazione Green Cloud">
-                </div>
-              </div>
-            </div>
+      <div class="col-md-6 col-lg-3">
+        <h6 class="footer-title">Certificazioni</h6>
+        <div class="footer-badges">
+          <img class="footer-badge-logo footer-badge-logo--parity" src="assets/img/certificazione parità genere.png" alt="Certificazione parita di genere">
+          <img class="footer-badge-logo footer-badge-logo--opportunity" src="assets/img/Pari_Opportunita.jpg" alt="Logo pari opportunita">
+          <img class="footer-badge-logo footer-badge-logo--green" src="assets/img/green cloud.png" alt="Logo certificazione Green Cloud">
+        </div>
+      </div>
+    </div>
 
-            <hr class="footer-divider">
-            <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
-              <span>&copy; 2026 HappyMinds. Made with &#9825;</span>
-              <div class="footer-bottom-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Cookie Policy</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+    <hr class="footer-divider">
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+      <span>© 2026 HappyMinds. Made with <span class="made-with">♥</span></span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
       </div>
     </div>
   </div>
+</footer>
 
   <script>
     (function () {
-      const overlay = document.getElementById("agencyOverlay");
-      const open = document.querySelector("[data-overlay-open]");
-      const close = document.querySelector("[data-overlay-close]");
-      const links = overlay ? overlay.querySelectorAll("a") : [];
+      var overlay = document.getElementById('agencyOverlay');
+      var openBtn = document.querySelector('[data-overlay-open]');
+      var closeBtn = document.querySelector('[data-overlay-close]');
+      var links = document.querySelectorAll('[data-overlay-link]');
 
-      if (!overlay || !open || !close) return;
+      if (!overlay || !openBtn || !closeBtn) return;
 
-      function toggleOverlay(active) {
-        overlay.classList.toggle("active", active);
-        overlay.setAttribute("aria-hidden", active ? "false" : "true");
-        document.body.classList.toggle("overflow-hidden", active);
-      }
+      var openOverlay = function () {
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('overlay-open');
+      };
 
-      open.addEventListener("click", function () {
-        toggleOverlay(true);
-      });
+      var closeOverlay = function () {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('overlay-open');
+      };
 
-      close.addEventListener("click", function () {
-        toggleOverlay(false);
-      });
+      openBtn.addEventListener('click', openOverlay);
+      closeBtn.addEventListener('click', closeOverlay);
 
       links.forEach(function (link) {
-        link.addEventListener("click", function () {
-          toggleOverlay(false);
-        });
+        link.addEventListener('click', closeOverlay);
       });
 
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          toggleOverlay(false);
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          closeOverlay();
         }
       });
     })();

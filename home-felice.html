@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Caveat:wght@500;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --magenta: #D10074;
+      --magenta: #d0005a;
       --ink: #2f3137;
       --muted: #686c75;
       --paper: #f1f2f4;
@@ -820,82 +820,300 @@
       background-position: right top;
       background-size: clamp(380px, 54vw, 980px) auto;
       overflow: hidden;
-      padding: clamp(72px, 8vw, 112px);
+      padding: clamp(88px, 9vw, 130px) 0;
+    }
+
+    .clients .container {
+      width: min(100% - 28px, 1760px);
+      max-width: none;
     }
 
     .clients h2 {
       font-family: "Barlow Condensed", sans-serif;
       font-size: clamp(2.6rem, 5vw, 4.6rem);
       color: #4a4e56;
-      margin-bottom: 1.2rem;
+      margin: 0;
       text-transform: none;
       font-weight: 700;
     }
 
-    .client-card {
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 12px 26px rgba(0,0,0,.08);
+    .clients-shell {
       position: relative;
-      height: 100%;
+      z-index: 1;
+      overflow: visible;
     }
 
-    .client-card .logo-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(255,255,255,.93);
-      padding: .28rem .5rem;
-      border-radius: 999px;
-      font-size: .6rem;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: #5b6069;
+    .clients-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .clients-kicker {
+      margin: 0 0 .6rem;
+      color: var(--magenta);
+      font-size: .74rem;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    .clients-sub {
+      margin: .85rem 0 0;
+      color: #636872;
+      max-width: 70rem;
+      font-size: .98rem;
+      line-height: 1.65;
+    }
+
+    .clients-stage {
+      position: relative;
+    }
+
+    .clients-carousel {
+      margin-inline: 0;
+      padding-inline: clamp(70px, 7vw, 112px);
+      overflow: visible;
+    }
+
+    .clients-track {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .clients-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .clients-slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      scroll-snap-align: start;
+    }
+
+    .clients-composition {
+      display: grid;
+      grid-template-columns: minmax(150px, .38fr) minmax(560px, 1.28fr) minmax(320px, .82fr);
+      align-items: center;
+      gap: clamp(22px, 2.6vw, 40px);
+      min-height: 500px;
+    }
+
+    .clients-preview-stack {
+      position: relative;
+      width: 210px;
+      height: 390px;
+      pointer-events: none;
+    }
+
+    .clients-preview-card {
+      position: absolute;
+      left: 0;
+      width: clamp(120px, 13vw, 164px);
+      aspect-ratio: 3 / 4.2;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 18px 30px rgba(0,0,0,.16);
+      transform-origin: center;
+      transition: transform .52s cubic-bezier(.22, 1, .36, 1), opacity .42s ease, filter .42s ease;
+    }
+
+    .clients-preview-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .clients-preview-card--one {
+      top: 146px;
+      opacity: .22;
+      transform: translateX(8px) scale(.8);
+      filter: blur(1.2px);
+    }
+
+    .clients-preview-card--two {
+      top: 78px;
+      left: 30px;
+      opacity: .45;
+      transform: translateX(6px) scale(.9);
+      filter: blur(.4px);
+    }
+
+    .clients-preview-card--three {
+      top: 0;
+      left: 64px;
+      opacity: .9;
+      transform: scale(1);
       z-index: 1;
     }
 
-    .client-card img {
+    .clients-active-media {
+      position: relative;
+      z-index: 2;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 28px 50px rgba(0,0,0,.18);
+      background: #111;
+      aspect-ratio: 16 / 9;
+      transform: scale(1.18);
+      transform-origin: center;
+      transition: transform .52s cubic-bezier(.22, 1, .36, 1), box-shadow .4s ease;
+    }
+
+    .clients-active-media img {
       width: 100%;
-      height: 230px;
-      object-fit: cover;
-    }
-
-    .client-card .body {
-      padding: .88rem .92rem 1rem;
-      font-size: .82rem;
-      color: #4f535c;
-      line-height: 1.44;
-      min-height: 114px;
-    }
-
-    .client-copy-card {
-      border-radius: 12px;
-      background: #fff;
-      box-shadow: 0 12px 26px rgba(0,0,0,.08);
-      padding: 1rem .95rem;
       height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .52s cubic-bezier(.22, 1, .36, 1), opacity .32s ease;
     }
 
-    .client-copy-card .head {
-      font-size: .62rem;
-      color: #838790;
-      letter-spacing: .08em;
+    .clients-info-panel {
+      min-height: clamp(220px, 28vw, 296px);
+      background: var(--magenta);
+      color: #fff;
+      padding: clamp(24px, 2.4vw, 34px);
+      box-shadow: 0 22px 44px rgba(225, 8, 25, .24);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 3;
+      transition: transform .42s cubic-bezier(.22, 1, .36, 1), opacity .32s ease;
+    }
+
+    .clients-shell.is-transitioning .clients-active-media img,
+    .clients-shell.is-transitioning .clients-info-panel {
+      opacity: .72;
+      transform: translateX(10px);
+    }
+
+    .clients-shell.is-transitioning .clients-preview-card--one {
+      transform: translateX(14px) scale(.76);
+    }
+
+    .clients-shell.is-transitioning .clients-preview-card--two {
+      transform: translateX(12px) scale(.86);
+    }
+
+    .clients-shell.is-transitioning .clients-preview-card--three {
+      transform: translateX(8px) scale(.96);
+    }
+
+    .clients-info-meta {
+      font-size: .78rem;
+      letter-spacing: .14em;
       text-transform: uppercase;
       font-weight: 700;
-      margin-bottom: .35rem;
+      opacity: .86;
+      margin-bottom: .9rem;
     }
 
-    .client-copy-card p {
-      margin: 0 0 .45rem;
-      color: #4f535c;
-      font-size: .81rem;
-      line-height: 1.45;
+    .clients-info-title {
+      margin: 0 0 1rem;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: .92;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .clients-info-text {
+      margin: 0;
+      font-size: .96rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.92);
+      max-width: 28ch;
+    }
+
+    .clients-info-footer {
+      margin-top: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+    }
+
+    .clients-info-link {
+      color: #fff;
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .clients-info-link:hover {
+      color: rgba(255,255,255,.78);
+    }
+
+    .clients-info-index {
+      font-size: clamp(2.1rem, 4vw, 3rem);
+      line-height: 1;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .clients-info-index span {
+      font-size: .95rem;
+      opacity: .72;
+    }
+
+    .clients-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 58px;
+      height: 58px;
+      border: 0;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,.96);
+      color: #c0c4cb;
+      box-shadow: inset 0 0 0 1px rgba(26,26,26,.08), 0 14px 30px rgba(18,18,18,.1);
+      font-size: 1.35rem;
+      transition: transform .2s ease, background-color .2s ease, color .2s ease, opacity .2s ease;
+      z-index: 3;
+    }
+
+    .clients-nav:hover,
+    .clients-nav:focus-visible {
+      transform: translateY(calc(-50% - 2px));
+      background: #fff;
+      color: var(--magenta);
+      outline: none;
+    }
+
+    .clients-nav:disabled {
+      opacity: .42;
+      cursor: default;
+    }
+
+    .clients-nav--prev {
+      left: clamp(70px, 7vw, 112px);
+      margin-left: -29px;
+    }
+
+    .clients-nav--next {
+      right: clamp(70px, 7vw, 112px);
+      margin-right: -29px;
+    }
+
+    .clients-footer {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
     }
 
     .happy-destination {
-      margin-top: clamp(48px, 6vw, 88px);
       background: #f3f3f4;
     }
 
@@ -922,7 +1140,7 @@
       color: #fff;
       background:
         linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.34)),
-        url("assets/img/happy team outro.jpg") center 28% / cover no-repeat;
+        url("assets/img/happy-destination.jpg") center 28% / cover no-repeat;
       z-index: 2;
     }
 
@@ -970,35 +1188,11 @@
     }
 
     .destination-pin {
-      position: relative;
       width: clamp(150px, 20vw, 240px);
-      aspect-ratio: 1 / 1.25;
-      transform: rotate(-45deg);
-      border-radius: 50% 50% 50% 0;
-      background: linear-gradient(160deg, #ff2b93 0%, #d10074 72%);
-      box-shadow: -26px 18px 0 0 rgba(36, 36, 36, .96) inset, 0 18px 40px rgba(0,0,0,.14);
-    }
-
-    .destination-pin::before {
-      content: "";
-      position: absolute;
-      inset: 19% 19% auto auto;
-      width: 45%;
-      height: 45%;
-      border-radius: 50%;
-      background: #fff;
-    }
-
-    .destination-pin::after {
-      content: "";
-      position: absolute;
-      left: 57%;
-      top: 30%;
-      width: 13%;
-      height: 13%;
-      border-radius: 50%;
-      background: #2b2b2b;
-      box-shadow: -7px 7px 0 0 #fff;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 18px 40px rgba(0,0,0,.14));
     }
 
     .destination-pin-shadow {
@@ -1261,8 +1455,72 @@
         background-size: min(1100px, 150vw) auto;
       }
 
+      .clients-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .clients-carousel {
+        padding-inline: 56px;
+      }
+
+      .clients-composition {
+        grid-template-columns: minmax(120px, .32fr) 1fr;
+        gap: 1rem;
+        min-height: 0;
+      }
+
+      .clients-preview-stack {
+        width: 150px;
+        height: 300px;
+      }
+
+      .clients-preview-card {
+        width: 104px;
+      }
+
+      .clients-preview-card--one {
+        top: 116px;
+      }
+
+      .clients-preview-card--two {
+        top: 62px;
+        left: 18px;
+      }
+
+      .clients-preview-card--three {
+        left: 42px;
+      }
+
+      .clients-active-media {
+        transform: scale(1.08);
+      }
+
+      .clients-info-panel {
+        grid-column: 1 / -1;
+        min-height: 0;
+      }
+
+      .clients-nav {
+        width: 48px;
+        height: 48px;
+      }
+
+      .clients-nav--prev {
+        left: 56px;
+      }
+
+      .clients-nav--next {
+        right: 56px;
+      }
+
+      .clients-nav:hover,
+      .clients-nav:focus-visible {
+        transform: translateY(calc(-50% - 2px));
+      }
+
       .talks {
-        padding-top: 88px;
+        padding-top: 44px;
       }
 
       .talk-logo-wrap {
@@ -1393,6 +1651,50 @@
         min-height: 44px;
       }
     }
+
+    @media (max-width: 767px) {
+      .clients {
+        padding: 72px 20px;
+      }
+
+      .clients-sub {
+        max-width: 100%;
+      }
+
+      .clients-nav {
+        display: none;
+      }
+
+      .clients-carousel {
+        padding-inline: 0;
+      }
+
+      .clients-composition {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .clients-preview-stack {
+        display: none;
+      }
+
+      .clients-active-media {
+        aspect-ratio: 16 / 9;
+        transform: none;
+      }
+
+      .clients-info-panel {
+        padding: 1.2rem 1.1rem;
+      }
+
+      .clients-info-title {
+        font-size: clamp(1.7rem, 8vw, 2.2rem);
+      }
+
+      .clients-info-text {
+        max-width: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1410,7 +1712,7 @@
 </nav>
 
 <div class="agency-overlay" id="agencyOverlay" aria-hidden="true">
-  <img class="overlay-watermark" src="assets/img/logo menu light.png" alt="" aria-hidden="true">
+  <img class="overlay-watermark" src="assets/img/logo menu.png" alt="" aria-hidden="true">
   <button class="overlay-close" type="button" aria-label="Close menu" data-overlay-close>×</button>
 
   <div class="container overlay-content d-flex flex-column">
@@ -1630,40 +1932,53 @@ Spreading happiness</span>
 
     <section class="clients section-pad" id="projects">
       <div class="container position-relative">
-        <h2>Clients</h2>
-        <div class="row g-3 g-lg-4">
-          <div class="col-md-6 col-lg-3">
-            <article class="client-card">
-              <span class="logo-badge">Turismo</span>
-              <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=1100&auto=format&fit=crop" alt="Client project 1">
-              <div class="body">Campagna visual per valorizzare il centro storico con storytelling esperienziale e contenuti social.</div>
-            </article>
+        <div class="clients-shell">
+          <div class="clients-head">
+            <div class="clients-intro">
+              <p class="clients-kicker">Selected projects</p>
+              <h2>Clients</h2>
+              <p class="clients-sub">La sezione ora segue un impianto piu vicino al riferimento: preview arretrate, progetto hero in primo piano e pannello rosso informativo, con immagine principale orizzontale in rapporto 16:9.</p>
+            </div>
           </div>
-          <div class="col-md-6 col-lg-3">
-            <article class="client-card">
-              <span class="logo-badge">Visit</span>
-              <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=1100&auto=format&fit=crop" alt="Client project 2">
-              <div class="body">Piano editoriale e shooting per destinazione culturale con format digital ad alto engagement.</div>
-            </article>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <article class="client-card">
-              <span class="logo-badge">Project</span>
-              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1100&auto=format&fit=crop" alt="Client project 3">
-              <div class="body">Rebranding, comunicazione e promozione evento con strategia data-driven e reportistica continua.</div>
-            </article>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <article class="client-copy-card">
-              <div class="head">Turismo</div>
-              <p>Aenean mattis magna a augue pulvinar, at interdum nisl bibendum.</p>
-              <p>Strategia, contenuti, visual identity e attivazioni digitali integrate per progetti territoriali.</p>
-              <p class="mb-0">Storytelling orientato a risultati concreti, con piano media e misurazione continua.</p>
-            </article>
+
+          <div class="clients-stage">
+            <button class="clients-nav clients-nav--prev" type="button" data-clients-prev aria-label="Progetto precedente">←</button>
+            <div class="clients-carousel">
+              <div class="clients-composition" data-clients-composition>
+                <div class="clients-preview-stack" aria-hidden="true">
+                  <div class="clients-preview-card clients-preview-card--one">
+                    <img data-preview-image="0" src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=900&auto=format&fit=crop" alt="">
+                  </div>
+                  <div class="clients-preview-card clients-preview-card--two">
+                    <img data-preview-image="1" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=900&auto=format&fit=crop" alt="">
+                  </div>
+                  <div class="clients-preview-card clients-preview-card--three">
+                    <img data-preview-image="2" src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=900&auto=format&fit=crop" alt="">
+                  </div>
+                </div>
+
+                <div class="clients-active-media">
+                  <img data-clients-active-image src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop" alt="Brand platform project">
+                </div>
+
+                <article class="clients-info-panel">
+                  <div>
+                    <div class="clients-info-meta" data-clients-meta>Happy Destination / Branding</div>
+                    <h3 class="clients-info-title" data-clients-title>Brand Platform</h3>
+                    <p class="clients-info-text" data-clients-text>Posizionamento, tono e sistema visivo per trasformare una destinazione in un racconto piu coerente e riconoscibile.</p>
+                  </div>
+                  <div class="clients-info-footer">
+                    <a class="clients-info-link" data-clients-link href="project-detail.html">Scopri il progetto &#8599;</a>
+                    <div class="clients-info-index" data-clients-index>01 <span>/ 06</span></div>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <button class="clients-nav clients-nav--next" type="button" data-clients-next aria-label="Progetto successivo">→</button>
           </div>
         </div>
-        <div class="text-center mt-4">
-          <button class="btn btn-magenta">See More</button>
+        <div class="clients-footer">
+          <a class="btn btn-magenta" href="projects.html">See More</a>
         </div>
       </div>
     </section>
@@ -1678,7 +1993,7 @@ Spreading happiness</span>
             <div class="row g-4">
               <div class="col-lg-5">
                 <div class="destination-pin-wrap">
-                  <div class="destination-pin" aria-hidden="true"></div>
+                  <img class="destination-pin" src="assets/img/destination-pin.png" alt="" aria-hidden="true">
                   <div class="destination-pin-shadow" aria-hidden="true"></div>
                 </div>
               </div>
@@ -1776,8 +2091,8 @@ Spreading happiness</span>
       </div>
 
       <div class="col-md-6 col-lg-3">
-        <img class="footer-logo" src="assets/img/happy-minds-logo-orizzontale-bianco footer.png" alt="HappyMinds">
-        <p class="footer-copy">Happy Minds e un'agenzia di marketing e comunicazione specializzata in Brand Making, Innovazione Digitale e Destination Branding.</p>
+        <img class="footer-logo" src="assets/img/logo upminds.svg" alt="HappyMinds">
+        <p class="footer-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non tortor justo. Pellentesque eu gravida elit. Quisque fringilla sagittis nisl. </p>
         <div class="d-flex gap-2">
           <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
           <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
@@ -2025,6 +2340,122 @@ Spreading happiness</span>
       });
 
       scheduleNext();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const shell = document.querySelector(".clients-shell");
+      const prevBtn = document.querySelector("[data-clients-prev]");
+      const nextBtn = document.querySelector("[data-clients-next]");
+      const activeImage = document.querySelector("[data-clients-active-image]");
+      const metaEl = document.querySelector("[data-clients-meta]");
+      const titleEl = document.querySelector("[data-clients-title]");
+      const textEl = document.querySelector("[data-clients-text]");
+      const linkEl = document.querySelector("[data-clients-link]");
+      const indexEl = document.querySelector("[data-clients-index]");
+      const previewImages = Array.from(document.querySelectorAll("[data-preview-image]"));
+
+      if (!shell || !prevBtn || !nextBtn || !activeImage || !metaEl || !titleEl || !textEl || !linkEl || !indexEl || !previewImages.length) return;
+
+      const projects = [
+        {
+          client: "Happy Destination",
+          category: "Branding",
+          title: "Brand Platform",
+          text: "Posizionamento, tono e sistema visivo per trasformare una destinazione in un racconto piu coerente e riconoscibile.",
+          image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
+          href: "project-detail.html"
+        },
+        {
+          client: "Turismo Ravenna",
+          category: "Destination",
+          title: "City Narrative",
+          text: "Una struttura di contenuti e visual asset per collegare patrimonio, esperienza e racconto territoriale.",
+          image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=1600&auto=format&fit=crop",
+          href: "project-detail.html"
+        },
+        {
+          client: "Studio Metrics",
+          category: "Digital",
+          title: "Analytics Dashboard",
+          text: "Design di interfaccia e gerarchia dati per rendere leggibili decisioni complesse dentro un prodotto interno.",
+          image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop",
+          href: "project-detail.html"
+        },
+        {
+          client: "Up Minds",
+          category: "Campaign",
+          title: "Launch Toolkit",
+          text: "Key visual, asset modulari e formati in movimento per dare coerenza e ritmo a una campagna cross-channel.",
+          image: "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1600&auto=format&fit=crop",
+          href: "project-detail.html"
+        },
+        {
+          client: "Flamingo Talks",
+          category: "Branding",
+          title: "Editorial Identity",
+          text: "Sistema di linguaggio, gerarchie e impianto visuale per una piattaforma di contenuti con voce piu netta.",
+          image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop",
+          href: "project-detail.html"
+        },
+        {
+          client: "Service Lab",
+          category: "Digital",
+          title: "Experience Blueprint",
+          text: "Mappe di servizio, priorita e touchpoint ridisegnati per riallineare processi interni ed esperienza percepita.",
+          image: "https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1600&auto=format&fit=crop",
+          href: "project-detail.html"
+        }
+      ];
+
+      let activeIndex = 0;
+      let isAnimating = false;
+
+      const wrapIndex = (index) => (index + projects.length) % projects.length;
+      const formatIndex = (index) => String(index + 1).padStart(2, "0");
+
+      const render = () => {
+        const activeProject = projects[activeIndex];
+        activeImage.src = activeProject.image;
+        activeImage.alt = activeProject.title;
+        metaEl.textContent = `${activeProject.client} / ${activeProject.category}`;
+        titleEl.textContent = activeProject.title;
+        textEl.textContent = activeProject.text;
+        linkEl.href = activeProject.href;
+        indexEl.innerHTML = `${formatIndex(activeIndex)} <span>/ ${String(projects.length).padStart(2, "0")}</span>`;
+
+        previewImages.forEach((previewImage, index) => {
+          const previewOffset = previewImages.length - index;
+          const previewProject = projects[wrapIndex(activeIndex + previewOffset)];
+          previewImage.src = previewProject.image;
+          previewImage.alt = previewProject.title;
+        });
+      };
+
+      const animateTo = (nextIndex) => {
+        if (isAnimating) return;
+
+        isAnimating = true;
+        shell.classList.add("is-transitioning");
+
+        window.setTimeout(() => {
+          activeIndex = wrapIndex(nextIndex);
+          render();
+          shell.classList.remove("is-transitioning");
+          isAnimating = false;
+        }, 190);
+      };
+
+      prevBtn.addEventListener("click", () => {
+        animateTo(activeIndex - 1);
+      });
+
+      nextBtn.addEventListener("click", () => {
+        animateTo(activeIndex + 1);
+      });
+
+      render();
     })();
   </script>
 

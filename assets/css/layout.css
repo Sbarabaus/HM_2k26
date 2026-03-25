@@ -124,7 +124,7 @@
   width: clamp(360px, 56vw, 980px);
   max-width: 82vw;
   height: auto;
-  opacity: .16;
+  opacity: .2;
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -134,7 +134,7 @@
   position: relative;
   z-index: 1;
   min-height: 100vh;
-  padding: 34px 0 28px;
+  padding: 30px;
 }
 
 .overlay-close {
@@ -383,6 +383,8 @@ body.overlay-open {
 
   .overlay-footer-note {
     margin-top: 1rem;
+    width: 100%;
+    text-align: center;
   }
 
   .footer-logo {

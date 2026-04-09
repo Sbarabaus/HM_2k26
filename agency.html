@@ -188,7 +188,7 @@
     }
 
     .what-lead {
-      font-size: .83rem;
+      font-size: 1rem;
       line-height: 1.42;
       margin: 0;
     }
@@ -437,6 +437,107 @@
       font-weight: 700;
     }
 
+    .collaborators {
+      padding: 24px 0 88px;
+      background:
+        radial-gradient(circle at top left, rgba(208, 0, 90, 0.08), transparent 36%),
+        linear-gradient(180deg, #faf7f4 0%, #ffffff 100%);
+    }
+
+    .collaborators-shell {
+      border-radius: 32px;
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(208, 0, 90, 0.08);
+      box-shadow: 0 22px 54px rgba(19, 21, 26, 0.08);
+      padding: clamp(26px, 4vw, 42px);
+    }
+
+    .collaborators-head {
+      display: block;
+      margin-bottom: 1.9rem;
+    }
+
+    .collaborators-head .kicker {
+      color: var(--magenta);
+      margin: 0 0 .7rem;
+    }
+
+    .collaborators-head h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4.6vw, 4rem);
+      line-height: .95;
+      color: #4a4d54;
+      font-weight: 700;
+    }
+
+    .collaborators-head h2 .mag {
+      color: var(--magenta);
+      font-weight: 800;
+    }
+
+    .collaborators-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .collaborator-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 242px;
+      border-radius: 24px;
+      padding: 14px;
+      background: #cfd3d9 var(--collaborator-photo) center center / cover no-repeat;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      box-shadow: 0 14px 34px rgba(23, 26, 32, 0.14);
+      isolation: isolate;
+    }
+
+    .collaborator-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(23, 26, 32, 0.26);
+      z-index: 0;
+    }
+
+    .collaborator-card::after {
+      display: none;
+    }
+
+    .collaborator-tag {
+      position: relative;
+      z-index: 1;
+      align-self: flex-start;
+      padding: .4rem .62rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,.70);
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .collaborator-name {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      margin-bottom: .75rem;
+    }
+
+    .collaborator-card h3 {
+      position: relative;
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.05;
+      font-weight: 800;
+      text-shadow: 0 2px 14px rgba(0,0,0,.35);
+    }
+
     .uplift {
       background:
         var(--yellow) url("assets/img/texture-upminds-desktop.jpg") center calc(50% + var(--parallax-bg, 0px)) / cover no-repeat;
@@ -679,6 +780,176 @@
       transform: translateY(0);
     }
 
+    .contact-band {
+      padding: 0 0 48px;
+      background:
+        linear-gradient(180deg, rgba(242, 240, 235, 0) 0%, rgba(242, 240, 235, 0.94) 18%, #f2f0eb 100%);
+    }
+
+    .contact-wrap {
+      background: #171a20;
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 18px 42px rgba(19, 21, 26, 0.14);
+    }
+
+    .contact-copy,
+    .contact-form-shell {
+      padding: clamp(18px, 2.8vw, 30px);
+      height: 100%;
+    }
+
+    .contact-copy {
+      background:
+        linear-gradient(155deg, #d0005a 0%, #7c0037 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .contact-copy .kicker {
+      margin-bottom: .45rem;
+      color: rgba(255,255,255,.75);
+    }
+
+    .contact-copy h2 {
+      margin: 0 0 .75rem;
+      font-size: clamp(1.7rem, 3.5vw, 2.9rem);
+      line-height: .96;
+      font-weight: 800;
+    }
+
+    .contact-copy p {
+      margin: 0;
+      max-width: 420px;
+      font-size: .86rem;
+      line-height: 1.58;
+      color: rgba(255,255,255,.9);
+    }
+
+    .contact-points {
+      display: grid;
+      gap: .58rem;
+      margin-top: 1.25rem;
+    }
+
+    .contact-point {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .76rem;
+      color: rgba(255,255,255,.92);
+    }
+
+    .contact-point strong {
+      display: block;
+      font-size: .56rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+      margin-bottom: .12rem;
+    }
+
+    .contact-point-badge {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      background: rgba(255,255,255,.14);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: .72rem;
+      color: #fff;
+    }
+
+    .contact-form-shell {
+      background: #fff;
+    }
+
+    .contact-form-shell h3 {
+      margin: 0 0 .35rem;
+      color: #2a2d33;
+      font-size: 1.24rem;
+      font-weight: 800;
+    }
+
+    .contact-form-shell > p {
+      margin: 0 0 1rem;
+      color: #6a6f79;
+      font-size: .84rem;
+      line-height: 1.5;
+    }
+
+    .agency-contact-form .form-label {
+      font-size: .62rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #666b74;
+      margin-bottom: .28rem;
+    }
+
+    .agency-contact-form .form-control,
+    .agency-contact-form .form-select {
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #fbfbfc;
+      padding: .72rem .88rem;
+      font-size: .88rem;
+      color: #2d3037;
+      box-shadow: none;
+    }
+
+    .agency-contact-form .form-control:focus,
+    .agency-contact-form .form-select:focus {
+      border-color: rgba(208, 0, 90, .34);
+      box-shadow: 0 0 0 4px rgba(208, 0, 90, .08);
+      background: #fff;
+    }
+
+    .agency-contact-form textarea.form-control {
+      min-height: 112px;
+      resize: vertical;
+    }
+
+    .contact-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      padding: .78rem .82rem .82rem;
+      border-radius: 14px;
+      background: #f7f7f9;
+      color: #626773;
+      font-size: .72rem;
+      line-height: 1.45;
+    }
+
+    .contact-consent input {
+      margin-top: .18rem;
+      accent-color: var(--magenta);
+    }
+
+    .agency-contact-form .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 156px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--magenta);
+      color: #fff;
+      padding: .72rem 1.05rem;
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      box-shadow: 0 12px 24px rgba(208, 0, 90, .18);
+    }
+
     @media (max-width: 991px) {
       .hero {
         min-height: 540px;
@@ -694,9 +965,23 @@
 
       .values,
       .flamingos,
+      .collaborators,
       .uplift,
-      .studios {
+      .studios,
+      .contact-band {
         padding-block: 64px;
+      }
+
+      .collaborators-head {
+        grid-template-columns: 1fr;
+      }
+
+      .collaborators-head p {
+        justify-self: start;
+      }
+
+      .collaborators-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .studios-carousel {
@@ -759,6 +1044,7 @@
 
       .values h2,
       .flamingos h2,
+      .collaborators-head h2,
       .studios h2,
       .uplift-copy h2 {
         line-height: 1;
@@ -775,6 +1061,14 @@
 
       .member-card-hover h3 {
         font-size: 1.02rem;
+      }
+
+      .collaborators-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .collaborator-card {
+        min-height: 214px;
       }
 
       .studio-card,
@@ -795,6 +1089,10 @@
 
       .studios-arrow {
         display: none;
+      }
+
+      .contact-wrap {
+        border-radius: 26px;
       }
     }
 
@@ -925,7 +1223,7 @@
                     </p>
                   </div>
                   <div class="col-md-5">
-                    <img class="what-img" src="https://images.unsplash.com/photo-1517701550927-30cf4ba1f2f0?q=80&w=900&auto=format&fit=crop" alt="What we do">
+                    <img class="what-img" src="assets/img/studio 4.jpg" alt="What we do">
                   </div>
                 </div>
               </div>
@@ -945,12 +1243,11 @@
                 <div class="row g-3 align-items-center">
                   <div class="col-md-7">
                     <p class="what-lead">
-                      Immaginiamo ecosistemi creativi dove strategia, tecnologia e cultura visiva convivono in modo naturale.
-                      Ogni progetto nasce per espandere possibilita, non per replicare formule gia viste.
+                      Tego claude color tergiversatio afflictio. Concedo tutis videlicet succurro cura curvo. Crepusculum corpus totus cubitum bellicus. Coadunatio contabesco terreo a nam. Vulgus molestiae pecto vitiosus alveus molestiae victrix.
                     </p>
                   </div>
                   <div class="col-md-5">
-                    <img class="what-img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=900&auto=format&fit=crop" alt="What we dream">
+                    <img class="what-img" src="assets/img/what we dream.jpg"  alt="What we dream">
                   </div>
                 </div>
               </div>
@@ -970,8 +1267,7 @@
                 <div class="row g-3 align-items-center">
                   <div class="col-md-7">
                     <p class="what-lead">
-                      Esistiamo per costruire connessioni che abbiano un impatto concreto su persone, brand e territori.
-                      Il nostro lavoro prende forma quando identita e risultati riescono a stare nello stesso spazio.
+                      Tego claude color tergiversatio afflictio. Concedo tutis videlicet succurro cura curvo. Crepusculum corpus totus cubitum bellicus. Coadunatio contabesco terreo a nam. Vulgus molestiae pecto vitiosus alveus molestiae victrix.
                     </p>
                   </div>
                   <div class="col-md-5">
@@ -1003,141 +1299,289 @@
         <div class="flamingos-intro">
           <p class="kicker">Happy Minds</p>
           <h2>Meet the<br><span class="mag">core team</span></h2>
-          <p class="flamingos-copy">Una sezione interamente costruita su griglia Bootstrap: 12 profili, distribuiti in modo regolare, con una hover card informativa coerente su ogni elemento per mostrare ruolo, focus e una call to action.</p>
+          <p class="flamingos-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
 
         <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3 g-lg-4">
           <div class="col">
             <a class="member-card" href="team-member.html?member=michele-santoro" aria-label="Apri il profilo di Michele Santoro">
-              <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?q=80&w=900&auto=format&fit=crop" alt="Michele Santoro">
+              <img src="assets/img/Lidia2_1000x1500.jpg" alt="Michele Santoro">
               <div class="member-card-hover">
-                <span class="eyebrow">Creative Direction</span>
-                <h3>Davide Caci</h3>
+                <span class="eyebrow">CEO & BUSINESS DEVELOPMENT</span>
+                <h3>Lidia Marongiu</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=giulia-moretti" aria-label="Apri il profilo di Giulia Moretti">
-              <img src="https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=900&auto=format&fit=crop" alt="Giulia Moretti">
+              <img src="assets/img/Cecilia_HM_1000x1500.jpg" alt="Giulia Moretti">
               <div class="member-card-hover">
-                <span class="eyebrow">Brand Strategy</span>
-                <h3>Giulia Moretti</h3>
+                <span class="eyebrow">CREATIVE & COMMUNICATION DIRECTOR</span>
+                <h3>Cecilia Pedroni</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=chiara-ferri" aria-label="Apri il profilo di Chiara Ferri">
-              <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=900&auto=format&fit=crop" alt="Chiara Ferri">
+              <img src="assets/img/Francesco-Cusimano-Art-Director-Brand-Designer.jpg" alt="Chiara Ferri">
               <div class="member-card-hover">
-                <span class="eyebrow">Account Lead</span>
-                <h3>Chiara Ferri</h3>
+                <span class="eyebrow">ART DIRECTOR & BRAND DESIGNER</span>
+                <h3>Francesco Cusimano</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=luca-bernardi" aria-label="Apri il profilo di Luca Bernardi">
-              <img src="https://images.unsplash.com/photo-1542178243-bc20204b769f?q=80&w=900&auto=format&fit=crop" alt="Luca Bernardi">
+              <img src="assets/img/Vito_1000x1500.jpg" alt="Luca Bernardi">
               <div class="member-card-hover">
-                <span class="eyebrow">Performance Marketing</span>
-                <h3>Luca Bernardi</h3>
+                <span class="eyebrow">CTO & WEB DEVELOPER</span>
+                <h3>Vito “Houston” Lioce</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=sofia-rinaldi" aria-label="Apri il profilo di Sofia Rinaldi">
-              <img src="https://images.unsplash.com/photo-1484863137850-59afcfe05386?q=80&w=900&auto=format&fit=crop" alt="Sofia Rinaldi">
+              <img src="assets/img/Michele_HM_1000x1500.jpg" alt="Sofia Rinaldi">
               <div class="member-card-hover">
-                <span class="eyebrow">Social Media</span>
-                <h3>Sofia Rinaldi</h3>
+                <span class="eyebrow">HEAD OF PROJECT MANAGEMENT<br>& STRATEGIST</span>
+                <h3>Michele Santoro</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
-            <a class="member-card" href="team-member.html?member=marco-villa" aria-label="Apri il profilo di Marco Villa">
-              <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900&auto=format&fit=crop" alt="Marco Villa">
+            <a class="member-card" href="team-member.html?member=marco-villa" aria-label="Apri il profilo di Laura Spanu">
+              <img src="assets/img/Laura_1000x1500.jpg" alt="Laura Spanu">
               <div class="member-card-hover">
-                <span class="eyebrow">Motion Design</span>
-                <h3>Marco Villa</h3>
+                <span class="eyebrow">ACCOUNT MANAGER, DATA ANALYST<br>& INBOUND MARKETING SPECIALIST</span>
+                <h3>Laura Spanu</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
-            <a class="member-card" href="team-member.html?member=elena-conti" aria-label="Apri il profilo di Elena Conti">
-              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=900&auto=format&fit=crop" alt="Elena Conti">
+            <a class="member-card" href="team-member.html?member=elena-conti" aria-label="Apri il profilo di Francesca Danesi">
+              <img src="assets/img/Francesca_HM_1000x1500.jpg" alt="Francesca Danesi">
               <div class="member-card-hover">
-                <span class="eyebrow">Content Design</span>
-                <h3>Elena Conti</h3>
+                <span class="eyebrow">PROJECT MANAGER</span>
+                <h3>Francesca Danesi</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=anna-seri" aria-label="Apri il profilo di Anna Seri">
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=900&auto=format&fit=crop" alt="Anna Seri">
+              <img src="assets/img/Viola-Liverani-inbound-marketing-specialist-happy-minds.jpg" alt="Viola Liverani">
               <div class="member-card-hover">
-                <span class="eyebrow">Project Management</span>
-                <h3>Anna Seri</h3>
+                <span class="eyebrow">PROJECT MANAGER<br>& INBOUND MARKETING SPECIALIST</span>
+                <h3>Viola Liverani</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=tommaso-greco" aria-label="Apri il profilo di Tommaso Greco">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=900&auto=format&fit=crop" alt="Tommaso Greco">
+              <img src="assets/img/Zac_1000x1500.jpg" alt="Zac D. Inzerillo">
               <div class="member-card-hover">
-                <span class="eyebrow">Video Production</span>
-                <h3>Tommaso Greco</h3>
+                <span class="eyebrow">SOCIAL MEDIA STRATEGIST</span>
+                <h3>Zac D. Inzerillo</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
-            <a class="member-card" href="team-member.html?member=martina-leone" aria-label="Apri il profilo di Martina Leone">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=900&auto=format&fit=crop" alt="Martina Leone">
+            <a class="member-card" href="team-member.html?member=martina-leone" aria-label="Apri il profilo di Elisabetta Coffari">
+              <img src="assets/img/Elisabetta_1000x1500.jpg" alt="Elisabetta Coffari">
               <div class="member-card-hover">
-                <span class="eyebrow">UX Design</span>
-                <h3>Martina Leone</h3>
+                <span class="eyebrow">CONTENT & EVENT MANAGER</span>
+                <h3>Elisabetta Coffari</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
-            <a class="member-card" href="team-member.html?member=nicolo-rossi" aria-label="Apri il profilo di Nicolo Rossi">
-              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=900&auto=format&fit=crop" alt="Nicolo Rossi">
+            <a class="member-card" href="team-member.html?member=nicolo-rossi" aria-label="Apri il profilo di Claus Luca">
+              <img src="assets/img/Claus-Luca-Front-End-Developer-happy-minds.jpg" alt="Claus Luca">
               <div class="member-card-hover">
-                <span class="eyebrow">Web Development</span>
-                <h3>Nicolo Rossi</h3>
+                <span class="eyebrow">UI/UX DESIGNER<br>& FRONT-END DEVELOPER</span>
+                <h3>Claus Luca</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
           </div>
           <div class="col">
             <a class="member-card" href="team-member.html?member=beatrice-fabbri" aria-label="Apri il profilo di Beatrice Fabbri">
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=900&auto=format&fit=crop" alt="Beatrice Fabbri">
+              <img src="assets/img/Selene-Paola-Fiorino-Graphic-Designer-Illustrator-happy-minds.jpg" alt="Beatrice Fabbri">
               <div class="member-card-hover">
-                <span class="eyebrow">PR &amp; Partnerships</span>
-                <h3>Beatrice Fabbri</h3>
+                <span class="eyebrow">GRAPHIC DESIGNER & ILLUSTRATOR</span>
+                <h3>Paola Selene Fiorino</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <span class="btn btn-light">View profile</span>
+                <span class="btn btn-light">Vedi il profilo</span>
               </div>
             </a>
+          </div>
+          <div class="col">
+            <a class="member-card" href="team-member.html" aria-label="Apri il profilo di Team Member 01">
+              <img src="assets/img/giada-maestri-happy-minds-profile.jpg" alt="Giada Maestri">
+              <div class="member-card-hover">
+                <span class="eyebrow">JUNIOR MARKETING & COMMUNICATION ASSISTANT</span>
+                <h3>Giada Maestri</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">Vedi il profilo</span>
+              </div>
+            </a>
+          </div>
+          <div class="col">
+            <a class="member-card" href="team-member.html" aria-label="Viola Maroncelli">
+              <img src="assets/img/ViolaM_1000x1500.jpg" alt="Viola Maroncelli">
+              <div class="member-card-hover">
+                <span class="eyebrow">FRONT-END DEVELOPER JUNIOR</span>
+                <h3>Viola Maroncelli</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">Vedi il profilo</span>
+              </div>
+            </a>
+          </div>
+          <div class="col">
+            <a class="member-card" href="team-member.html" aria-label="Nicolò Malerbi">
+              <img src="assets/img/Nicolo_1000x1500.jpg" alt="Nicolò Malerbi">
+              <div class="member-card-hover">
+                <span class="eyebrow">GRAPHIC DESIGNER JUNIOR</span>
+                <h3>Nicolò Malerbi</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">Vedi il profilo</span>
+              </div>
+            </a>
+          </div>
+          <div class="col">
+            <a class="member-card" href="team-member.html" aria-label="Felix">
+              <img src="assets/img/placeholder-team-flamingo-happyminds-2.jpg" alt="Placeholder Team Member 04">
+              <div class="member-card-hover">
+                <span class="eyebrow">THE NEXT HAPPY MIND</span>
+                <h3>Felix</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="btn btn-light">Candidati</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="collaborators">
+      <div class="container-xxl">
+        <div class="collaborators-shell">
+          <div class="collaborators-head">
+            <p class="kicker">Extended network</p>
+            <h2>Meet our<br><span class="mag">collaborators</span></h2>
+          </div>
+
+          <div class="collaborators-grid">
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Margherita-Caprilli-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Margherita Caprilli</h3>
+              </div>
+              <span class="collaborator-tag">Fotografa e Videomaker</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Guido-Calamosca-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Guido Calamosca</h3>
+              </div>
+              <span class="collaborator-tag">Fotografo</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Giulia-Piazza-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Giulia Piazza</h3>
+              </div>
+              <span class="collaborator-tag">Media Relations, PR & Ufficio stampa</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Ettore-Zito-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Ettore Zito</h3>
+              </div>
+              <span class="collaborator-tag">Direttore della Fotografia A.I.C. - Imago</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Panebarco-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Panebarco &amp; C.</h3>
+              </div>
+              <span class="collaborator-tag">Partner / Formazione & Video animation</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/linda-serra-work-wide-women-collaboratrice-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Work Wide Women</h3>
+              </div>
+              <span class="collaborator-tag">Partner / Diversity & Inclusion</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/fabio-d-arco-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Fabio D'Arco</h3>
+              </div>
+              <span class="collaborator-tag">Regista & Founder Lab Video</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Giorgia-olivieri-collaboratori-happy-minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Giorgia Olivieri</h3>
+              </div>
+              <span class="collaborator-tag">Content Creator & Giornalista</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Filippo-Baietti-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Filippo Baietti</h3>
+              </div>
+              <span class="collaborator-tag">Producer, Steaming specialist, Regista, Audio/Video editor</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Francesca-Sanzo-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Francesca Sanzo</h3>
+              </div>
+              <span class="collaborator-tag">Copywriter, Digital Storyteller & Formatrice</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Elettra-Giulia-Bastoni-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Elettra Giulia Bastoni</h3>
+              </div>
+              <span class="collaborator-tag">Fotografa</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/John-Gubertini-collaboratori-Happy-Minds-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>John Gubertini</h3>
+              </div>
+              <span class="collaborator-tag">Fotografo</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Mikaela-Bandini-collaboratori-happy-minds-1-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Mikaela Bandini</h3>
+              </div>
+              <span class="collaborator-tag">Visual Content Creator & Founder Cintaforget.it{aly}</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/Giuseppe-Jepis-Rivello-collaboratori-Happy-Minds-298x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Giuseppe Jepis Rivello</h3>
+              </div>
+              <span class="collaborator-tag">Filmmaker, formatore per la narrazione, content e video editor</span>
+            </article>
+            <article class="collaborator-card" style="--collaborator-photo: url('assets/img/hm-collaboratori-laura-fattori-300x300.jpg');">
+              <div class="collaborator-name">
+                <h3>Laura Fattori</h3>
+              </div>
+              <span class="collaborator-tag">Social Media Manager & Content Creator</span>
+            </article>
           </div>
         </div>
       </div>
@@ -1174,7 +1618,7 @@
             <div class="studios-track" data-studios-track>
               <div class="studio-slide">
                 <article class="studio-card">
-                  <img class="studio-img" src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1200&auto=format&fit=crop" alt="Skyline moderno">
+                  <img class="studio-img" src="assets/img/studio 1.jpg" alt="Skyline moderno">
                   <div class="studio-note">
                     <h6>Studio 1</h6>
                     <p>We make works that blend aesthetics and strategy and create memorable interactions between place and people.</p>
@@ -1183,7 +1627,7 @@
               </div>
               <div class="studio-slide">
                 <article class="studio-card">
-                  <img class="studio-img" src="https://images.unsplash.com/photo-1499744937866-d7e566a20a61?q=80&w=1200&auto=format&fit=crop" alt="Dettaglio urban con persona">
+                  <img class="studio-img" src="assets/img/studio 2.jpg" alt="Dettaglio urban con persona">
                   <div class="studio-note">
                     <h6>Studio 2</h6>
                     <p>Editorial environments, modern skylines and branded spaces become visual systems with a strong narrative tone.</p>
@@ -1192,7 +1636,7 @@
               </div>
               <div class="studio-slide">
                 <article class="studio-card">
-                  <img class="studio-img" src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1200&auto=format&fit=crop" alt="Studio creativo contemporaneo">
+                  <img class="studio-img" src="assets/img/studio 3.jpg" alt="Studio creativo contemporaneo">
                   <div class="studio-note">
                     <h6>Studio 3</h6>
                     <p>We shape visual identities for places and people, translating culture into clear and memorable experiences.</p>
@@ -1201,7 +1645,7 @@
               </div>
               <div class="studio-slide">
                 <article class="studio-card">
-                  <img class="studio-img" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop" alt="Interno architettonico luminoso">
+                  <img class="studio-img" src="assets/img/studio 4.jpg" alt="Interno architettonico luminoso">
                   <div class="studio-note">
                     <h6>Studio 4</h6>
                     <p>Spatial storytelling, exhibition design and contemporary interiors come together in cohesive brand directions.</p>
@@ -1210,7 +1654,7 @@
               </div>
               <div class="studio-slide">
                 <article class="studio-card">
-                  <img class="studio-img" src="https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1200&auto=format&fit=crop" alt="Skyline con architetture verticali">
+                  <img class="studio-img" src="assets/img/studio 5.jpg" alt="Skyline con architetture verticali">
                   <div class="studio-note">
                     <h6>Studio 5</h6>
                     <p>Every frame is designed to connect ambition, positioning and visual impact across digital and physical touchpoints.</p>
@@ -1219,7 +1663,7 @@
               </div>
               <div class="studio-slide">
                 <article class="studio-card">
-                  <img class="studio-img" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop" alt="Dettaglio urbano con persona">
+                  <img class="studio-img" src="assets/img/studio 6.jpg" alt="Dettaglio urbano con persona">
                   <div class="studio-note">
                     <h6>Studio 6</h6>
                     <p>We combine strategy and atmosphere to build projects that feel editorial, human and sharply recognizable.</p>
@@ -1240,11 +1684,82 @@
         </div>
       </div>
     </section>
+
+    <section class="contact-band" id="contact">
+      <div class="container-xl">
+        <div class="contact-wrap">
+          <div class="row g-0">
+            <div class="col-lg-5">
+              <div class="contact-copy">
+                <div>
+                  <p class="kicker">Let’s build something bright</p>
+                  <h2>Start a conversation with Happy Minds</h2>
+                  <p>Maecenas odio mauris, convallis ac ipsum vel, rhoncus mollis lorem. Fusce luctus, magna quis dignissim placerat, lacus elit porttitor ipsum, vel tincidunt dolor tellus ac arcu.</p>
+                </div>
+
+                <div class="contact-points">
+                  <div class="contact-point">
+                    <span class="contact-point-badge">01</span>
+                    <div><strong>Email</strong>hello@happyminds.it</div>
+                  </div>
+                  <div class="contact-point">
+                    <span class="contact-point-badge">02</span>
+                    <div><strong>Phone</strong>0544 212252</div>
+                  </div>
+                  <div class="contact-point">
+                    <span class="contact-point-badge">03</span>
+                    <div><strong>Office</strong>Via A. Mariani 7, Ravenna</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="contact-form-shell">
+                <form class="agency-contact-form" action="#" method="post">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label" for="agencyName">Nome</label>
+                      <input class="form-control" type="text" id="agencyName" name="name" placeholder="Il tuo nome">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="agencyCompany">Azienda</label>
+                      <input class="form-control" type="text" id="agencyCompany" name="company" placeholder="Nome azienda o brand">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="agencyEmail">Email</label>
+                      <input class="form-control" type="email" id="agencyEmail" name="email" placeholder="nome@azienda.it">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="agencyPhone">Telefono</label>
+                      <input class="form-control" type="tel" id="agencyPhone" name="phone" placeholder="+39">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label" for="agencyMessage">Raccontaci il progetto</label>
+                      <textarea class="form-control" id="agencyMessage" name="message" placeholder="Obiettivi, tempi, contesto, materiali gia disponibili..."></textarea>
+                    </div>
+                    <div class="col-12">
+                      <label class="contact-consent" for="agencyConsent">
+                        <input type="checkbox" id="agencyConsent" name="consent">
+                        <span>Autorizzo il trattamento dei dati per essere ricontattato in merito alla richiesta inviata.</span>
+                      </label>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn-submit" type="submit">Invia richiesta</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
     <!-- Global Footer Component -->
 <!-- Bootstrap 5.3 required -->
-<footer class="footer-agency py-5" id="contact">
+<footer class="footer-agency py-5">
   <div class="container">
     <div class="row g-4">
       <div class="col-md-6 col-lg-3">

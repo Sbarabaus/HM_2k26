@@ -207,7 +207,7 @@
 
     .typing-section--overlap .container {
       position: relative;
-      --typing-image-height: clamp(280px, 45vw, 540px);
+      --typing-image-height: clamp(280px, 45vw, 300px);
       --typing-overlap: calc(var(--typing-image-height) * 0.30);
     }
 
@@ -233,7 +233,7 @@
       max-width: 100%;
       background: #fff;
       padding: clamp(.2rem, .8vw, .5rem) clamp(.35rem, 1.2vw, .9rem);
-      margin-bottom: calc(-1 * var(--typing-overlap));
+      /*margin-bottom: calc(-1 * var(--typing-overlap)); */
       pointer-events: none;
     }
 
@@ -684,7 +684,7 @@
       text-transform: none;
       font-size: clamp(3.1rem, 7vw, 7.2rem);
       line-height: .88;
-      margin-bottom: .95rem;
+      margin-bottom: 4vh;
       font-weight: 700;
       color: #fff;
       text-align: left;
@@ -719,20 +719,20 @@
     }
 
     .stack-preview-item {
-      min-height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: .35rem 1rem;
-      color: #fff;
-      font-size: clamp(1rem, 1.6vw, 2rem);
-      font-weight: 500;
-      line-height: 1.1;
-      position: relative;
-      overflow: hidden;
-      text-shadow: 0 3px 10px rgba(0,0,0,.5);
-      backdrop-filter: blur(1px);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: .35rem 1rem;
+    color: #fff;
+    font-size: clamp(1rem, 1.4vw, 2rem);
+    font-weight: 400;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, .5);
+    backdrop-filter: blur(1px);
     }
 
     .stack-preview-item::before {
@@ -845,7 +845,7 @@
 
     .clients-head {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: end;
       gap: 1.5rem;
       margin-bottom: 2rem;
@@ -1129,7 +1129,7 @@
     .destination-banner-back {
       position: absolute;
       inset: 0;
-      transition: transform .65s cubic-bezier(.19, 1, .22, 1), opacity .45s ease;
+      transition: transform 1s cubic-bezier(.19, 1, .22, 1), opacity .45s ease;
     }
 
     .destination-banner-front {
@@ -1891,7 +1891,7 @@ Spreading happiness</span>
     <section class="stack-wrap" aria-label="Marketing sticky stack">
       <article class="stack-panel stack-panel--one" style="--z:1" id="services">
         <div class="container panel-content">
-          <h2 class="panel-title">Marketing<br>strategy</h2>
+          <h2 class="panel-title">Marketing strategy</h2>
           <p class="panel-copy">
             Analisi dei dati, strategie di comunicazione multicanale, social media marketing, digital advertising e lead generation.
             Performance marketing, influencer marketing, copywriting e content creation, direct email marketing &amp; automation, video marketing.
@@ -2035,7 +2035,7 @@ Spreading happiness</span>
     <section class="typing-section typing-section--overlap typing-section--overlap-reverse section-pad">
       <div class="container">
         <div class="typing-media">
-          <img src="assets/img/happy team intro.jpg" alt="Team session">
+          <img src="assets/img/happy team outro.jpg" alt="Team session">
         </div>
 
         <div
@@ -2360,51 +2360,51 @@ Spreading happiness</span>
 
       const projects = [
         {
-          client: "Happy Destination",
-          category: "Branding",
-          title: "Brand Platform",
-          text: "Posizionamento, tono e sistema visivo per trasformare una destinazione in un racconto piu coerente e riconoscibile.",
-          image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
-          href: "project-detail.html"
-        },
-        {
-          client: "Turismo Ravenna",
+          client: "Cesenatico",
           category: "Destination",
-          title: "City Narrative",
-          text: "Una struttura di contenuti e visual asset per collegare patrimonio, esperienza e racconto territoriale.",
-          image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=1600&auto=format&fit=crop",
+          title: "Visit Cesenatico",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.",
+          image: "assets/img/cesenatico home.jpg",
           href: "project-detail.html"
         },
         {
-          client: "Studio Metrics",
-          category: "Digital",
-          title: "Analytics Dashboard",
-          text: "Design di interfaccia e gerarchia dati per rendere leggibili decisioni complesse dentro un prodotto interno.",
-          image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop",
+          client: "Pantelleria",
+          category: "Destination",
+          title: "Visit Pantelleria Island",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.",
+          image: "assets/img/pantelleria home.jpg",
           href: "project-detail.html"
         },
         {
-          client: "Up Minds",
-          category: "Campaign",
-          title: "Launch Toolkit",
-          text: "Key visual, asset modulari e formati in movimento per dare coerenza e ritmo a una campagna cross-channel.",
-          image: "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1600&auto=format&fit=crop",
+          client: "Liguria",
+          category: "Turismo",
+          title: "La Mia Liguria",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.",
+          image: "assets/img/liguria home.jpg",
           href: "project-detail.html"
         },
         {
-          client: "Flamingo Talks",
-          category: "Branding",
-          title: "Editorial Identity",
-          text: "Sistema di linguaggio, gerarchie e impianto visuale per una piattaforma di contenuti con voce piu netta.",
-          image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop",
+          client: "Cattolica",
+          category: "Destination",
+          title: "Cattolica Welcome",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.",
+          image: "assets/img/cattolica home.jpg",
           href: "project-detail.html"
         },
         {
-          client: "Service Lab",
-          category: "Digital",
-          title: "Experience Blueprint",
-          text: "Mappe di servizio, priorita e touchpoint ridisegnati per riallineare processi interni ed esperienza percepita.",
-          image: "https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1600&auto=format&fit=crop",
+          client: "San Mauro Mare",
+          category: "Destination",
+          title: "Visit San Mauro",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.",
+          image: "assets/img/san mauro home.jpg",
+          href: "project-detail.html"
+        },
+        {
+          client: "Rho",
+          category: "Tourism",
+          title: "Visit Rho",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.",
+          image: "assets/img/rho home.jpg",
           href: "project-detail.html"
         }
       ];

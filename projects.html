@@ -208,6 +208,15 @@
       font-weight: 600;
     }
 
+    .project-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .project-name a:hover {
+      color: var(--magenta);
+    }
+
     .project-text {
       margin: 0;
       color: var(--muted);
@@ -234,8 +243,8 @@
     }
 
     .projects-contact {
-      padding: 4.5rem 0 5rem;
-      background: rgba(239, 234, 226, 0.62);
+      padding: 5rem;
+      background: rgba(233, 233, 233, 0.62);
       border-top: 1px solid var(--line);
     }
 
@@ -254,8 +263,9 @@
       margin: 0;
       font-size: clamp(3rem, 5vw, 4.9rem);
       line-height: 0.92;
-      font-weight: 500;
+      font-weight: 700;
       max-width: 8ch;
+      margin-top: 3vh
     }
 
     .contact-copy h2 span {
@@ -293,6 +303,20 @@
     .contact-form textarea {
       min-height: 120px;
       resize: vertical;
+    }
+
+    .contact-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .contact-consent input {
+      margin-top: 0.22rem;
+      accent-color: var(--magenta);
     }
 
     .contact-form button {
@@ -404,8 +428,7 @@
             <p class="kicker">Welcome to our</p>
             <h1>Projects</h1>
             <p class="sub">
-              Una selezione di lavori che mette insieme identita, contenuti, destinazioni ed esperienze digitali.
-              Qui leggi i progetti per titolo, cliente e categoria, con la stessa grammatica visiva di agency.
+              He volunteers tempus in mauris vel, sodales denique. Tortor omnis suscipit beatae.
             </p>
             <div class="hero-mark">.</div>
           </div>
@@ -415,11 +438,16 @@
       <section class="projects-filters-section">
         <div class="projects-container">
           <div class="filter-bar" role="tablist" aria-label="Filtri progetto">
-            <button class="filter-chip is-active" type="button" data-filter="all">Tutti</button>
-            <button class="filter-chip" type="button" data-filter="branding">Branding</button>
+            <button class="filter-chip is-active" type="button" data-filter="all">All Projects</button>
             <button class="filter-chip" type="button" data-filter="destination">Destination</button>
-            <button class="filter-chip" type="button" data-filter="digital">Digital</button>
-            <button class="filter-chip" type="button" data-filter="campaign">Campaign</button>
+            <button class="filter-chip" type="button" data-filter="tourism">Tourism</button>
+            <button class="filter-chip" type="button" data-filter="culture-events">Culture&amp;Events</button>
+            <button class="filter-chip" type="button" data-filter="food">Food</button>
+            <button class="filter-chip" type="button" data-filter="green">Green</button>
+            <button class="filter-chip" type="button" data-filter="education">Education</button>
+            <button class="filter-chip" type="button" data-filter="corporate">Corporate</button>
+            <button class="filter-chip" type="button" data-filter="health">Health</button>
+            <button class="filter-chip" type="button" data-filter="eu-projects">EU Projects</button>
           </div>
         </div>
       </section>
@@ -427,92 +455,92 @@
       <section class="projects-grid-section">
         <div class="projects-container">
           <div class="projects-grid" id="projectsGrid">
-            <article class="project-card" data-category="branding">
+            <article class="project-card" data-category="destination">
               <div class="project-media">
-                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1400&auto=format&fit=crop" alt="Brand platform project">
+                <img src="assets/img/cesenatico home.jpg" alt="Visit Cesenatico">
               </div>
               <div class="project-body">
                 <div class="project-meta">
-                  <span class="project-client">Happy Destination</span>
-                  <span class="project-category">Branding</span>
+                  <span class="project-client">Cesenatico</span>
+                  <span class="project-category">Destination</span>
                 </div>
-                <h2 class="project-name">Brand Platform</h2>
-                <p class="project-text">Posizionamento, tono e sistema visivo per trasformare una destinazione in un racconto piu coerente e riconoscibile.</p>
+                <h2 class="project-name"><a href="project-detail.html">Visit Cesenatico</a></h2>
+                <p class="project-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.</p>
                 <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
               </div>
             </article>
 
             <article class="project-card" data-category="destination">
               <div class="project-media">
-                <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=1400&auto=format&fit=crop" alt="Destination project">
+                <img src="assets/img/pantelleria home.jpg" alt="Visit Pantelleria Island">
               </div>
               <div class="project-body">
                 <div class="project-meta">
-                  <span class="project-client">Turismo Ravenna</span>
+                  <span class="project-client">Pantelleria</span>
                   <span class="project-category">Destination</span>
                 </div>
-                <h2 class="project-name">City Narrative</h2>
-                <p class="project-text">Una struttura di contenuti e visual asset per collegare patrimonio, esperienza e racconto territoriale.</p>
+                <h2 class="project-name"><a href="project-detail.html">Visit Pantelleria Island</a></h2>
+                <p class="project-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.</p>
                 <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
               </div>
             </article>
 
-            <article class="project-card" data-category="digital">
+            <article class="project-card" data-category="tourism">
               <div class="project-media">
-                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1400&auto=format&fit=crop" alt="Digital dashboard project">
+                <img src="assets/img/liguria home.jpg" alt="La Mia Liguria">
               </div>
               <div class="project-body">
                 <div class="project-meta">
-                  <span class="project-client">Studio Metrics</span>
-                  <span class="project-category">Digital</span>
+                  <span class="project-client">Liguria</span>
+                  <span class="project-category">Tourism</span>
                 </div>
-                <h2 class="project-name">Analytics Dashboard</h2>
-                <p class="project-text">Design di interfaccia e gerarchia dati per rendere leggibili decisioni complesse dentro un prodotto interno.</p>
+                <h2 class="project-name"><a href="project-detail.html">La Mia Liguria</a></h2>
+                <p class="project-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.</p>
                 <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
               </div>
             </article>
 
-            <article class="project-card" data-category="campaign">
+            <article class="project-card" data-category="destination">
               <div class="project-media">
-                <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1400&auto=format&fit=crop" alt="Campaign toolkit project">
+                <img src="assets/img/cattolica home.jpg" alt="Cattolica Welcome">
               </div>
               <div class="project-body">
                 <div class="project-meta">
-                  <span class="project-client">Up Minds</span>
-                  <span class="project-category">Campaign</span>
+                  <span class="project-client">Cattolica</span>
+                  <span class="project-category">Destination</span>
                 </div>
-                <h2 class="project-name">Launch Toolkit</h2>
-                <p class="project-text">Key visual, asset modulari e formati in movimento per dare coerenza e ritmo a una campagna cross-channel.</p>
+                <h2 class="project-name"><a href="project-detail.html">Cattolica Welcome</a></h2>
+                <p class="project-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.</p>
                 <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
               </div>
             </article>
 
-            <article class="project-card" data-category="branding">
+            <article class="project-card" data-category="destination">
               <div class="project-media">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop" alt="Editorial identity project">
+                <img src="assets/img/san mauro home.jpg" alt="Visit San Mauro">
               </div>
               <div class="project-body">
                 <div class="project-meta">
-                  <span class="project-client">Flamingo Talks</span>
-                  <span class="project-category">Branding</span>
+                  <span class="project-client">San Mauro Mare</span>
+                  <span class="project-category">Destination</span>
                 </div>
-                <h2 class="project-name">Editorial Identity</h2>
-                <p class="project-text">Sistema di linguaggio, gerarchie e impianto visuale per una piattaforma di contenuti con voce piu netta.</p>
+                <h2 class="project-name"><a href="project-detail.html">Visit San Mauro</a></h2>
+                <p class="project-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.</p>
                 <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
               </div>
             </article>
 
-            <article class="project-card" data-category="digital">
+            <article class="project-card" data-category="tourism">
               <div class="project-media">
-                <img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1400&auto=format&fit=crop" alt="Service blueprint digital project">
+                <img src="assets/img/rho home.jpg" alt="Visit Rho">
               </div>
               <div class="project-body">
                 <div class="project-meta">
-                  <span class="project-client">Service Lab</span>
-                  <span class="project-category">Digital</span>
+                  <span class="project-client">Rho</span>
+                  <span class="project-category">Tourism</span>
                 </div>
-                <h2 class="project-name">Experience Blueprint</h2>
-                <p class="project-text">Mappe di servizio, priorita e touchpoint ridisegnati per riallineare processi interni ed esperienza percepita.</p>
+                <h2 class="project-name"><a href="project-detail.html">Visit Rho</a></h2>
+                <p class="project-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra viverra pulvinar orci aliquam.</p>
                 <a class="project-link" href="project-detail.html">Scopri il progetto &#8599;</a>
               </div>
             </article>
@@ -524,23 +552,35 @@
         <div class="projects-container">
           <div class="contact-grid">
             <div class="contact-copy">
-              <div class="hero-kicker">Start a Project</div>
+              <div class="kicker">Start a Project</div>
               <h2>Parliamo del tuo prossimo <span>progetto.</span></h2>
             </div>
 
             <form class="contact-form">
               <div>
-                <label for="name">Name</label>
+                <label for="name">Nome</label>
                 <input id="name" type="text" placeholder="Nome">
+              </div>
+              <div>
+                <label for="surname">Cognome</label>
+                <input id="surname" type="text" placeholder="Cognome">
               </div>
               <div>
                 <label for="email">Email</label>
                 <input id="email" type="email" placeholder="Email">
               </div>
               <div>
-                <label for="message">Message</label>
+                <label for="phone">Telefono</label>
+                <input id="phone" type="tel" placeholder="Telefono">
+              </div>
+              <div>
+                <label for="message">Messaggio</label>
                 <textarea id="message" placeholder="Raccontaci il progetto"></textarea>
               </div>
+              <label class="contact-consent" for="policy">
+                <input id="policy" type="checkbox">
+                <span>Accetto la privacy policy e autorizzo il trattamento dei dati personali.</span>
+              </label>
               <button type="submit">Invia richiesta</button>
             </form>
           </div>

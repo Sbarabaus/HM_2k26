@@ -83,15 +83,8 @@
       margin-bottom: 1rem;
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 18px;
-      height: 1px;
-      background: currentColor;
-    }
-
     .member-hero {
-      padding: clamp(110px, 10vw, 140px) 0 clamp(72px, 8vw, 108px);
+      padding: clamp(60px, 10vw, 80px) 0 clamp(72px, 8vw, 108px);
       min-height: min(100vh, 920px);
       display: flex;
       align-items: center;
@@ -121,16 +114,7 @@
     }
 
     .member-intro {
-      max-width: 560px;
-    }
-
-    .member-profile-kicker {
-      color: #b4b6bb;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.42em;
-      font-weight: 700;
-      margin-bottom: 0.9rem;
+      max-width: 650px;
     }
 
     .member-role {
@@ -150,7 +134,7 @@
     }
 
     .member-title {
-      font-size: clamp(4.4rem, 8vw, 7.4rem);
+      font-size: clamp(3.4rem, 8vw, 4.4rem);
       line-height: 0.84;
       letter-spacing: -0.03em;
       font-weight: 800;
@@ -281,16 +265,6 @@
       box-shadow: 0 22px 38px rgba(18, 19, 23, 0.2);
     }
 
-    .portrait-focus-label {
-      display: block;
-      font-size: 0.58rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: rgba(255,255,255,0.42);
-      margin-bottom: 0.55rem;
-      font-weight: 700;
-    }
-
     .portrait-focus p {
       margin: 0;
       font-size: 0.85rem;
@@ -304,7 +278,7 @@
       position: relative;
       padding: clamp(56px, 7vw, 92px) 0;
       border-top: 1px solid var(--line);
-      background: rgba(240, 237, 231, 0.7);
+      background: rgba(217, 217, 217, 0.7);
     }
 
     .editorial-section.section-light {
@@ -319,7 +293,6 @@
     }
 
     .section-aside p {
-      font-family: var(--serif);
       font-size: clamp(1.7rem, 2.8vw, 2.6rem);
       line-height: 1.02;
       margin: 0;
@@ -377,7 +350,6 @@
 
     .idea-copy strong {
       display: block;
-      font-family: var(--serif);
       font-size: clamp(1.7rem, 2.5vw, 2.3rem);
       font-weight: 500;
       line-height: 1;
@@ -458,7 +430,6 @@
       min-height: 320px;
       object-fit: cover;
       display: block;
-      filter: grayscale(1);
     }
 
     .project-copy {
@@ -480,7 +451,6 @@
     }
 
     .project-copy h3 {
-      font-family: var(--serif);
       font-size: clamp(2.4rem, 4vw, 3.4rem);
       line-height: 0.94;
       font-weight: 500;
@@ -698,13 +668,6 @@
         border-radius: 16px;
       }
 
-      .section-number {
-        font-size: 4.8rem;
-        top: auto;
-        bottom: 16px;
-        transform: none;
-      }
-
       .idea-item {
         grid-template-columns: 28px 1fr 18px;
       }
@@ -762,9 +725,8 @@
         <div class="member-container">
           <div class="hero-grid">
             <div class="member-intro">
-              <div class="member-profile-kicker">Team Profile</div>
-              <p class="member-role" id="memberRole">Ruolo in azienda</p>
-              <h1 class="member-title" id="memberTitle">Giulia <span>Rossi</span></h1>
+              <p class="member-role" id="memberRole">HEAD OF PROJECT MANAGEMENT & STRATEGIST</p>
+              <h1 class="member-title" id="memberTitle">Michele <span>Santoro</span></h1>
               <div class="hero-socials" id="memberSocials" aria-label="Profile socials">
                 <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
                 <a class="social-icon" href="#" aria-label="Instagram"><img src="assets/img/instagram.png" alt=""></a>
@@ -775,17 +737,16 @@
                 Quisque orci quam, vulputate vitae nibh at, interdum blandit leo. Mauris sit amet mauris quis quam euismod lobortis eget eu ligula. In hac habitasse platea dictumst.
                 Proin eget ipsum rutrum leo vestibulum laoreet ac non nulla.</p>
               <div class="member-hero-actions">
-                <a class="member-hero-btn member-hero-btn--primary" href="#contact">Contatta il team</a>
-                <a class="member-hero-btn member-hero-btn--secondary" href="agency.html#projects">Torna al team</a>
+                <a class="member-hero-btn member-hero-btn--primary" href="#contact">Contatta Michele</a>
+                <a class="member-hero-btn member-hero-btn--secondary" href="agency.html#flamingos">Torna al team</a>
               </div>
             </div>
             <div class="portrait-box">
               <div class="portrait-frame">
-                <img id="memberPortrait" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1200&auto=format&fit=crop" alt="Giulia Moretti portrait">
+                <img id="memberPortrait" src="assets/img/Michele Santoro.jpg" alt="Michele Santoro portrait">
               </div>
               <div class="portrait-focus">
-                <span class="portrait-focus-label">Quote</span>
-                <p id="memberFocusText">"Strategie di posizionamento, format editoriali e direzione creativa per brand che vogliono uscire dai linguaggi prevedibili."</p>
+                <p id="memberFocusText">"Ascoltare, progettare, raccontare. Amo trasformare strategie in parole e idee in esperienze, per far dialogare brand e territori con le persone con cui condividono valori e desideri."</p>
               </div>
             </div>
           </div>
@@ -802,11 +763,10 @@
             <div class="section-content" id="memberAboutCopy">
               <p>Lavoro all'intersezione tra interfacce, contenuti e direzione visuale. Mi interessa costruire sistemi chiari, coerenti e flessibili, capaci di dare ordine senza togliere carattere al brand.</p>
               <p>Aiuto team e prodotti a tradurre complessita in esperienze utili, riconoscibili e piacevoli da usare, con una particolare attenzione a accessibilita, tono e gerarchia delle informazioni.</p>
-              <a href="#contact" class="btn">Contattami</a>
+              <a href="#contact" class="btn">Scarica il CV</a>
             </div>
           </div>
         </div>
-        <div class="section-number">01</div>
       </section>
 
       <section class="editorial-section section-light" id="ideas">
@@ -816,8 +776,8 @@
             <a class="idea-item" href="#">
               <div class="idea-index">01</div>
               <div class="idea-copy">
-                <strong>Accessibilita: non e un optional</strong>
-                <span>Come progettare interfacce che restino chiare, inclusive e usabili nel tempo.</span>
+                <strong>Travel Trends 2026: 10 tendenze e 10 viaggi da fare ora</strong>
+                <span>Etiam magna elit, tempus nec dui vitae, varius vestibulum lorem.</span>
               </div>
               <div class="idea-date">12 May 2026</div>
               <div class="idea-arrow">↗</div>
@@ -825,8 +785,8 @@
             <a class="idea-item" href="#">
               <div class="idea-index">02</div>
               <div class="idea-copy">
-                <strong>Design system scalabili</strong>
-                <span>Un framework leggero per creare coerenza visiva senza irrigidire il processo.</span>
+                <strong>Destination Marketing: come creare destinazioni turistiche felici</strong>
+                <span>Etiam magna elit, tempus nec dui vitae, varius vestibulum lorem.</span>
               </div>
               <div class="idea-date">27 Apr 2026</div>
               <div class="idea-arrow">↗</div>
@@ -834,8 +794,8 @@
             <a class="idea-item" href="#">
               <div class="idea-index">03</div>
               <div class="idea-copy">
-                <strong>UX writing: parole che guidano</strong>
-                <span>Il microcopy come strumento di navigazione, tono e fiducia nel prodotto digitale.</span>
+                <strong>Turismo esperienziale e gamification: il futuro dei viaggi è nel gioco</strong>
+                <span>Etiam magna elit, tempus nec dui vitae, varius vestibulum lorem.</span>
               </div>
               <div class="idea-date">14 Jan 2026</div>
               <div class="idea-arrow">↗</div>
@@ -863,35 +823,19 @@
               <h3>Contrast Checker</h3>
               <p>Verifico leggibilita e accessibilita per rendere ogni interazione piu chiara e inclusiva.</p>
             </article>
-            <article class="expertise-card">
-              <span class="tag">Process</span>
-              <h3>Design Sprint</h3>
-              <p>Facilito momenti di allineamento e test per validare rapidamente ipotesi di prodotto.</p>
-            </article>
-            <article class="expertise-card">
-              <span class="tag">Tool</span>
-              <h3>Storybook</h3>
-              <p>Metto ordine tra UI e sviluppo per ridurre incoerenze e accelerare il lavoro di team.</p>
-            </article>
-            <article class="expertise-card">
-              <span class="tag">Research</span>
-              <h3>Jobs To Be Done</h3>
-              <p>Analizzo bisogni reali e contesti d'uso per progettare esperienze utili, non solo belle.</p>
-            </article>
           </div>
         </div>
-        <div class="section-number">02</div>
       </section>
 
       <section class="editorial-section section-light" id="projects">
         <div class="member-container">
           <div class="eyebrow" id="memberProjectEyebrow">My latest project</div>
           <div class="project-spotlight">
-            <img id="memberProjectImage" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1400&auto=format&fit=crop" alt="Analytics dashboard project">
+            <img id="memberProjectImage" src="assets/img/liguria home.jpg" alt="La Mia Liguria">
             <div class="project-copy">
-              <span class="tag" id="memberProjectTag">Data Experience</span>
-              <h3 id="memberProjectTitle">Analytics Dashboard</h3>
-              <p id="memberProjectText">Un dashboard pensato per ridurre il rumore, chiarire le priorita e rendere leggibili decisioni complesse attraverso una gerarchia visiva piu netta.</p>
+              <span class="tag" id="memberProjectTag">Turismo</span>
+              <h3 id="memberProjectTitle">La Mia Liguria</h3>
+              <p id="memberProjectText">Fusce luctus, magna quis dignissim placerat, lacus elit porttitor ipsum, vel tincidunt dolor tellus ac arcu. Fusce at libero ullamcorper erat maximus rhoncus eu id enim. </p>
               <a id="memberProjectLink" href="projects.html">Scopri il progetto &#8599;</a>
             </div>
           </div>
@@ -928,7 +872,7 @@
       <div class="member-mini-footer">
         <div class="member-container">
           <div class="row">
-            <div class="col-md-6">Giulia Moretti - Portfolio Identity</div>
+            <div class="col-md-6">Michele santoro - HEAD OF PROJECT MANAGEMENT & STRATEGIST</div>
             <div class="col-md-6">
               <div class="mini-socials">
                 <a class="social-icon" href="#" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
@@ -1089,8 +1033,8 @@
           ],
           projectEyebrow: "My latest project",
           project: {
-            tag: "Data Experience",
-            title: "Analytics Dashboard",
+            tag: "Turismo",
+            title: "La Mia Liguria",
             text: "Un dashboard pensato per ridurre il rumore, chiarire le priorita e rendere leggibili decisioni complesse attraverso una gerarchia visiva piu netta.",
             image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1400&auto=format&fit=crop",
             imageAlt: "Analytics dashboard project",
